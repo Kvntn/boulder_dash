@@ -5,12 +5,11 @@ import entity.Sprite;
 
 public class DugWall extends MotionlessEntity {
 
-	private char charSprite = 'O';
-	private Sprite sprite = new Sprite(charSprite, null);	
+	private static char charSprite = 'O';
+	private static Sprite sprite = new Sprite(charSprite, "ground0.png");	
 	
-	protected DugWall(Sprite sprite, Permeability permeability) {
-		super(sprite, permeability);
-		// TODO Auto-generated constructor stub
+	protected DugWall() {
+		super(sprite, Permeability.PENETRABLE);
 	}
 
 }

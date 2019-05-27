@@ -5,11 +5,11 @@ import entity.Sprite;
 
 public class BreakableWall extends MotionlessEntity {
 
-	private char charSprite = 'W';
-	private Sprite sprite = new Sprite(charSprite, null);	
+	private static char charSprite = 'W';
+	private static Sprite sprite = new Sprite(charSprite, null);	
 	
-	protected BreakableWall(Sprite sprite, Permeability permeability) {
-		super(sprite, permeability);
+	protected BreakableWall() {
+		super(sprite, Permeability.MINEABLE);
 		// TODO Auto-generated constructor stub
 	}
 

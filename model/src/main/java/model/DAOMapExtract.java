@@ -36,7 +36,7 @@ class DAOMapExtract {
 	 *
 	 * @see model.DAOEntity#create(model.Entity)
 	 */
-	@Override
+	
 	public boolean create(final Map map) {
 		// Not implemented
 		return false;
@@ -47,7 +47,7 @@ class DAOMapExtract {
 	 *
 	 * @see model.DAOEntity#delete(model.Entity)
 	 */
-	@Override
+	
 	public boolean delete(final Map map) {
 		// Not implemented
 		return false;
@@ -58,7 +58,7 @@ class DAOMapExtract {
 	 *
 	 * @see model.DAOEntity#update(model.Entity)
 	 */
-	@Override
+	
 	public boolean update(final Map map) {
 		// Not implemented
 		return false;
@@ -69,8 +69,8 @@ class DAOMapExtract {
 	 *
 	 * @see model.DAOEntity#find(int)
 	 */
-	@Override
-	public HelloWorld find(final int id) {
+	
+	public String find(final int id) {
 		HelloWorld helloWorld = new HelloWorld();
 
 		try {
@@ -94,20 +94,20 @@ class DAOMapExtract {
 	 *
 	 * @see model.DAOEntity#find(java.lang.String)
 	 */
-	@Override
-	public HelloWorld find(final String code) {
-		HelloWorld helloWorld = new HelloWorld();
+	
+	public Map downloadMap(int level) {
 
 		try {
-			final String sql = "{call helloworldByCode(?)}";
+			final String sql = "select item from level" + level;
 			final CallableStatement call = this.getConnection().prepareCall(sql);
-			call.setString(1, code);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
+			String str = resultSet.getString(2);
 			if (resultSet.first()) {
-				helloWorld = new HelloWorld(resultSet.getInt("id"), code, resultSet.getString("message"));
+				Map map = new Map(level, str);
+				return map;
 			}
-			return helloWorld;
+			return null;
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}

@@ -8,7 +8,8 @@ public class Map {
 	private int level;
 	
 	public Map(int level, String mapContent) {
-		
+		this.mapContent = mapContent;
+		this.level = level;
 	}
 	
 	public String getMapContent() {
@@ -28,6 +29,7 @@ public class Map {
 	}
 	public void setLevel(int level) {
 		this.level = level;
+		this.setMapContent(mapContent);
 	}
 	public static int getWidth() {
 		return WIDTH;
