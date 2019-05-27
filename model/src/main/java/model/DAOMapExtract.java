@@ -12,7 +12,9 @@ import entity.HelloWorld;
  *
  * @author Jean-Aymeric Diet
  */
-class DAOHelloWorld extends DAOEntity<HelloWorld> {
+class DAOMapExtract {
+
+	private final Connection connection;
 
 	/**
 	 * Instantiates a new DAO hello world.
@@ -22,17 +24,20 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 * @throws SQLException
 	 *           the SQL exception
 	 */
-	public DAOHelloWorld(final Connection connection) throws SQLException {
-		super(connection);
+	public DAOMapExtract(final Connection connection) throws SQLException {
+		this.connection = connection;
 	}
 
+	protected Connection getConnection() {
+		return this.connection;
+	}
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see model.DAOEntity#create(model.Entity)
 	 */
-	
-	public boolean create(final HelloWorld entity) {
+	@Override
+	public boolean create(final Map map) {
 		// Not implemented
 		return false;
 	}
@@ -42,8 +47,8 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 *
 	 * @see model.DAOEntity#delete(model.Entity)
 	 */
-	
-	public boolean delete(final HelloWorld entity) {
+	@Override
+	public boolean delete(final Map map) {
 		// Not implemented
 		return false;
 	}
@@ -53,8 +58,8 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 *
 	 * @see model.DAOEntity#update(model.Entity)
 	 */
-	
-	public boolean update(final HelloWorld entity) {
+	@Override
+	public boolean update(final Map map) {
 		// Not implemented
 		return false;
 	}
@@ -64,7 +69,7 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 *
 	 * @see model.DAOEntity#find(int)
 	 */
-
+	@Override
 	public HelloWorld find(final int id) {
 		HelloWorld helloWorld = new HelloWorld();
 
@@ -89,7 +94,7 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 *
 	 * @see model.DAOEntity#find(java.lang.String)
 	 */
-	
+	@Override
 	public HelloWorld find(final String code) {
 		HelloWorld helloWorld = new HelloWorld();
 

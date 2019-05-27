@@ -2,11 +2,11 @@ package entity.motionless;
 
 public class MotionlessEntityFactory {
 
-	private static BreakableWall breakableWall = new BreakableWall(null, null);
-	private static UnbreakableWall unbreakableWall = new UnbreakableWall(null, null);
-	private static DugWall dugWall = new DugWall(null, null);
-	private static Spawnpoint spawnPoint = new Spawnpoint(null, null);
-	private static Exit exit = new Exit(null, null);
+	private static BreakableWall breakableWall = new BreakableWall();
+	private static UnbreakableWall unbreakableWall = new UnbreakableWall();
+	private static DugWall dugWall = new DugWall();
+	private static Spawnpoint spawnPoint = new Spawnpoint();
+	private static Exit exit = new Exit();
 	
 	public MotionlessEntity[] motionlessEntity = {breakableWall, unbreakableWall, dugWall, exit, spawnPoint};
 	

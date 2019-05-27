@@ -2,7 +2,7 @@ package entity;
 
 public enum Permeability {
 
-	PENTRABLE,
+	PENETRABLE,
 	BLOCKING,
 	MINEABLE
 	
