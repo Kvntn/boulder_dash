@@ -1,6 +1,10 @@
 package entity;
 
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Sprite {
 
@@ -13,8 +17,8 @@ public class Sprite {
 		
 	}
 	
-	public Image loadImage() {
-		return image;
+	public void loadImage() throws IOException {
+		this.setImage(ImageIO.read(new File("C:\\Users\\Kventin\\git\\boulder_dash\\entity\\sprites/" + this.getImageName())).getScaledInstance(48, 48, Image.SCALE_DEFAULT));;
 	}
 
 	public Image getImage() {
