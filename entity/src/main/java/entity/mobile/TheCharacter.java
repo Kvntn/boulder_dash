@@ -1,7 +1,6 @@
 package entity.mobile;
 
 import java.awt.Point;
-
 import entity.Permeability;
 
 public class TheCharacter extends MobileEntity {
