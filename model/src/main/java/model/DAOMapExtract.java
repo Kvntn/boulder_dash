@@ -1,18 +1,24 @@
 package model;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import entity.HelloWorld;
+import entity.Entity;
+import entity.motionless.MotionlessEntityFactory;
+import entity.Map;
+import entity.motionless.Exit;
 
 /**
  * The Class DAOHelloWorld.
  *
  * @author Jean-Aymeric Diet
  */
-class DAOHelloWorld extends DAOEntity<HelloWorld> {
+class DAOMapExtract {
+
+	private final Connection connection;
 
 	/**
 	 * Instantiates a new DAO hello world.
@@ -22,17 +28,20 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 * @throws SQLException
 	 *           the SQL exception
 	 */
-	public DAOHelloWorld(final Connection connection) throws SQLException {
-		super(connection);
+	public DAOMapExtract(final Connection connection) throws SQLException {
+		this.connection = connection;
 	}
 
+	protected Connection getConnection() {
+		return this.connection;
+	}
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see model.DAOEntity#create(model.Entity)
 	 */
 	
-	public boolean create(final HelloWorld entity) {
+	public boolean create(final Map map) {
 		// Not implemented
 		return false;
 	}
@@ -43,7 +52,7 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 * @see model.DAOEntity#delete(model.Entity)
 	 */
 	
-	public boolean delete(final HelloWorld entity) {
+	public boolean delete(final Map map) {
 		// Not implemented
 		return false;
 	}
@@ -54,7 +63,7 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 * @see model.DAOEntity#update(model.Entity)
 	 */
 	
-	public boolean update(final HelloWorld entity) {
+	public boolean update(final Map map) {
 		// Not implemented
 		return false;
 	}
@@ -64,9 +73,8 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 *
 	 * @see model.DAOEntity#find(int)
 	 */
-
-	public HelloWorld find(final int id) {
-		HelloWorld helloWorld = new HelloWorld();
+	
+	public String find(final int id) {
 
 		try {
 			final String sql = "{call helloworldById(?)}";
@@ -90,23 +98,67 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 * @see model.DAOEntity#find(java.lang.String)
 	 */
 	
-	public HelloWorld find(final String code) {
-		HelloWorld helloWorld = new HelloWorld();
+	public Map downloadMap(int level) {
 
 		try {
-			final String sql = "{call helloworldByCode(?)}";
+			final String sql = "select item from level" + level;
 			final CallableStatement call = this.getConnection().prepareCall(sql);
-			call.setString(1, code);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
+			char[] str = resultSet.getString(2).toCharArray();
 			if (resultSet.first()) {
-				helloWorld = new HelloWorld(resultSet.getInt("id"), code, resultSet.getString("message"));
+				Map map = new Map(level, charToEntity(str));
+				return map;
 			}
-			return helloWorld;
+			return null;
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+	
+	private Map resultToMap(final ResultSet result, int width, int level) throws SQLException, IOException{
+
+		Entity[][] mapContent = null;
+		Map map = new Map(level, mapContent);
+		
+		
+		int currentX = 0;
+		int currentY = 0;
+		boolean skip = false;
+		
+		for(char ch : result.getString(2).toCharArray()) {
+			
+			for(int x = 0; x <= ; x++) {
+				
+				for(int y = 0; y <= 32; y++) {
+	
+					map.setOnMapXY(MotionlessEntityFactory.getFromDBSymbol(ch), x, y);
+					
+				}
+			}
+		}
+		
+		return map;
+	}
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
