@@ -1,5 +1,9 @@
 package entity;
 
+import java.util.ArrayList;
+
+import entity.mobile.MobileEntity;
+
 public class Map {
 
 	private Entity[][] mapContent;
@@ -7,15 +11,25 @@ public class Map {
 	private static int diamondCount = 0;
 	private int level;
 	
+	private ArrayList<MobileEntity> mobileEntities = new ArrayList<MobileEntity>(); 
+	
 	public Map(int level, Entity[][] mapContent) {
 		this.mapContent = mapContent;
 		this.level = level;
+	}
+	public Map() {
+		this.level = 1;
+		this.mapContent = null;
 	}
 	
 	public Entity[][] getMapContent() {
 		return mapContent;
 	}
 	
+	public ArrayList<MobileEntity> getMobileEntities() {
+		return mobileEntities;
+	}
+
 	public void setMapContent(Entity[][] mapContent) {
 		this.mapContent = mapContent;
 	}
@@ -53,4 +67,23 @@ public class Map {
 		return mapContent[x][y];
 	}
 	
+	public void add(MobileEntity mE) {
+		mobileEntities.add(mE);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

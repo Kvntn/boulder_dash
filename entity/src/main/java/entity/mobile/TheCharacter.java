@@ -52,29 +52,31 @@ public class TheCharacter extends MobileEntity {
 	
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getX();
 	}
+	
 	@Override
 	public void setX(int x) {
-		// TODO Auto-generated method stub
+		this.setX(x);
 		
 	}
 	@Override
 	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getY();
 	}
+	
 	@Override
 	public void setY(int y) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
 	public boolean isAlive() {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 	@Override
 	public boolean canMove() {
 		// TODO Auto-generated method stub

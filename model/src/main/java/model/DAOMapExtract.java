@@ -35,38 +35,6 @@ class DAOMapExtract {
 	protected Connection getConnection() {
 		return this.connection;
 	}
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see model.DAOEntity#create(model.Entity)
-	 */
-	
-	public boolean create(final Map map) {
-		// Not implemented
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see model.DAOEntity#delete(model.Entity)
-	 */
-	
-	public boolean delete(final Map map) {
-		// Not implemented
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see model.DAOEntity#update(model.Entity)
-	 */
-	
-	public boolean update(final Map map) {
-		// Not implemented
-		return false;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -91,6 +59,7 @@ class DAOMapExtract {
 		}
 		return null;
 	}
+	
 	
 	private Map resultToMap(final ResultSet result, int level) throws SQLException, IOException{
 
