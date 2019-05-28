@@ -42,10 +42,7 @@ public class Ennemy extends MobileEntity{
 	     this.fallSpeed = false;
 	    
 	}
-	
-	public void fall() {
-		
-	}
+
 	
 	@Override
 	public int getX() {

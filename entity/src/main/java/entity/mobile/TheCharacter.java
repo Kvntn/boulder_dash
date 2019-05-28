@@ -6,14 +6,13 @@ import entity.Permeability;
 public class TheCharacter extends MobileEntity {
 	
 	private Permeability permeability = Permeability.BLOCKING;
-	private int ownedDiamond;
-	private boolean fallSpeed;
-	
+	private int ownedDiamond;	
 	//il n'y a pas le SpriteStay
 	
 	public TheCharacter() {
 		
 	}
+	
 	@Override
 	public void moveUp() {
 		this.setY(this.getY() - 1);
@@ -25,12 +24,10 @@ public class TheCharacter extends MobileEntity {
 		this.setX(this.getX() - 1);
 		this.setHasMoved();
 	}
-
 	@Override
 	public void moveDown() {
 		this.setY(this.getY() + 1);
 		this.setHasMoved();
-		this.fallSpeed = true;
 	}
 
 	@Override
@@ -41,7 +38,6 @@ public class TheCharacter extends MobileEntity {
 	
 	public void stay() {
 		 this.setHasMoved();
-	     this.fallSpeed = false;
 	    
 	}
 	
@@ -73,13 +69,13 @@ public class TheCharacter extends MobileEntity {
 	@Override
 	public boolean isAlive() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 	@Override
 	public boolean canMove() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	@Override
 	public Point getPosition() {
