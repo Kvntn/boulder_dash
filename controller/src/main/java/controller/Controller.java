@@ -3,10 +3,10 @@ import java.awt.event.KeyListener;
 
 import java.awt.event.KeyEvent;
 
-import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
+import entity.ControllerOrder;
 
 /**
  * The Class Controller.
@@ -78,16 +78,12 @@ public final class Controller implements IController {
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 			case KeyEvent.VK_UP:
-				this.model.loadHelloWorld("UP");
 				break;
 			case KeyEvent.VK_DOWN :
-				this.model.loadHelloWorld("FR");
 				break;
 			case KeyEvent.VK_RIGHT:
-				this.model.loadHelloWorld("DE");
 				break;
 			case KeyEvent.VK_LEFT:
-				this.model.loadHelloWorld("ID");
 				break;
 			default:
 				break;

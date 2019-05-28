@@ -1,5 +1,7 @@
 package contract;
 
+import entity.ControllerOrder;
+
 /**
  * The Interface IController.
  *

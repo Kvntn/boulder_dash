@@ -4,8 +4,8 @@
  */
 package main;
 
-import contract.ControllerOrder;
 import controller.Controller;
+import entity.ControllerOrder;
 import model.Model;
 import view.View;
 

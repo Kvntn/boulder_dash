@@ -8,6 +8,7 @@ public abstract class MobileEntity {
 	private Point position;
 	private Map map;
 	private boolean alive;	
+	
 	public MobileEntity(Sprite sprite, Map map) {
 		
 	}

@@ -4,33 +4,50 @@ import java.awt.Point;
 
 import entity.Permeability;
 
-public class TheCharacter extends MobileEntity{
+public class TheCharacter extends MobileEntity {
+	
 	private Permeability permeability = Permeability.BLOCKING;
 	private int ownedDiamond;
+	private boolean fallspeed;
+	
 	//il n'y a pas le SpriteStay
+	
 	public TheCharacter() {
-		
-	}
-	public void moveLeft() {
-		
-	}
-	public void moveRight() {
-		
-	}
-	public void moveDown() {
-		
-	}
-	public void stay() {
-		
-	}
-	public void fall() {
 		
 	}
 	@Override
 	public void moveUp() {
-		// TODO Auto-generated method stub
+		this.setY(this.getY() - 1);
+		this.setHasMoved();
+	}
+
+	@Override
+	public void moveLeft() {
+		this.setX(this.getX() - 1);
+		this.setHasMoved();
+	}
+
+	@Override
+	public void moveDown() {
+		this.setY(this.getY() + 1);
+		this.setHasMoved();
+		this.fallSpeed = true;
+	}
+
+	@Override
+	public void moveRight() {
+		this.setX(this.getX() + 1);
+		this.setHasMoved();
+	}
+	
+	public void stay() {
 		
 	}
+	
+	public void fall() {
+		
+	}
+	
 	@Override
 	public int getX() {
 		// TODO Auto-generated method stub
