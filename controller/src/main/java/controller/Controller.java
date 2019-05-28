@@ -1,4 +1,7 @@
 package controller;
+import java.awt.event.KeyListener;
+
+import java.awt.event.KeyEvent;
 
 import contract.ControllerOrder;
 import contract.IController;
@@ -74,16 +77,16 @@ public final class Controller implements IController {
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
-			case English:
-				this.model.loadHelloWorld("GB");
+			case KeyEvent.VK_UP:
+				this.model.loadHelloWorld("UP");
 				break;
-			case Francais:
+			case KeyEvent.VK_DOWN :
 				this.model.loadHelloWorld("FR");
 				break;
-			case Deutsch:
+			case KeyEvent.VK_RIGHT:
 				this.model.loadHelloWorld("DE");
 				break;
-			case Indonesia:
+			case KeyEvent.VK_LEFT:
 				this.model.loadHelloWorld("ID");
 				break;
 			default:
