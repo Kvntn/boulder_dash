@@ -1,6 +1,8 @@
 package entity.mobile;
 
 import java.awt.Point;
+
+import entity.ControllerOrder;
 import entity.Permeability;
 import entity.Sprite;
 
@@ -107,4 +109,10 @@ public class TheCharacter extends MobileEntity {
         // TODO Auto-generated method stub
         
     }
+
+	@Override
+	protected boolean canMoveTo(ControllerOrder down) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

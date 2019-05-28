@@ -41,7 +41,7 @@ public class ModelTest {
      */
     @Test
     public void testGetMessageString() {
-        this.model.loadHelloWorld("GB");
+        this.model.loadMap(1);
         Assert.assertEquals("Hello world", this.model.getHelloWorld().getMessage());
         this.model.loadHelloWorld("FR");
         Assert.assertEquals("Bonjour le monde", this.model.getHelloWorld().getMessage());
