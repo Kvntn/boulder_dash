@@ -1,11 +1,15 @@
 package model;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import entity.HelloWorld;
+import entity.Entity;
+import entity.motionless.MotionlessEntityFactory;
+import entity.Map;
+import entity.motionless.Exit;
 
 /**
  * The Class DAOHelloWorld.
@@ -71,7 +75,6 @@ class DAOMapExtract {
 	 */
 	
 	public String find(final int id) {
-		HelloWorld helloWorld = new HelloWorld();
 
 		try {
 			final String sql = "{call helloworldById(?)}";
@@ -102,9 +105,9 @@ class DAOMapExtract {
 			final CallableStatement call = this.getConnection().prepareCall(sql);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
-			String str = resultSet.getString(2);
+			char[] str = resultSet.getString(2).toCharArray();
 			if (resultSet.first()) {
-				Map map = new Map(level, str);
+				Map map = new Map(level, charToEntity(str));
 				return map;
 			}
 			return null;
@@ -113,5 +116,49 @@ class DAOMapExtract {
 		}
 		return null;
 	}
+	
+	private Map resultToMap(final ResultSet result, int width, int level) throws SQLException, IOException{
+
+		Entity[][] mapContent = null;
+		Map map = new Map(level, mapContent);
+		
+		
+		int currentX = 0;
+		int currentY = 0;
+		boolean skip = false;
+		
+		for(char ch : result.getString(2).toCharArray()) {
+			
+			for(int x = 0; x <= ; x++) {
+				
+				for(int y = 0; y <= 32; y++) {
+	
+					map.setOnMapXY(MotionlessEntityFactory.getFromDBSymbol(ch), x, y);
+					
+				}
+			}
+		}
+		
+		return map;
+	}
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

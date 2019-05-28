@@ -8,7 +8,7 @@ public class MotionlessEntityFactory {
 	private static Spawnpoint spawnPoint = new Spawnpoint();
 	private static Exit exit = new Exit();
 	
-	public MotionlessEntity[] motionlessEntity = {breakableWall, unbreakableWall, dugWall, exit, spawnPoint};
+	public static MotionlessEntity[] motionlessEntity = {breakableWall, unbreakableWall, dugWall, exit, spawnPoint};
 	
 	public MotionlessEntity createBreakableWall() {
 		return breakableWall;
@@ -30,7 +30,13 @@ public class MotionlessEntityFactory {
 		return exit;
 	}
 	
-	public MotionlessEntity getFromDBSymbol(char symbol) {
-		return null;
+	public static MotionlessEntity getFromDBSymbol(char symbol) {
+		
+		for(final MotionlessEntity motionlessEntity : motionlessEntity) {
+			if(motionlessEntity.getSprite().getCharImage() == symbol) {
+				return motionlessEntity;
+			}
+		}
+		return dugWall;
 	}
 }

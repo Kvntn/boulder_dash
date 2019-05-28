@@ -8,7 +8,7 @@ public class Exit extends MotionlessEntity {
 	private static char charSprite = 'S';
 	private static Sprite sprite = new Sprite(charSprite, "endPortal.png");
 	
-	protected Exit() {
+	Exit() {
 		super(sprite, Permeability.PENETRABLE);
 	}
 
