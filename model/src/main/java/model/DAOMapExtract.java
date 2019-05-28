@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import entity.Entity;
 import entity.motionless.MotionlessEntityFactory;
 import entity.Map;
-import entity.motionless.Exit;
+
 
 /**
  * The Class DAOHelloWorld.
@@ -71,43 +71,18 @@ class DAOMapExtract {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see model.DAOEntity#find(int)
-	 */
-	
-	public String find(final int id) {
-
-		try {
-			final String sql = "{call helloworldById(?)}";
-			final CallableStatement call = this.getConnection().prepareCall(sql);
-			call.setInt(1, id);
-			call.execute();
-			final ResultSet resultSet = call.getResultSet();
-			if (resultSet.first()) {
-				helloWorld = new HelloWorld(id, resultSet.getString("code"), resultSet.getString("message"));
-			}
-			return helloWorld;
-		} catch (final SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
 	 * @see model.DAOEntity#find(java.lang.String)
 	 */
 	
-	public Map downloadMap(int level) {
+	public Map downloadMap(int level) throws IOException {
 
 		try {
 			final String sql = "select item from level" + level;
 			final CallableStatement call = this.getConnection().prepareCall(sql);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
-			char[] str = resultSet.getString(2).toCharArray();
 			if (resultSet.first()) {
-				Map map = new Map(level, charToEntity(str));
+				Map map = resultToMap(resultSet, level);
 				return map;
 			}
 			return null;
@@ -117,21 +92,16 @@ class DAOMapExtract {
 		return null;
 	}
 	
-	private Map resultToMap(final ResultSet result, int width, int level) throws SQLException, IOException{
+	private Map resultToMap(final ResultSet result, int level) throws SQLException, IOException{
 
 		Entity[][] mapContent = null;
 		Map map = new Map(level, mapContent);
 		
-		
-		int currentX = 0;
-		int currentY = 0;
-		boolean skip = false;
-		
 		for(char ch : result.getString(2).toCharArray()) {
 			
-			for(int x = 0; x <= ; x++) {
+			for(int x = 0; x <= Map.getWidth(); x++) {
 				
-				for(int y = 0; y <= 32; y++) {
+				for(int y = 0; y <= Map.getHeight(); y++) {
 	
 					map.setOnMapXY(MotionlessEntityFactory.getFromDBSymbol(ch), x, y);
 					

@@ -3,7 +3,7 @@ package entity;
 public class Map {
 
 	private Entity[][] mapContent;
-	private static final int WIDTH = 1536, HEIGHT = 768;
+	private static final int WIDTH = 32, HEIGHT = 16;
 	private static int diamondCount = 0;
 	private int level;
 	
