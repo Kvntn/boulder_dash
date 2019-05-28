@@ -65,7 +65,7 @@ public final class Controller implements IController {
 	}
 
 	/**
-     * Order perform.
+     * Order perform..
      *
      * @param controllerOrder
      *            the controller order

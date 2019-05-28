@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 /**
  * The Enum ControllerOrder.
  *
- * @author Jean-Aymeric Diet
+ * @author Jean-Aymeric Diet.
  */
 public enum ControllerOrder implements KeyListener {
 	
