@@ -1,6 +1,7 @@
 package model.strategy;
 
 import entity.Permeability;
+import entity.mobile.MobileEntity;
 import entity.*;
 
 public abstract class FallingObjectStrategy {
