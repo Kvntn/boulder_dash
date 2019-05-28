@@ -8,7 +8,7 @@ public class TheCharacter extends MobileEntity {
 	
 	private Permeability permeability = Permeability.BLOCKING;
 	private int ownedDiamond;
-	private boolean fallspeed;
+	private boolean fallSpeed;
 	
 	//il n'y a pas le SpriteStay
 	
@@ -41,7 +41,9 @@ public class TheCharacter extends MobileEntity {
 	}
 	
 	public void stay() {
-		
+		 this.setHasMoved();
+	     this.fallSpeed = false;
+	    
 	}
 	
 	public void fall() {
