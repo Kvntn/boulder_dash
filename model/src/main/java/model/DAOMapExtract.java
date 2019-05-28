@@ -16,7 +16,7 @@ import entity.Map;
  *
  * @author Jean-Aymeric Diet
  */
-class DAOMapExtract {
+public class DAOMapExtract {
 
 	private final Connection connection;
 
@@ -42,7 +42,7 @@ class DAOMapExtract {
 	 * @see model.DAOEntity#find(java.lang.String)
 	 */
 	
-	public Map downloadMap(int level) throws IOException {
+	public final Map downloadMap(int level) throws IOException {
 
 		try {
 			final String sql = "select item from level" + level;

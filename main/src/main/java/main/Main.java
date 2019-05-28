@@ -4,10 +4,10 @@
  */
 package main;
 
+import java.io.IOException;
+
 import controller.Controller;
 import entity.ControllerOrder;
-import model.model;
-import entity.Map;
 import model.Model;
 import view.View;
 
@@ -23,18 +23,15 @@ public abstract class Main {
      *
      * @param args
      *            the arguments
+     * @throws IOException 
      */
-    public static void main(final String[] args) {
-        final Model model = new Model();
+    public static void main(final String[] args) throws IOException {
+        final Model model = new Model(2);
         final View view = new View(model);
         final Controller controller = new Controller(view, model);
-        
-        Map map = new Map();
-        map = downloadMap(1);
-        
         view.setController(controller);
+
         controller.control();
         controller.orderPerform(ControllerOrder.NONE);
     }
-
 }

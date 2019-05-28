@@ -1,10 +1,9 @@
 package model;
 
-import java.sql.SQLException;
+import java.io.IOException;
 import java.util.Observable;
 
 import contract.IModel;
-import entity.HelloWorld;
 import entity.Map;
 
 /**
@@ -16,12 +15,14 @@ public final class Model extends Observable implements IModel {
 
 	/** The helloWorld. */
 	private Map map;
+	private DAOMapExtract dao;
 
 	/**
 	 * Instantiates a new model.
+	 * @throws IOException 
 	 */
-	public Model() {
-		this.map = new Map();
+	public Model(int level) throws IOException {
+		this.setMap(dao.downloadMap(level));
 	}
 	/**
      * Gets the observable.
@@ -39,10 +40,13 @@ public final class Model extends Observable implements IModel {
 
 	@Override
 	public Map getMap() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.map;
 	}
 	
+	@Override
+	public void setMap(Map map) {
+		this.map = map;
+	}
 	/**
      * Load map.
      *
@@ -54,9 +58,26 @@ public final class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	@Override
-	public void loadMap(String code) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
