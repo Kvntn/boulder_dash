@@ -1,12 +1,11 @@
 package controller;
-import java.awt.event.KeyListener;
 
 import java.awt.event.KeyEvent;
 
+import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
-import entity.ControllerOrder;
 
 /**
  * The Class Controller.
@@ -65,7 +64,7 @@ public final class Controller implements IController {
 	}
 
 	/**
-     * Order perform..
+     * Order perform.
      *
      * @param controllerOrder
      *            the controller order
@@ -76,18 +75,25 @@ public final class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
+	public void keyPressed(KeyEvent e) {
+	        int keyCode = e.getKeyCode();
 		switch (controllerOrder) {
 			case KeyEvent.VK_UP:
+				theCharacter.MoveUP;
 				break;
-			case KeyEvent.VK_DOWN :
-				break;
-			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_DOWN:
+				theCharacter.MoveDOWN;
 				break;
 			case KeyEvent.VK_LEFT:
+				theCharacter.MoveLEFT;
+				break;
+			case KeyEvent.VK_RIGHT:
+				theCharacter.MoveRIGHT;
 				break;
 			default:
 				break;
 		}
-	}
+		}
 
+	}
 }
