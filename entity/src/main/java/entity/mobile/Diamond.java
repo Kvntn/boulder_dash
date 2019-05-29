@@ -5,20 +5,21 @@ import java.awt.Point;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
 import entity.ControllerOrder;
+import entity.Map;
 import entity.Permeability;
 import entity.Sprite;
 
 public class Diamond extends MobileEntity{
 
 	private Permeability permeability = Permeability.MINEABLE;
-	private static final char charSprite ='D';
+	private static final char charImage ='D';
 	private boolean fallSpeed;
     
     /** The Constant SPRITE. */
-    private static final Sprite sprite = new Sprite(charSprite, "diamond.png");	
+    private static final Sprite sprite = new Sprite(charImage, "diamond.png");	
 	
-	public Diamond() {
-		
+	public Diamond(int x, int y, Map map) {
+		super(x, y, map);
 	}
 	@Override
 	public void moveUp() {

@@ -2,23 +2,29 @@ package entity.mobile;
 import java.awt.Point;
 
 import entity.ControllerOrder;
+import entity.Entity;
 import entity.Map;
+import entity.Permeability;
 import entity.Sprite;
 
-public abstract class MobileEntity {
+public abstract class MobileEntity extends Entity{
 
 	private Point position;
 	private Map map;
-	private boolean alive;
+	private boolean alive = false;
 	private boolean fallSpeed;	
+	private Permeability perm;
 	
 	public MobileEntity(Sprite sprite, Map map) {
 		
+		this.map = map;
 	}
 	
-	public MobileEntity(int x, int y, Map map) {
+	public MobileEntity(int x, int y, Map map, Permeability perm) {
 		this.getPosition().x = x;
 		this.getPosition().y = y;
+		this.map = map;
+		this.perm = perm;
 	}
 	
 	public void moveUp() {
@@ -66,6 +72,12 @@ public abstract class MobileEntity {
 	public void setY(int y) {
 		this.setY(y);
 	}
+
+	public boolean isAlive() {
+		return this.alive;
+	}
+	public abstract boolean canMove();
+
 	
 	public Point getPosition() {
 		return position;
@@ -74,13 +86,6 @@ public abstract class MobileEntity {
 	public void setPosition(Point position) {
 		this.position = position;
 	}
-
-	public abstract boolean isAlive();
-	
-	public abstract boolean canMove();	
-	
-	public abstract void setHasMoved();
-	
 	protected abstract boolean canMoveTo(ControllerOrder order);
-	
+	public abstract boolean setHasMoved();
 }

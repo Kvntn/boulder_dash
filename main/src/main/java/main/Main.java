@@ -26,12 +26,12 @@ public abstract class Main {
      * @throws IOException 
      */
     public static void main(final String[] args) throws IOException {
-        final Model model = new Model(2);
-        final View view = new View(model);
-        final Controller controller = new Controller(view, model);
-        view.setController(controller);
-
-        controller.control();
-        controller.orderPerform(ControllerOrder.NONE);
+        final Model model = new Model(1);
+//        final View view = new View(model);
+//        final Controller controller = new Controller(view, model);
+//        view.setController(controller);
+//
+//        controller.control();
+//        controller.orderPerform(ControllerOrder.NONE);
     }
 }

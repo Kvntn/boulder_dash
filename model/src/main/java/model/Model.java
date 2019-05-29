@@ -22,7 +22,7 @@ public final class Model extends Observable implements IModel {
 	 * @throws IOException 
 	 */
 	public Model(int level) throws IOException {
-		this.setMap(dao.downloadMap(level));
+		this.setMap(DAOMapExtract.downloadMap(level));
 	}
 	/**
      * Gets the observable.

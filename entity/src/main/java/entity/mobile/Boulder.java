@@ -3,20 +3,21 @@ package entity.mobile;
 import java.awt.Point;
 
 import entity.ControllerOrder;
+import entity.Map;
 import entity.Permeability;
 import entity.Sprite;
 
 public class Boulder extends MobileEntity{
 
 	private Permeability permeability = Permeability.BLOCKING;
-	private static final char charSprite ='B';
+	private static final char charImage ='B';
 	private boolean fallSpeed;
 	
     /** The Constant SPRITE. */
-    private static final Sprite sprite = new Sprite(charSprite, "boulder.png");	
+    private static final Sprite sprite = new Sprite(charImage, "boulder.png");	
 	
-	public Boulder() {
-		
+	public Boulder(int x, int y, Map map) {
+		super(x, y, map);
 	}
 	@Override
 	public void moveUp() {

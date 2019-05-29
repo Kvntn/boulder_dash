@@ -5,8 +5,8 @@ import entity.Sprite;
 
 public class BreakableWall extends MotionlessEntity {
 
-	private static char charSprite = 'W';
-	private static Sprite sprite = new Sprite(charSprite, null);	
+	private static char charImage = 'W';
+	private static Sprite sprite = new Sprite(charImage, null);	
 	
 	protected BreakableWall() {
 		super(sprite, Permeability.MINEABLE);

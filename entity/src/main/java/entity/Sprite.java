@@ -14,7 +14,8 @@ public class Sprite {
 	private boolean imageLoaded;
 	
 	public Sprite(char character, String imageName) {
-		
+		this.setCharImage(character);
+		this.setImageName(imageName);
 	}
 	
 	public void loadImage() throws IOException {

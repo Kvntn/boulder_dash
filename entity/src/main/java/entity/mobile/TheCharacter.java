@@ -1,118 +1,82 @@
 package entity.mobile;
 
 import java.awt.Point;
+import java.io.IOException;
 
 import entity.ControllerOrder;
+import entity.Map;
 import entity.Permeability;
 import entity.Sprite;
 
 public class TheCharacter extends MobileEntity {
-    
-    private Permeability permeability = Permeability.BLOCKING;
-    private int ownedDiamond; 
-    
-    private final static char charSprite = 'C';
-    
-    /** The Constant SPRITE. */
-    private static final Sprite sprite = new Sprite(charSprite, "charcterStandstill.png");	
-    /** The Constant spriteTurnLeft. */
-    private static final Sprite sprite2 = new Sprite(charSprite, "chracterRunningUp.png");	
-    /** The Constant spriteTurnRight. */
-    private static final Sprite sprite3 = new Sprite(charSprite, "characterRunningRight.png");	
-    /** The Constant spriteTurnUp. */
-    private static final Sprite sprite4 = new Sprite(charSprite, "characterRunningUp.png");		
-    /** The Constant spriteTurnDown. */
-    private static final Sprite sprite5 = new Sprite(charSprite, "characterRunningDown.png");	
-    /** The Constant spriteExplode. */
-    private static final Sprite sprite6 = new Sprite(charSprite, "characterDeath.png");
-    
-    public TheCharacter() {
-        
-    }
-    
-    @Override
-    public void moveUp() {
-        this.setY(this.getY() - 1);
-        this.setHasMoved();
-    }
 
-    @Override
-    public void moveLeft() {
-        this.setX(this.getX() - 1);
-        this.setHasMoved();
-    }
-    @Override
-    public void moveDown() {
-        this.setY(this.getY() + 1);
-        this.setHasMoved();
-    }
+	private static Permeability permeability = Permeability.BLOCKING;
+	private int ownedDiamond;	
+	//il n'y a pas le SpriteStay
+	private final static char charImage = 'C';
 
-    @Override
-    public void moveRight() {
-        this.setX(this.getX() + 1);
-        this.setHasMoved();
-    }
-    
-    public void stay() {
-         this.setHasMoved();
-        
-    }
-    
-    public void fall() {
-        
-    }
-    
-    @Override
-    public int getX() {
-        return this.getX();
-    }
-    
-    @Override
-    public void setX(int x) {
-        this.setX(x);
-        
-    }
-    @Override
-    public int getY() {
-        return this.getY();
-    }
-    
-    @Override
-    public void setY(int y) {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    @Override
-    public boolean isAlive() {
-        // TODO Auto-generated method stub
-        return true;
-    }
-    
-    @Override
-    public boolean canMove() {
-        // TODO Auto-generated method stub
-        return true;
-    }
-    @Override
-    public Point getPosition() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    @Override
-    public void setPosition(Point position) {
-        // TODO Auto-generated method stub
-        
-    }
-    @Override
-    public void setHasMoved() {
-        // TODO Auto-generated method stub
-        
-    }
+	/** The Constant SPRITE. */
+	private static final Sprite sprite = new Sprite(charImage, "charcterStandstill.png");	
+	/** The Constant spriteTurnLeft. */
+	private static final Sprite sprite2 = new Sprite(charImage, "chracterRunningUp.png");	
+	/** The Constant spriteTurnRight. */
+	private static final Sprite sprite3 = new Sprite(charImage, "characterRunningRight.png");	
+	/** The Constant spriteTurnUp. */
+	private static final Sprite sprite4 = new Sprite(charImage, "characterRunningUp.png");		
+	/** The Constant spriteTurnDown. */
+	private static final Sprite sprite5 = new Sprite(charImage, "characterRunningDown.png");	
+	/** The Constant spriteExplode. */
+	private static final Sprite sprite6 = new Sprite(charImage, "characterDeath.png");
+	
+	
+	public TheCharacter(int x, int y, Map map, Permeability perm) throws IOException {
+		super(x, y, map, Permeability.BLOCKING);
+		sprite.loadImage();
+		sprite2.loadImage();
+		sprite3.loadImage();
+		sprite4.loadImage();
+		sprite5.loadImage();
+		sprite6.loadImage();
+	}
+	
+	@Override
+	public void moveUp() {
+		this.setSprite(sprite2);
+		super.moveUp();
+		
+	}
+	@Override
+	public void moveDown() {
+		// TODO Auto-generated method stub
+		super.moveDown();
+	}
+	@Override
+	public void moveLeft() {
+		// TODO Auto-generated method stub
+		super.moveLeft();
+	}
+	@Override
+	public void moveRight() {
+		// TODO Auto-generated method stub
+		super.moveRight();
+	}
+	
+	
+	@Override
+	public boolean canMove() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean setHasMoved() {
+		return false;
+		// TODO Auto-generated method stub
 
+	}
 	@Override
 	protected boolean canMoveTo(ControllerOrder order) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 }
