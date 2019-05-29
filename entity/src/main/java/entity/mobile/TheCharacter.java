@@ -30,7 +30,7 @@ public class TheCharacter extends MobileEntity {
 	
 	
 	public TheCharacter(int x, int y, Map map, Permeability perm) throws IOException {
-		super(x, y, map, Permeability.BLOCKING);
+		super(x, y,sprite, map, Permeability.BLOCKING);
 		sprite.loadImage();
 		sprite2.loadImage();
 		sprite3.loadImage();
@@ -47,20 +47,36 @@ public class TheCharacter extends MobileEntity {
 	}
 	@Override
 	public void moveDown() {
-		// TODO Auto-generated method stub
+		this.setSprite(sprite5);
 		super.moveDown();
 	}
 	@Override
 	public void moveLeft() {
-		// TODO Auto-generated method stub
+		this.setSprite(sprite2);
 		super.moveLeft();
 	}
 	@Override
 	public void moveRight() {
-		// TODO Auto-generated method stub
+		this.setSprite(sprite3);
 		super.moveRight();
 	}
+	@Override
+	public void stay() {
+		this.setSprite(sprite);
+		super.stay();
+	}
 	
+	@Override
+	public boolean isAlive() {
+		if(super.isAlive()==true) {
+			return super.isAlive();
+		}
+		else {
+			this.setSprite(sprite6);
+			return super.isAlive();
+		}
+		
+	}
 	
 	@Override
 	public boolean canMove() {
