@@ -99,7 +99,8 @@ public class Diamond extends MobileEntity{
 		
 	}
 	@Override
-	public void setHasMoved() {
+	public boolean setHasMoved() {
+		return true;
 		// TODO Auto-generated method stub
 		
 	}

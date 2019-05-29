@@ -13,7 +13,7 @@ public class TheCharacter extends MobileEntity {
 	private static Permeability permeability = Permeability.BLOCKING;
 	private int ownedDiamond;	
 	//il n'y a pas le SpriteStay
-	private final static char charImage = 'C';
+	private final static char charImage = 'A';
 
 	/** The Constant SPRITE. */
 	private static final Sprite sprite = new Sprite(charImage, "charcterStandstill.png");	

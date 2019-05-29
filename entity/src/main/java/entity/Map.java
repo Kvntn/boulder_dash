@@ -1,10 +1,11 @@
 package entity;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import entity.mobile.MobileEntity;
 
-public class Map {
+public class Map extends Observable{
 
 	private Entity[][] mapContent;
 	private static final int WIDTH = 32, HEIGHT = 16;
@@ -84,6 +85,12 @@ public class Map {
            }
         return "fin";
      }
+	
+	public void setHasChanged() {
+		
+	}
+	
+	
 }
 
 

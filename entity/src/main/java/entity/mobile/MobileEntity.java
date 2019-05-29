@@ -23,8 +23,7 @@ public abstract class MobileEntity extends Entity{
 	
 	public MobileEntity(int x, int y, Sprite sprite, Map map, Permeability perm) {
 		this(sprite, map, perm);
-		this.getPosition().x = x;
-		this.getPosition().y = y;
+		this.setPosition(new Point(x, y));
 	}
 	
 	public void moveUp() {
