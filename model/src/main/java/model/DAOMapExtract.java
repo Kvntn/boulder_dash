@@ -66,6 +66,10 @@ public class DAOMapExtract {
 	private static Map resultToMap(final ResultSet result, int level) throws SQLException, IOException{
 
 		int count = 0;
+		int countB = 0;
+		int countD = 0;
+		int countE = 0;
+		int countC = 0;
 		Map tempMap = new Map(level, new Entity[Map.getWidth()][Map.getHeight()]);
 
 		while (result.next()) {
@@ -80,21 +84,27 @@ public class DAOMapExtract {
 
 					if(ch == 'B') {
 						tempMap.add(new Boulder(x, y, tempMap,Permeability.BLOCKING));
+						countB++;
 					}
 					if(ch == 'E') {
 						tempMap.add(new Ennemy(x, y, tempMap, Permeability.BLOCKING));
+						countE++;
 					}
 					if(ch == 'D') {
 						tempMap.add(new Diamond(x, y, tempMap, Permeability.PENETRABLE));
+						countD++;
 					}
-					if(ch == 'C') {
+					if(ch == 'A') {
 						tempMap.add(new TheCharacter(x, y, tempMap, Permeability.BLOCKING));
+						countC++;
 					}
+					
 					++count;
 					++x;
 			}	
 		}
 		System.out.println(count);
+		System.out.println("B = " + countB + "\n E = "+countE+"\n D = "+countD+"\n C = "+countC);
 		return tempMap;
 	}
 	

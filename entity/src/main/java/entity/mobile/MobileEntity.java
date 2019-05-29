@@ -86,6 +86,7 @@ public abstract class MobileEntity extends Entity{
 		this.position = position;
 	}
 	protected abstract boolean canMoveTo(ControllerOrder order);
+	
 	public abstract boolean setHasMoved();
 	
 	public void die() {
