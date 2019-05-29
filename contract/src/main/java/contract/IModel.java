@@ -2,7 +2,6 @@ package contract;
 
 import java.util.Observable;
 
-import entity.HelloWorld;
 import entity.Map;
 
 /**
@@ -20,17 +19,13 @@ public interface IModel {
 	Map getMap();
 
 	/**
-	 * Load the message.
-	 *
-	 * @param code
-	 *          the code
-	 */
-	void loadMap(String code);
-
-	/**
 	 * Gets the observable.
 	 *
 	 * @return the observable
 	 */
 	Observable getObservable();
+
+	void setMap(Map map);
+
+	
 }

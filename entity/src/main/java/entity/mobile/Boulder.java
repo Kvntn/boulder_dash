@@ -2,61 +2,84 @@ package entity.mobile;
 
 import java.awt.Point;
 
+import entity.ControllerOrder;
 import entity.Permeability;
+import entity.Sprite;
 
 public class Boulder extends MobileEntity{
 
 	private Permeability permeability = Permeability.BLOCKING;
-	private char charSprite ='B';
+	private static final char charSprite ='B';
+	private boolean fallSpeed;
+	
+    /** The Constant SPRITE. */
+    private static final Sprite sprite = new Sprite(charSprite, "boulder.png");	
 	
 	public Boulder() {
 		
 	}
+	@Override
+	public void moveUp() {
+		this.setY(this.getY() - 1);
+		this.setHasMoved();
+	}
+
+	@Override
 	public void moveLeft() {
-		
+		this.setX(this.getX() - 1);
+		this.setHasMoved();
 	}
-	public void moveRight() {
-		
-	}
+
+	@Override
 	public void moveDown() {
-		
+		this.setY(this.getY() + 1);
+		this.setHasMoved();
+		this.fallSpeed = true;
 	}
+
+	@Override
+	public void moveRight() {
+		this.setX(this.getX() + 1);
+		this.setHasMoved();
+	}
+	
 	public void stay() {
-		
+		 this.setHasMoved();
+	     this.fallSpeed = false;
+	    
 	}
+	
 	public void fall() {
 		
 	}
-	@Override
-	public void moveUp() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getX();
 	}
+	
 	@Override
 	public void setX(int x) {
-		// TODO Auto-generated method stub
+		this.setX(x);
 		
 	}
 	@Override
 	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getY();
 	}
+	
 	@Override
 	public void setY(int y) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
 	public boolean isAlive() {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 	@Override
 	public boolean canMove() {
 		// TODO Auto-generated method stub
@@ -76,5 +99,10 @@ public class Boulder extends MobileEntity{
 	public void setHasMoved() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected boolean canMoveTo(ControllerOrder down) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

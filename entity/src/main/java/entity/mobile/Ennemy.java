@@ -2,60 +2,80 @@ package entity.mobile;
 
 import java.awt.Point;
 
+import entity.ControllerOrder;
 import entity.Permeability;
+import entity.Sprite;
 
 public class Ennemy extends MobileEntity{
 	private Permeability permeability = Permeability.PENETRABLE;
-	private char charSprite ='E';
+	private static final char charSprite ='E';
+	private boolean fallSpeed;
+    
+    /** The Constant SPRITE. */
+    private static final Sprite sprite = new Sprite(charSprite, null);	
 	
 	public Ennemy() {
 		
 	}
-	public void moveLeft() {
-		
-	}
-	public void moveRight() {
-		
-	}
-	public void moveDown() {
-		
-	}
-	public void stay() {
-		
-	}
-	public void fall() {
-		
-	}
 	@Override
 	public void moveUp() {
-		// TODO Auto-generated method stub
-		
+		this.setY(this.getY() - 1);
+		this.setHasMoved();
 	}
+
+	@Override
+	public void moveLeft() {
+		this.setX(this.getX() - 1);
+		this.setHasMoved();
+	}
+
+	@Override
+	public void moveDown() {
+		this.setY(this.getY() + 1);
+		this.setHasMoved();
+		this.fallSpeed = true;
+	}
+
+	@Override
+	public void moveRight() {
+		this.setX(this.getX() + 1);
+		this.setHasMoved();
+	}
+	
+	public void stay() {
+		 this.setHasMoved();
+	     this.fallSpeed = false;
+	    
+	}
+
+	
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getX();
 	}
+	
 	@Override
 	public void setX(int x) {
-		// TODO Auto-generated method stub
+		this.setX(x);
 		
 	}
 	@Override
 	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getY();
 	}
+	
 	@Override
 	public void setY(int y) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
 	public boolean isAlive() {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 	@Override
 	public boolean canMove() {
 		// TODO Auto-generated method stub
@@ -75,5 +95,10 @@ public class Ennemy extends MobileEntity{
 	public void setHasMoved() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected boolean canMoveTo(ControllerOrder down) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

@@ -4,6 +4,8 @@
  */
 package main;
 
+import java.io.IOException;
+
 import controller.Controller;
 import entity.ControllerOrder;
 import model.Model;
@@ -21,14 +23,15 @@ public abstract class Main {
      *
      * @param args
      *            the arguments
+     * @throws IOException 
      */
-    public static void main(final String[] args) {
-        final Model model = new Model();
+    public static void main(final String[] args) throws IOException {
+        final Model model = new Model(2);
         final View view = new View(model);
         final Controller controller = new Controller(view, model);
         view.setController(controller);
 
         controller.control();
-        controller.orderPerform(ControllerOrder.English);
+        controller.orderPerform(ControllerOrder.NONE);
     }
 }

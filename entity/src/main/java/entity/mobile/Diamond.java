@@ -4,61 +4,84 @@ import java.awt.Point;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
+import entity.ControllerOrder;
 import entity.Permeability;
+import entity.Sprite;
 
 public class Diamond extends MobileEntity{
 
 	private Permeability permeability = Permeability.MINEABLE;
-	private char charSprite ='D';
+	private static final char charSprite ='D';
+	private boolean fallSpeed;
+    
+    /** The Constant SPRITE. */
+    private static final Sprite sprite = new Sprite(charSprite, "diamond.png");	
 	
 	public Diamond() {
 		
 	}
+	@Override
+	public void moveUp() {
+		this.setY(this.getY() - 1);
+		this.setHasMoved();
+	}
+
+	@Override
 	public void moveLeft() {
-		
+		this.setX(this.getX() - 1);
+		this.setHasMoved();
 	}
-	public void moveRight() {
-		
-	}
+
+	@Override
 	public void moveDown() {
-		
+		this.setY(this.getY() + 1);
+		this.setHasMoved();
+		this.fallSpeed = true;
 	}
+
+	@Override
+	public void moveRight() {
+		this.setX(this.getX() + 1);
+		this.setHasMoved();
+	}
+	
 	public void stay() {
-		
+		 this.setHasMoved();
+	     this.fallSpeed = false;
+	    
 	}
+	
 	public void fall() {
 		
 	}
-	@Override
-	public void moveUp() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getX();
 	}
+	
 	@Override
 	public void setX(int x) {
-		// TODO Auto-generated method stub
+		this.setX(x);
 		
 	}
 	@Override
 	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getY();
 	}
+	
 	@Override
 	public void setY(int y) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
 	public boolean isAlive() {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 	@Override
 	public boolean canMove() {
 		// TODO Auto-generated method stub
@@ -78,5 +101,10 @@ public class Diamond extends MobileEntity{
 	public void setHasMoved() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected boolean canMoveTo(ControllerOrder down) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
