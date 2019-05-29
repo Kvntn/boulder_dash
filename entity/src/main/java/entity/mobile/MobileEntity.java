@@ -2,11 +2,12 @@ package entity.mobile;
 import java.awt.Point;
 
 import entity.ControllerOrder;
+import entity.Entity;
 import entity.Map;
 import entity.Permeability;
 import entity.Sprite;
 
-public abstract class MobileEntity {
+public abstract class MobileEntity extends Entity{
 
 	private Point position;
 	private Map map;

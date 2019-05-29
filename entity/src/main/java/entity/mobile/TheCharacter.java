@@ -41,7 +41,9 @@ public class TheCharacter extends MobileEntity {
 	
 	@Override
 	public void moveUp() {
+		this.setSprite(sprite2);
 		super.moveUp();
+		
 	}
 	@Override
 	public void moveDown() {
