@@ -81,6 +81,6 @@ public abstract class MobileEntity {
 	
 	public abstract void setHasMoved();
 	
-	protected abstract boolean canMoveTo(ControllerOrder down);
+	protected abstract boolean canMoveTo(ControllerOrder order);
 	
 }
