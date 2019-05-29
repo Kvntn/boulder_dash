@@ -7,7 +7,7 @@ public abstract class MobileEntity {
 
 	private Point position;
 	private Map map;
-	private boolean alive;
+	private boolean alive = false;
 	private boolean fallSpeed;	
 	
 	public MobileEntity(Sprite sprite, Map map) {
@@ -53,10 +53,16 @@ public abstract class MobileEntity {
 	public void setY(int y) {
 		this.setY(y);
 	}
-	public abstract boolean isAlive();
+	public boolean isAlive() {
+		return this.alive;
+	}
 	public abstract boolean canMove();
-	public abstract Point getPosition();
-	public abstract void setPosition(Point position);
-	public abstract void setHasMoved();
 	
+	public Point getPosition() {
+		return this.position;
+	}
+	public void setPosition(Point position) {
+		this.position = position;
+	}
+	public abstract void setHasMoved();
 }
