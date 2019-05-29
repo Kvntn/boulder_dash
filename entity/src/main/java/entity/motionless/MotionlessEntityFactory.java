@@ -10,23 +10,23 @@ public class MotionlessEntityFactory {
 	
 	public static MotionlessEntity[] motionlessEntity = {breakableWall, unbreakableWall, dugWall, exit, spawnPoint};
 	
-	public MotionlessEntity createBreakableWall() {
+	public static MotionlessEntity createBreakableWall() {
 		return breakableWall;
 	}
 	
-	public MotionlessEntity createUnbreakableWall() {
+	public static MotionlessEntity createUnbreakableWall() {
 		return unbreakableWall;
 	}
 	
-	public MotionlessEntity createDugWall() {
+	public static MotionlessEntity createDugWall() {
 		return dugWall;
 	}
 	
-	public MotionlessEntity createSpawnPoint() {
+	public static MotionlessEntity createSpawnPoint() {
 		return spawnPoint;
 	}
 	
-	public MotionlessEntity createExit() {
+	public static MotionlessEntity createExit() {
 		return exit;
 	}
 	

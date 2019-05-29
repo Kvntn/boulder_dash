@@ -16,9 +16,9 @@ public class TheCharacter extends MobileEntity {
 	private final static char charImage = 'A';
 
 	/** The Constant SPRITE. */
-	private static final Sprite sprite = new Sprite(charImage, "charcterStandstill.png");	
+	private static final Sprite sprite = new Sprite(charImage, "characterStandstill.png");	
 	/** The Constant spriteTurnLeft. */
-	private static final Sprite sprite2 = new Sprite(charImage, "chracterRunningUp.png");	
+	private static final Sprite sprite2 = new Sprite(charImage, "characterRunningUp.png");	
 	/** The Constant spriteTurnRight. */
 	private static final Sprite sprite3 = new Sprite(charImage, "characterRunningRight.png");	
 	/** The Constant spriteTurnUp. */
@@ -68,29 +68,20 @@ public class TheCharacter extends MobileEntity {
 	
 	@Override
 	public boolean isAlive() {
-		if(super.isAlive()==true) {
-			return super.isAlive();
-		}
-		else {
-			this.setSprite(sprite6);
-			return super.isAlive();
-		}
-		
+		return false;
 	}
-	
 	@Override
+	public void die() {
+		this.setSprite(sprite6);
+		super.die();
+	}
 	public boolean canMove() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	@Override
-	public boolean setHasMoved() {
-		return false;
-		// TODO Auto-generated method stub
 
-	}
 	@Override
-	protected boolean canMoveTo(ControllerOrder order) {
+	public boolean canMove(ControllerOrder order) {
 		// TODO Auto-generated method stub
 		return false;
 	}

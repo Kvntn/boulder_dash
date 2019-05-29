@@ -82,11 +82,6 @@ public class Boulder extends MobileEntity{
 	}
 	
 	@Override
-	public boolean canMove() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
 	public Point getPosition() {
 		// TODO Auto-generated method stub
 		return null;
@@ -96,14 +91,9 @@ public class Boulder extends MobileEntity{
 		// TODO Auto-generated method stub
 		
 	}
+
 	@Override
-	public boolean setHasMoved() {
-		return true;
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	protected boolean canMoveTo(ControllerOrder down) {
+	public boolean canMove(ControllerOrder down) {
 		// TODO Auto-generated method stub
 		return false;
 	}
