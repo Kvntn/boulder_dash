@@ -109,10 +109,4 @@ public class TheCharacter extends MobileEntity {
         // TODO Auto-generated method stub
         
     }
-
-	@Override
-	protected boolean canMoveTo(ControllerOrder down) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }
