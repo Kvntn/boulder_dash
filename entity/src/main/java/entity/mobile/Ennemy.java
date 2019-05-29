@@ -5,17 +5,18 @@ import java.awt.Point;
 import entity.ControllerOrder;
 import entity.Permeability;
 import entity.Sprite;
+import entity.Map;
 
 public class Ennemy extends MobileEntity{
 	private Permeability permeability = Permeability.PENETRABLE;
-	private static final char charSprite ='E';
+	private static final char charImage ='E';
 	private boolean fallSpeed;
     
     /** The Constant SPRITE. */
-    private static final Sprite sprite = new Sprite(charSprite, null);	
+    private static final Sprite sprite = new Sprite(charImage, null);	
 	
-	public Ennemy() {
-		
+	public Ennemy(int x, int y, Map map) {
+		super(x, y, map);
 	}
 	@Override
 	public void moveUp() {

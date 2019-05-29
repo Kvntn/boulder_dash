@@ -5,8 +5,8 @@ import entity.Sprite;
 
 public class Spawnpoint extends MotionlessEntity {
 
-	private static char charSprite = 'A';
-	private static Sprite sprite = new Sprite(charSprite, null);
+	private static char charImage = 'A';
+	private static Sprite sprite = new Sprite(charImage, null);
 	
 	protected Spawnpoint() {
 		super(sprite, Permeability.PENETRABLE);	}

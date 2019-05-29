@@ -14,11 +14,13 @@ public abstract class MobileEntity {
 	
 	public MobileEntity(Sprite sprite, Map map) {
 		
+		this.map = map;
 	}
 	
 	public MobileEntity(int x, int y, Map map) {
 		this.getPosition().x = x;
 		this.getPosition().y = y;
+		this.map = map;
 	}
 	
 	public void moveUp() {
