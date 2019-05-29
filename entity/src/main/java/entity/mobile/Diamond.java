@@ -4,13 +4,18 @@ import java.awt.Point;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
+import entity.ControllerOrder;
 import entity.Permeability;
+import entity.Sprite;
 
 public class Diamond extends MobileEntity{
 
 	private Permeability permeability = Permeability.MINEABLE;
-	private char charSprite ='D';
+	private static final char charSprite ='D';
 	private boolean fallSpeed;
+    
+    /** The Constant SPRITE. */
+    private static final Sprite sprite = new Sprite(charSprite, "diamond.png");	
 	
 	public Diamond() {
 		
@@ -96,5 +101,10 @@ public class Diamond extends MobileEntity{
 	public void setHasMoved() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected boolean canMoveTo(ControllerOrder down) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

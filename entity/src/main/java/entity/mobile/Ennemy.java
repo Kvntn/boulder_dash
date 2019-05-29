@@ -2,12 +2,17 @@ package entity.mobile;
 
 import java.awt.Point;
 
+import entity.ControllerOrder;
 import entity.Permeability;
+import entity.Sprite;
 
 public class Ennemy extends MobileEntity{
 	private Permeability permeability = Permeability.PENETRABLE;
-	private char charSprite ='E';
+	private static final char charSprite ='E';
 	private boolean fallSpeed;
+    
+    /** The Constant SPRITE. */
+    private static final Sprite sprite = new Sprite(charSprite, null);	
 	
 	public Ennemy() {
 		
@@ -90,5 +95,10 @@ public class Ennemy extends MobileEntity{
 	public void setHasMoved() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected boolean canMoveTo(ControllerOrder down) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

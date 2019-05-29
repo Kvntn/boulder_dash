@@ -2,13 +2,18 @@ package entity.mobile;
 
 import java.awt.Point;
 
+import entity.ControllerOrder;
 import entity.Permeability;
+import entity.Sprite;
 
 public class Boulder extends MobileEntity{
 
 	private Permeability permeability = Permeability.BLOCKING;
-	private char charSprite ='B';
+	private static final char charSprite ='B';
 	private boolean fallSpeed;
+	
+    /** The Constant SPRITE. */
+    private static final Sprite sprite = new Sprite(charSprite, "boulder.png");	
 	
 	public Boulder() {
 		
@@ -94,5 +99,10 @@ public class Boulder extends MobileEntity{
 	public void setHasMoved() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected boolean canMoveTo(ControllerOrder down) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
