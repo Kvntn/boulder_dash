@@ -1,6 +1,7 @@
 package entity.mobile;
 
 import java.awt.Point;
+import java.io.IOException;
 
 import entity.ControllerOrder;
 import entity.Map;
@@ -9,7 +10,7 @@ import entity.Sprite;
 
 public class TheCharacter extends MobileEntity {
 
-	private Permeability permeability = Permeability.BLOCKING;
+	private static Permeability permeability = Permeability.BLOCKING;
 	private int ownedDiamond;	
 	//il n'y a pas le SpriteStay
 	private final static char charImage = 'C';
@@ -28,16 +29,45 @@ public class TheCharacter extends MobileEntity {
 	private static final Sprite sprite6 = new Sprite(charImage, "characterDeath.png");
 	
 	
-	public TheCharacter(int x, int y, Map map) {
-		super(x, y, map);
+	public TheCharacter(int x, int y, Map map, Permeability perm) throws IOException {
+		super(x, y, map, Permeability.BLOCKING);
+		sprite.loadImage();
+		sprite2.loadImage();
+		sprite3.loadImage();
+		sprite4.loadImage();
+		sprite5.loadImage();
+		sprite6.loadImage();
 	}
+	
+	@Override
+	public void moveUp() {
+		super.moveUp();
+	}
+	@Override
+	public void moveDown() {
+		// TODO Auto-generated method stub
+		super.moveDown();
+	}
+	@Override
+	public void moveLeft() {
+		// TODO Auto-generated method stub
+		super.moveLeft();
+	}
+	@Override
+	public void moveRight() {
+		// TODO Auto-generated method stub
+		super.moveRight();
+	}
+	
+	
 	@Override
 	public boolean canMove() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
-	public void setHasMoved() {
+	public boolean setHasMoved() {
+		return false;
 		// TODO Auto-generated method stub
 
 	}

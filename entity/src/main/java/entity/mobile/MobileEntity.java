@@ -3,6 +3,7 @@ import java.awt.Point;
 
 import entity.ControllerOrder;
 import entity.Map;
+import entity.Permeability;
 import entity.Sprite;
 
 public abstract class MobileEntity {
@@ -11,16 +12,18 @@ public abstract class MobileEntity {
 	private Map map;
 	private boolean alive = false;
 	private boolean fallSpeed;	
+	private Permeability perm;
 	
 	public MobileEntity(Sprite sprite, Map map) {
 		
 		this.map = map;
 	}
 	
-	public MobileEntity(int x, int y, Map map) {
+	public MobileEntity(int x, int y, Map map, Permeability perm) {
 		this.getPosition().x = x;
 		this.getPosition().y = y;
 		this.map = map;
+		this.perm = perm;
 	}
 	
 	public void moveUp() {
