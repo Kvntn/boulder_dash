@@ -68,16 +68,13 @@ public class TheCharacter extends MobileEntity {
 	
 	@Override
 	public boolean isAlive() {
-		if(super.isAlive()==true) {
-			return super.isAlive();
-		}
-		else {
-			this.setSprite(sprite6);
-			return super.isAlive();
-		}
-		
+		return false;
 	}
-	
+	@Override
+	public void die() {
+		this.setSprite(sprite6);
+		super.die();
+	}
 	@Override
 	public boolean canMove() {
 		// TODO Auto-generated method stub
