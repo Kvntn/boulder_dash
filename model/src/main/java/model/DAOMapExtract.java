@@ -48,8 +48,9 @@ public class DAOMapExtract {
 	public static final Map downloadMap(int level) throws IOException {
 		Map map = null;
 		try {
-			final String sql = "select item from level" + level;
+			final String sql = "call level" + level;
 			final CallableStatement call = prepareCall(sql);
+//			call.setInt(level_id, level);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			map = resultToMap(resultSet, level);
@@ -89,10 +90,11 @@ public class DAOMapExtract {
 					if(ch == 'C') {
 						tempMap.add(new TheCharacter(x, y, tempMap, Permeability.BLOCKING));
 					}
-					
-					x++;
+					++count;
+					++x;
 			}	
 		}
+		System.out.println(count);
 		return tempMap;
 	}
 	
