@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import entity.Entity;
 import entity.motionless.MotionlessEntityFactory;
 import entity.Map;
+import entity.Permeability;
 import entity.mobile.*;
 
 
@@ -20,6 +21,7 @@ import entity.mobile.*;
 public class DAOMapExtract {
 
 	private final Connection connection;
+	private static int x = 0, y = 0;
 
 	/**
 	 * Instantiates a new DAO hello world.
@@ -44,18 +46,15 @@ public class DAOMapExtract {
 	 */
 	
 	public static final Map downloadMap(int level) throws IOException {
-
-		
+		Map map = null;
 		try {
 			final String sql = "select item from level" + level;
 			final CallableStatement call = prepareCall(sql);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
-			if (resultSet.first()) {
-				Map map = resultToMap(resultSet, level);
-				return map;
-			}
-			return null;
+			map = resultToMap(resultSet, level);
+			return map;
+			
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
@@ -65,38 +64,35 @@ public class DAOMapExtract {
 	
 	private static Map resultToMap(final ResultSet result, int level) throws SQLException, IOException{
 
-	
+		int count = 0;
 		Map tempMap = new Map(level, new Entity[Map.getWidth()][Map.getHeight()]);
 
-		for(char ch : result.getString(1).toCharArray()) {
+		while (result.next()) {
 			
-			for(int y = 0; y < Map.getHeight(); y++) {
-				
-				for(int x = 0; x < Map.getWidth(); x++) {
-					System.out.println(ch);
+			for(char ch : result.getString("item").toCharArray()) { 
+					if (x == Map.getWidth()) {
+						x = 0;
+						y++;
+					}
+						
 					tempMap.setOnMapXY(MotionlessEntityFactory.getFromDBSymbol(ch), x, y);
 
 					if(ch == 'B') {
-						tempMap.add(new Boulder(x, y, tempMap));
+						tempMap.add(new Boulder(x, y, tempMap,Permeability.BLOCKING));
 					}
 					if(ch == 'E') {
-						tempMap.add(new Ennemy(x, y, tempMap));
+						tempMap.add(new Ennemy(x, y, tempMap, Permeability.BLOCKING));
 					}
 					if(ch == 'D') {
-						tempMap.add(new Diamond(x, y, tempMap));
+						tempMap.add(new Diamond(x, y, tempMap, Permeability.PENETRABLE));
 					}
 					if(ch == 'C') {
-						tempMap.add(new TheCharacter(x, y, tempMap));
+						tempMap.add(new TheCharacter(x, y, tempMap, Permeability.BLOCKING));
 					}
 					
-				}
-			}
-			
-			
-			
-			
+					x++;
+			}	
 		}
-		
 		return tempMap;
 	}
 	

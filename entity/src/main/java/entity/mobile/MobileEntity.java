@@ -15,16 +15,16 @@ public abstract class MobileEntity extends Entity{
 	private boolean fallSpeed;	
 	private Permeability perm;
 	
-	public MobileEntity(Sprite sprite, Map map) {
-		
+	public MobileEntity(Sprite sprite, Map map, Permeability perm) {
+		super(sprite, perm);
 		this.map = map;
+		this.position = new Point();
 	}
 	
-	public MobileEntity(int x, int y, Map map, Permeability perm) {
+	public MobileEntity(int x, int y, Sprite sprite, Map map, Permeability perm) {
+		this(sprite, map, perm);
 		this.getPosition().x = x;
 		this.getPosition().y = y;
-		this.map = map;
-		this.perm = perm;
 	}
 	
 	public void moveUp() {
@@ -88,4 +88,9 @@ public abstract class MobileEntity extends Entity{
 	}
 	protected abstract boolean canMoveTo(ControllerOrder order);
 	public abstract boolean setHasMoved();
+	
+	public void die() {
+		this.alive = false;
+		this.setHasMoved();
+	}
 }
