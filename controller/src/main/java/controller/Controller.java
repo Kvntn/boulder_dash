@@ -1,23 +1,23 @@
 package controller;
 
-import java.awt.event.KeyEvent;
-
-import contract.ControllerOrder;
+import entity.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
+import entity.mobile.TheCharacter;
 
 /**
  * The Class Controller.
  */
 public final class Controller implements IController {
 
-	/** The view. */
-	private IView		view;
+	/** The view. **/
+	private IView view;
 
 	/** The model. */
 	private IModel	model;
 
+	private static final int speed = 200;
 	/**
 	 * Instantiates a new controller.
 	 *
@@ -27,22 +27,12 @@ public final class Controller implements IController {
 	 *          the model
 	 */
 	public Controller(final IView view, final IModel model) {
+		super();
 		this.setView(view);
 		this.setModel(model);
 	}
 
-	/**
-     * Control.
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IController#control()
-	 */
-	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
-	}
-
+	
 	/**
      * Sets the view.
      *
@@ -61,6 +51,7 @@ public final class Controller implements IController {
 	 */
 	private void setModel(final IModel model) {
 		this.model = model;
+		
 	}
 
 	/**
@@ -74,26 +65,32 @@ public final class Controller implements IController {
 	 *
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
+	@Override
 	public void orderPerform(final ControllerOrder controllerOrder) {
-	public void keyPressed(KeyEvent e) {
-	        int keyCode = e.getKeyCode();
 		switch (controllerOrder) {
-			case KeyEvent.VK_UP:
-				theCharacter.MoveUP;
+				case UP :
+				this.getmodel().getMyCharacter().moveUp();
 				break;
-			case KeyEvent.VK_DOWN:
-				theCharacter.MoveDOWN;
+				case DOWN:
+				this.getModel().getMyCharacter().moveDown();
 				break;
-			case KeyEvent.VK_LEFT:
-				theCharacter.MoveLEFT;
+				case RIGHT:
+				this.getModel().getMyCharacter().moveRight();
 				break;
-			case KeyEvent.VK_RIGHT:
-				theCharacter.MoveRIGHT;
+				case LEFT:
+				this.getModel().getMyCharacter().moveLeft();
 				break;
-			default:
+				default: 
+				this.getModel().getMyCharacter().doNothing();
 				break;
 		}
-		}
-
-	}
 }
+
+
+	@Override
+	public void control() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
