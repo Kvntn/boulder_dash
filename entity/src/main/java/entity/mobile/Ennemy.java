@@ -15,8 +15,8 @@ public class Ennemy extends MobileEntity{
     /** The Constant SPRITE. */
     private static final Sprite sprite = new Sprite(charImage, null);	
 	
-	public Ennemy(int x, int y, Map map) {
-		super(x, y, map);
+	public Ennemy(int x, int y, Map map, Permeability perm) {
+		super(x, y, sprite,  map, perm);
 	}
 	@Override
 	public void moveUp() {

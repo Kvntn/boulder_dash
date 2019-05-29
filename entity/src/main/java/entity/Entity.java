@@ -13,7 +13,6 @@ public abstract class Entity {
 	private Permeability permeability;
 	
 	public Entity (Sprite sprite, Permeability perm){
-		
 		this.sprite = sprite;
 		this.permeability = perm;
 	}

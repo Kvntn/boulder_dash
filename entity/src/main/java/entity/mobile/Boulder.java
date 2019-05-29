@@ -16,8 +16,8 @@ public class Boulder extends MobileEntity{
     /** The Constant SPRITE. */
     private static final Sprite sprite = new Sprite(charImage, "boulder.png");	
 	
-	public Boulder(int x, int y, Map map) {
-		super(x, y, map);
+	public Boulder(int x, int y, Map map, Permeability perm) {
+		super(x, y, sprite, map, perm);
 	}
 	@Override
 	public void moveUp() {

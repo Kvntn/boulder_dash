@@ -70,6 +70,20 @@ public class Map {
 	public void add(MobileEntity mE) {
 		mobileEntities.add(mE);
 	}
+	
+	public final String toString() {
+        try {
+           for (int y = 0; y <= 16; y++) {
+             for (int x = 0; x <= 32; x++) {
+               System.out.println(this.getOnMapXY(x, y).getSprite().getCharImage());
+             }
+           }
+        }catch (Exception e) {
+               // TODO Auto-generated catch block
+               e.printStackTrace();
+           }
+        return "fin";
+     }
 }
 
 
