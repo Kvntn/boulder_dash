@@ -1,6 +1,7 @@
 package entity.mobile;
 
 import java.awt.Point;
+import java.io.IOException;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
@@ -18,14 +19,35 @@ public class Diamond extends MobileEntity{
     /** The Constant SPRITE. */
     private static final Sprite sprite = new Sprite(charImage, "diamond.png");	
 	
-	public Diamond(int x, int y, Map map, Permeability perm) {
+	public Diamond(int x, int y, Map map, Permeability perm) throws IOException {
 		super(x, y, sprite, map, perm);
+		sprite.loadImage();
 	}
-
 	@Override
-	public boolean canMove(ControllerOrder down) {
-		// TODO Auto-generated method stub
-		return false;
+	public void moveLeft() {
+		super.moveLeft();
 	}
-	
+	@Override
+	public void moveRight() {
+		super.moveRight();
+	}
+	@Override
+	public void moveUp() {
+	//can't move UP
+	}
+	@Override
+	public void moveDown() {
+		super.moveDown();
+	}
+	@Override
+	protected void die() {
+		//can't die
+	}
+	@Override
+	public void stay() {
+		super.stay();
+	}
+	public void followMyStrategy() {
+		Diamond.strategy.followStrategy(this,this.getMap());
+	}
 }

@@ -1,6 +1,7 @@
 package entity.mobile;
 
 import java.awt.Point;
+import java.io.IOException;
 
 import entity.ControllerOrder;
 import entity.Map;
@@ -16,85 +17,61 @@ public class Boulder extends MobileEntity{
     /** The Constant SPRITE. */
     private static final Sprite sprite = new Sprite(charImage, "boulder.png");	
 	
-	public Boulder(int x, int y, Map map, Permeability perm) {
+	public Boulder(int x, int y, Map map, Permeability perm) throws IOException {
 		super(x, y, sprite, map, perm);
+		sprite.loadImage();
 	}
-	@Override
-	public void moveUp() {
-		this.setY(this.getY() - 1);
-		this.setHasMoved();
-	}
-
-	@Override
+	
 	public void moveLeft() {
-		this.setX(this.getX() - 1);
-		this.setHasMoved();
+		super.moveLeft();
 	}
-
+	public void moveRight() {
+		super.moveRight();
+	}
+	public void moveUp() {
+		//nothing
+	}
 	@Override
 	public void moveDown() {
-		this.setY(this.getY() + 1);
-		this.setHasMoved();
-		this.fallSpeed = true;
+		super.moveDown();
 	}
-
 	@Override
-	public void moveRight() {
-		this.setX(this.getX() + 1);
-		this.setHasMoved();
+	protected void die() {
+		//this entity can't die
 	}
-	
+	@Override
 	public void stay() {
-		 this.setHasMoved();
-	     this.fallSpeed = false;
-	    
+		super.stay();
 	}
-	
-	public void fall() {
-		
-	}
-	
-	@Override
-	public int getX() {
-		return this.getX();
-	}
-	
-	@Override
-	public void setX(int x) {
-		this.setX(x);
-		
+	//method to review on the fact [strategy]
+	public void followMyStrategy() {
+		Boulder.strategy.followStrategy(this,this.getMap());
 	}
 	@Override
-	public int getY() {
-		return this.getY();
-	}
-	
-	@Override
-	public void setY(int y) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public boolean isAlive() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public Point getPosition() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void setPosition(Point position) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean canMove(ControllerOrder down) {
-		// TODO Auto-generated method stub
-		return false;
+	protected boolean itemsAllowMovementTo(ControllerOrder direction) {
+		Point desiredPosition=null;
+		switch (direction) {
+		case UP:
+			desiredPosition=new Point(this.getX(),this.getY()-1);
+			break;
+		case DOWN:
+			desiredPosition=new Point(this.getX(),this.getY()+1);
+			break;
+		case RIGHT:
+			desiredPosition=new Point(this.getX()+1,this.getY());
+			break;
+		case LEFT:
+			desiredPosition=new Point(this.getX()-1,this.getY());
+			break;
+		case NONE:
+			default:
+				return true;
+		}
+		if(this.getMap().getTheCharacter().getPosition().equals(desiredPosition)) {
+			return false;
+		}
+		else {
+			return super.itemsAllowMovementTo(direction);
+		}
 	}
 }

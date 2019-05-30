@@ -12,27 +12,63 @@ public class Ennemy extends MobileEntity{
 	private Permeability permeability = Permeability.PENETRABLE;
 	private static final char charImage ='E';
 	private boolean fallSpeed;
-    
+    private ControllerOrder lastWallTouched = ControllerOrder.NONE;
     /** The Constant SPRITE. */
     private static final Sprite sprite = new Sprite(charImage, null);	
 	
 	public Ennemy(int x, int y, Map map, Permeability perm) throws IOException {
 		super(x, y, sprite,  map, perm);
 		sprite.loadImage();
+		switch((int)(Math.random()*(3))){
+		case 1:
+			this.myStrategy=Monster.randomStrategy;
+			break;
+		case 2:
+			this.myStrategy=Monster.followWallAntiClockWiseStrategy;
+			break
+			default:
+				this.myStrategy = Monster.followWallClockWiseStrategy;
+				break;
+		}
 	}
 	
-	
-	public boolean canMove() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	@Override
-	public boolean canMove(ControllerOrder order) {
-		// TODO Auto-generated method stub
-		return false;
+	public void moveLeft() {
+		super.moveLeft();
 	}
-
+	@Override
+	public void moveRight() {
+		super.moveRight();
+	}
+	@Override
+	public void moveUp() {
+		super.moveUp();
+	}
+	@Override
+	public void moveDown() {
+		super.moveDown();
+	}
+	@Override
+	protected void die() {
+		super.die();
+	}
+	@Override
+	public void stay() {
+		super.stay();
+	}
+	public void followMyStrategy() {
+		this.myStrategy.followStrategy(this,this.getMap());
+	}
+	public ControllerOrder getLastWallTouched() {
+		return this.lastWallTouched;
+	}
+	public void setLastWallTouched(ControllerOrder controllerOrder) {
+		this.lastWallTouched=controllerOrder;
+	}
+	public void removeStrategy() {
+		this.myStrategy = Ennemy.noStrategy;
+	}
+	
 	
 	
 }

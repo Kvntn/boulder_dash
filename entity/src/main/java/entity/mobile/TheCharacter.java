@@ -41,22 +41,26 @@ public class TheCharacter extends MobileEntity {
 	
 	@Override
 	public void moveUp() {
+		super.digDirt();
 		this.setSprite(sprite2);
 		super.moveUp();
 		
 	}
 	@Override
 	public void moveDown() {
+		super.digDirt();
 		this.setSprite(sprite5);
 		super.moveDown();
 	}
 	@Override
 	public void moveLeft() {
+		super.digDirt();
 		this.setSprite(sprite2);
 		super.moveLeft();
 	}
 	@Override
 	public void moveRight() {
+		super.digDirt();
 		this.setSprite(sprite3);
 		super.moveRight();
 	}
@@ -65,25 +69,112 @@ public class TheCharacter extends MobileEntity {
 		this.setSprite(sprite);
 		super.stay();
 	}
-	
 	@Override
-	public boolean isAlive() {
-		return false;
-	}
-	@Override
-	public void die() {
+	protected void die() {
 		this.setSprite(sprite6);
 		super.die();
 	}
-	public boolean canMove() {
-		// TODO Auto-generated method stub
-		return false;
+	@Override
+	protected boolean mapAllowsMovementTo(ControllerOrder direction) {
+		switch(direction) {
+		case UP:
+			return this.getMap().getOnMapXY(this.getX(),this.getY()-1).getPermeability()!=Permeability.BLOCKING;
+		case DOWN:
+			return this.getMap().getOnMapXY(this.getX(),this.getY()+1).getPermeability()!=Permeability.BLOCKING;
+		case RIGHT:
+			return this.getMap().getOnMapXY(this.getX()+1,this.getY()).getPermeability()!=Permeability.BLOCKING;
+		case LEFT:
+			return this.getMap().getOnMapXY(this.getX()-1,this.getY()).getPermeability()!=Permeability.BLOCKING;
+		case NONE:
+			
+			default:
+				return true;
+				
+		}
+	}
+	
+	@Override
+	protected boolean itemsAllowMovementTo(ControllerOrder direction) {
+		boolean pushingAvailable=false;
+		switch(direction) {
+		case RIGHT:
+			pushingAvailable = this.getMap().getOnMapXY(getX() + 2, getY())
+					.getPermeability() == Permeability.PENETRABLE;
+			if (pushingAvailable) {
+				for (MobileEntity pawn : this.getMap().getMobileEntities()) {
+					if (pawn.getPosition().x == getX() + 2 && pawn.getPosition().y == getY()
+							&& pawn.getPermeability() != Permeability.PENETRABLE) {
+						pushingAvailable = false;
+						break;
+					}
+				}
+			}
+			break;
+		case LEFT:
+			pushingAvailable = this.getMap().getOnMapXY(getX() - 2, getY())
+					.getPermeability() == Permeability.PENETRABLE;
+			if (pushingAvailable) {
+				for (MobileEntity pawn : this.getMap().getMobileEntities()) {
+					if (pawn.getPosition().x == getX() - 2 && pawn.getPosition().y == getY()
+							&& pawn.getPermeability() != Permeability.PENETRABLE) {
+						pushingAvailable = false;
+						break;
+					}
+				}
+			}
+			break;
+		case NONE:
+		default:
+			break;
+		}
+		Point desiredPosition=this.getPositionFromControllerOrder(direction);
+		for (MobileEntity item : this.getMap().getMobileEntities()) {
+			if (item.getPosition().equals(desiredPosition)) {
+				if (item.getPermeability() == Permeability.BLOCKING) {
+					if (pushingAvailable) {
+						if (direction == ControllerOrder.RIGHT)
+							item.moveRight();
+						else
+							item.moveLeft();
+						return true;
+					} else {
+
+						return false;
+					}
+
+				} else if (item.getPermeability() == Permeability.MINEABLE) {
+					// Player stepped on a diamond
+
+					item.removeFromBoard();
+					this.getMap().decreaseDiamondCount();
+
+					return true;
+				}
+			}
+		}
+return true;
+		
 	}
 
 	@Override
-	public boolean canMove(ControllerOrder order) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean canMove(ControllerOrder direction) {
+		return this.mapAllowsMovementTo(direction)&&this.itemsAllowMovementTo(direction);
 	}
-
+	public void setMap(Map map) {
+		this.getMap().setTheCharacter(this);
+	}
+	@Override
+	public boolean isCrushed() {
+		for(MobileEntity item : this.getMap().getMobileEntities()) {
+			if(item.getSprite().getCharImage()=='E') {
+				if(this.getPosition().equals(item.getPosition()))
+					return true;
+			}
+		}
+		return super.isCrushed();
+	}
+	public void followMyStrategy() {
+		//not any strategy in here
+	}
+	
 }
