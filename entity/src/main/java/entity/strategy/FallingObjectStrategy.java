@@ -10,7 +10,8 @@ public abstract class FallingObjectStrategy {
 		// if current pawn can go down
 		if (currentItem.canMove(ControllerOrder.DOWN)) {
 			currentItem.moveDown();
-		} else {
+		} 
+		else {
 
 			// if not, check if he can fall on the sides
 			for (MobileEntity itemVerif : map.getMobileEntities()) {

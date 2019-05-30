@@ -127,7 +127,6 @@ public class Map extends Observable{
 		else
 			return null;
 	}
-	
 }
 
 
