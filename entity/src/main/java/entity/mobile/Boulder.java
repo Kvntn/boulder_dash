@@ -7,12 +7,14 @@ import entity.ControllerOrder;
 import entity.Map;
 import entity.Permeability;
 import entity.Sprite;
+import entity.strategy.BoulderStrategy;
 
 public class Boulder extends MobileEntity{
 
 	private Permeability permeability = Permeability.BLOCKING;
 	private static final char charImage ='B';
 	private boolean fallSpeed;
+	private static BoulderStrategy bStrat;
 	
     /** The Constant SPRITE. */
     private static final Sprite sprite = new Sprite(charImage, "boulder.png");
@@ -51,7 +53,7 @@ public class Boulder extends MobileEntity{
 	
 	//method to review on the fact [strategy]
 	public void followMyStrategy() {
-		Boulder.strategy.followStrategy(this,this.getMap());
+		Boulder.bStrat.followStrategy(this,this.getMap());
 	}
 	
 	@Override

@@ -6,6 +6,11 @@ import java.io.IOException;
 import entity.ControllerOrder;
 import entity.Permeability;
 import entity.Sprite;
+import entity.strategy.EnnemyStrategy;
+import entity.strategy.FollowWallAntiClockWiseStrategy;
+import entity.strategy.FollowWallClockWiseStrategy;
+import entity.strategy.NoStrategy;
+import entity.strategy.RandomStrategy;
 import entity.Map;
 
 public class Ennemy extends MobileEntity{
@@ -13,21 +18,29 @@ public class Ennemy extends MobileEntity{
 	private static final char charImage ='E';
 	private boolean fallSpeed;
     private ControllerOrder lastWallTouched = ControllerOrder.NONE;
+    
     /** The Constant SPRITE. */
     private static final Sprite sprite = new Sprite(charImage, null);	
+    
+    /**Ennemy's strategy*/
+    private EnnemyStrategy eStrat;
+    private static RandomStrategy rStrat;
+    private static FollowWallAntiClockWiseStrategy fAntiClockStrat;
+    private static FollowWallClockWiseStrategy fCloackStrat;
+    private static NoStrategy noStrat;
 	
 	public Ennemy(int x, int y, Map map, Permeability perm) throws IOException {
 		super(x, y, sprite,  map, perm);
 		sprite.loadImage();
 		switch((int)(Math.random()*(3))){
 		case 1:
-			this.myStrategy=Ennemy.randomStrategy;
+			this.eStrat=Ennemy.rStrat;
 			break;
 		case 2:
-			this.myStrategy=Ennemy.followWallAntiClockWiseStrategy;
-			break
+			this.eStrat=Ennemy.fAntiClockStrat;
+			break;
 			default:
-				this.myStrategy = Ennemy.followWallClockWiseStrategy;
+				this.eStrat = Ennemy.fCloackStrat;
 				break;
 		}
 	}
@@ -57,7 +70,7 @@ public class Ennemy extends MobileEntity{
 		super.stay();
 	}
 	public void followMyStrategy() {
-		this.myStrategy.followStrategy(this,this.getMap());
+		this.eStrat.followStrategy(this,this.getMap());
 	}
 	public ControllerOrder getLastWallTouched() {
 		return this.lastWallTouched;
@@ -66,7 +79,7 @@ public class Ennemy extends MobileEntity{
 		this.lastWallTouched=controllerOrder;
 	}
 	public void removeStrategy() {
-		this.myStrategy = Ennemy.noStrategy;
+		this.eStrat = Ennemy.noStrat;
 	}
 	
 	

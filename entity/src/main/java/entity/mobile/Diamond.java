@@ -9,12 +9,15 @@ import entity.ControllerOrder;
 import entity.Map;
 import entity.Permeability;
 import entity.Sprite;
+import entity.strategy.BoulderStrategy;
+import entity.strategy.DiamondStrategy;
 
 public class Diamond extends MobileEntity{
 
 	private Permeability permeability = Permeability.MINEABLE;
 	private static final char charImage ='D';
 	private boolean fallSpeed;
+	private static DiamondStrategy dStrat;
     
     /** The Constant SPRITE. */
     private static final Sprite sprite = new Sprite(charImage, "diamond.png");	
@@ -48,6 +51,6 @@ public class Diamond extends MobileEntity{
 		super.stay();
 	}
 	public void followMyStrategy() {
-		Diamond.strategy.followStrategy(this,this.getMap());
+		Diamond.dStrat.followStrategy(this,this.getMap());
 	}
 }

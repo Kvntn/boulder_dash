@@ -86,11 +86,10 @@ public final class Controller implements IController {
 		}
 }
 
-
 	@Override
 	public void control() {
 		// TODO Auto-generated method stub
 		
 	}
 
-
+}

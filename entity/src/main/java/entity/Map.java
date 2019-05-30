@@ -81,7 +81,6 @@ public class Map extends Observable{
              }
            }
         }catch (Exception e) {
-               // TODO Auto-generated catch block
                e.printStackTrace();
            }
         return "fin";

@@ -1,6 +1,8 @@
 package entity;
 
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,8 +12,18 @@ public class Sprite {
 
 	private Image image;
 	private String imageName;
+	
+	/**Character in the String in our DB*/
 	private char charImage;
+	
+	/** Boolean if the image is loaded*/
 	private boolean imageLoaded;
+	
+	/** The selected buffer. */
+	private BufferedImage buffer;
+	
+	/** The part of buffer to keep. */
+	private Rectangle bufferPart;
 	
 	public Sprite(char character, String imageName) {
 		this.setCharImage(character);
@@ -19,7 +31,8 @@ public class Sprite {
 	}
 	
 	public void loadImage() throws IOException {
-		this.setImage(ImageIO.read(new File("C:\\Users\\Kventin\\git\\boulder_dash\\entity\\sprites/" + this.getImageName())).getScaledInstance(48, 48, Image.SCALE_DEFAULT));
+		this.setImage(buffer.getSubimage(bufferPart.x, bufferPart.y, bufferPart.width, bufferPart.height));
+		//this.setImage(ImageIO.read(new File("C:\\Users\\Kventin\\git\\boulder_dash\\entity\\sprites/" + this.getImageName())).getScaledInstance(48, 48, Image.SCALE_DEFAULT));
 	}
 
 	public Image getImage() {
