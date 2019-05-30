@@ -7,42 +7,42 @@ import entity.*;
 public abstract class FallingObjectStrategy {
 
 	public void followStrategy(MobileEntity currentItem, Map map) {
-//		// if current pawn can go down
-//		if (currentItem.canMoveTo(ControllerOrder.DOWN)) {
-//			currentItem.moveDown();
-//		} else {
-//
-//			// if not, check if he can fall on the sides
-//			for (MobileEntity pawnVerif : map.getPawns()) {
-//
-//				// if there is a pawn under current pawn
-//				if (currentItem.getPosition().y == pawnVerif.getPosition().y - 1
-//						&& currentItem.getPosition().x == pawnVerif.getPosition().x) {
-//
-//					// if the current pawn can go to left
-//					if (currentItem.canMoveTo(ControllerOrder.LEFT)) {
-//
-//						// if the current pawn can go slide to the left to fall
-//						if (map.getSquareIsOccupiedXY(pawnVerif.getPosition().x - 1,
-//								pawnVerif.getPosition().y) == Permeability.PENETRABLE) {
-//							currentPawn.moveLeft();
-//							return;
-//						}
-//					}
-//
-//					// if the current pawn can go to right
-//					if (currentItem.canMoveTo(ControllerOrder.RIGHT)) {
-//
-//						// if the current pawn can go slide to the right to fall
-//						if (map.getSquareIsOccupiedXY(pawnVerif.getPosition().x + 1,
-//								pawnVerif.getPosition().y) == Permeability.PENETRABLE) {
-//							currentItem.moveRight();
-//							return;
-//						}
-//					}
-//				}
-//			}
-//			currentItem.stay();
-//		}
+		// if current pawn can go down
+		if (currentItem.canMove(ControllerOrder.DOWN)) {
+			currentItem.moveDown();
+		} else {
+
+			// if not, check if he can fall on the sides
+			for (MobileEntity itemVerif : map.getMobileEntities()) {
+
+				// if there is a pawn under current pawn
+				if (currentItem.getPosition().y == itemVerif.getPosition().y - 1
+						&& currentItem.getPosition().x == itemVerif.getPosition().x) {
+
+					// if the current pawn can go to left
+					if (currentItem.canMove(ControllerOrder.LEFT)) {
+
+						// if the current pawn can go slide to the left to fall
+						if (map.getPermOfEntityXY(itemVerif.getPosition().x - 1,
+								itemVerif.getPosition().y) == Permeability.PENETRABLE) {
+							currentItem.moveLeft();
+							return;
+						}
+					}
+
+					// if the current pawn can go to right
+					if (currentItem.canMove(ControllerOrder.RIGHT)) {
+
+						// if the current pawn can go slide to the right to fall
+						if (map.getPermOfEntityXY(itemVerif.getPosition().x + 1,
+								itemVerif.getPosition().y) == Permeability.PENETRABLE) {
+							currentItem.moveRight();
+							return;
+						}
+					}
+				}
+			}
+			currentItem.stay();
+		}
 	}
 }

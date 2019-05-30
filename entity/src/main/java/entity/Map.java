@@ -12,7 +12,6 @@ public class Map extends Observable{
 	private static final int WIDTH = 32, HEIGHT = 16;
 	private static int diamondCount = 0;
 	private int level;
-	private TheCharacter theCharacter = null;
 	
 	private ArrayList<MobileEntity> mobileEntities = new ArrayList<MobileEntity>(); 
 	
@@ -119,8 +118,14 @@ public class Map extends Observable{
 			if ((mobileEntities.get(x) instanceof TheCharacter) && (mobileEntities.get(x).getSprite().getCharImage() != tCh.getSprite().getCharImage())){
 				mobileEntities.set(x, tCh);
 			}
-			
 		}
+	}
+	
+	public Permeability getPermOfEntityXY(int x, int y) {
+		if (mapContent[x][y].getPermeability() != null) 
+			return mapContent[x][y].getPermeability();
+		else
+			return null;
 	}
 	
 }
