@@ -1,5 +1,10 @@
 package entity.strategy;
 
-public class BoulderStrategy extends FallingObjectStrategy{
+import entity.Map;
+import entity.mobile.MobileEntity;
 
+public class BoulderStrategy extends FallingObjectStrategy{
+	public void followStrategy(MobileEntity currentItem,Map map) {
+		super.followStrategy(currentItem, map);
+	}
 }

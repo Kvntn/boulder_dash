@@ -21,13 +21,13 @@ public class Ennemy extends MobileEntity{
 		sprite.loadImage();
 		switch((int)(Math.random()*(3))){
 		case 1:
-			this.myStrategy=Monster.randomStrategy;
+			this.myStrategy=Ennemy.randomStrategy;
 			break;
 		case 2:
-			this.myStrategy=Monster.followWallAntiClockWiseStrategy;
+			this.myStrategy=Ennemy.followWallAntiClockWiseStrategy;
 			break
 			default:
-				this.myStrategy = Monster.followWallClockWiseStrategy;
+				this.myStrategy = Ennemy.followWallClockWiseStrategy;
 				break;
 		}
 	}
