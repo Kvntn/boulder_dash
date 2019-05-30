@@ -1,4 +1,4 @@
-package model.strategy;
+package entity.strategy;
 
 import entity.Permeability;
 import entity.mobile.MobileEntity;

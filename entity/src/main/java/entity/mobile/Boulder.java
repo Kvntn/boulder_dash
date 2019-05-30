@@ -15,7 +15,7 @@ public class Boulder extends MobileEntity{
 	private boolean fallSpeed;
 	
     /** The Constant SPRITE. */
-    private static final Sprite sprite = new Sprite(charImage, "boulder.png");	
+    private static final Sprite sprite = new Sprite(charImage, "boulder.png");
 	
 	public Boulder(int x, int y, Map map, Permeability perm) throws IOException {
 		super(x, y, sprite, map, perm);
@@ -25,28 +25,35 @@ public class Boulder extends MobileEntity{
 	public void moveLeft() {
 		super.moveLeft();
 	}
+	
 	public void moveRight() {
 		super.moveRight();
 	}
+	
 	public void moveUp() {
 		//nothing
 	}
+	
 	@Override
 	public void moveDown() {
 		super.moveDown();
 	}
+	
 	@Override
 	protected void die() {
 		//this entity can't die
 	}
+	
 	@Override
 	public void stay() {
 		super.stay();
 	}
+	
 	//method to review on the fact [strategy]
 	public void followMyStrategy() {
 		Boulder.strategy.followStrategy(this,this.getMap());
 	}
+	
 	@Override
 	protected boolean itemsAllowMovementTo(ControllerOrder direction) {
 		Point desiredPosition=null;

@@ -1,5 +1,4 @@
 package model;
-
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -11,7 +10,6 @@ import entity.motionless.MotionlessEntityFactory;
 import entity.Map;
 import entity.Permeability;
 import entity.mobile.*;
-
 
 /**
  * The Class DAOHelloWorld.
@@ -50,7 +48,6 @@ public class DAOMapExtract {
 		try {
 			final String sql = "call level" + level;
 			final CallableStatement call = prepareCall(sql);
-//			call.setInt(level_id, level);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			map = resultToMap(resultSet, level);
@@ -62,7 +59,6 @@ public class DAOMapExtract {
 		return null;
 	}
 	
-	
 	private static Map resultToMap(final ResultSet result, int level) throws SQLException, IOException{
 
 		int count = 0;
@@ -70,6 +66,7 @@ public class DAOMapExtract {
 		int countD = 0;
 		int countE = 0;
 		int countC = 0;
+		
 		Map tempMap = new Map(level, new Entity[Map.getWidth()][Map.getHeight()]);
 
 		while (result.next()) {
@@ -79,7 +76,7 @@ public class DAOMapExtract {
 						x = 0;
 						y++;
 					}
-						
+					
 					tempMap.setOnMapXY(MotionlessEntityFactory.getFromDBSymbol(ch), x, y);
 
 					if(ch == 'B') {
@@ -98,7 +95,6 @@ public class DAOMapExtract {
 						tempMap.add(new TheCharacter(x, y, tempMap, Permeability.BLOCKING));
 						countC++;
 					}
-					
 					++count;
 					++x;
 			}	
@@ -107,7 +103,6 @@ public class DAOMapExtract {
 		System.out.println("B = " + countB + "\n E = "+countE+"\n D = "+countD+"\n C = "+countC);
 		return tempMap;
 	}
-	
 
 	public static CallableStatement prepareCall(final String query) throws SQLException {
 		return DBConnection.getInstance().getConnection().prepareCall(query);

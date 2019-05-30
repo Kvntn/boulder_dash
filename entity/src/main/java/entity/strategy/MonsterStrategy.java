@@ -1,4 +1,4 @@
-package model.strategy;
+package entity.strategy;
 
 public class MonsterStrategy {
 

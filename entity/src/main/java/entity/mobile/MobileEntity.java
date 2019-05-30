@@ -152,9 +152,11 @@ public abstract class MobileEntity extends Entity{
 		}
 		return desiredPosition;
 	}
+	
 	public Point getPosition() {
 		return this.position;
 	}
+	
 	public void setPosition(Point position) {
 		this.position = position;
 	}
@@ -162,9 +164,11 @@ public abstract class MobileEntity extends Entity{
 	public boolean isFalling() {
 		return fallSpeed;
 	}
+	
 	public ControllerOrder getLastWallTouched() {
 		return ControllerOrder.NONE;
 	}
+	
 	public void setLastWallTouched(ControllerOrder controllerOrder) {
 		
 	}

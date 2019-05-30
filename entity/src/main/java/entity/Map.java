@@ -12,6 +12,7 @@ public class Map extends Observable{
 	private static final int WIDTH = 32, HEIGHT = 16;
 	private static int diamondCount = 0;
 	private int level;
+	private TheCharacter theCharacter = null;
 	
 	private ArrayList<MobileEntity> mobileEntities = new ArrayList<MobileEntity>(); 
 	
@@ -89,6 +90,37 @@ public class Map extends Observable{
 	
 	public void setHasChanged() {
 		
+	}
+	
+	public void increaseDiamondCount() {
+		diamondCount++;
+	}
+	
+	public void decreaseDiamondCount() {
+		diamondCount--;
+	}
+	
+	public TheCharacter getTheCharacter() {
+		TheCharacter tC = null;
+		for (int x = 0; x < mobileEntities.size(); x++) {
+
+			if ((mobileEntities.get(x) instanceof TheCharacter) && (mobileEntities.get(x).getSprite().getCharImage() != tC.getSprite().getCharImage())){
+				tC = (TheCharacter) mobileEntities.get(x);
+				System.out.println(tC.getClass());
+			}
+		}
+		return tC;
+	}
+	
+	public void setTheCharacter(TheCharacter tCh) {
+		
+		for (int x = 0; x < mobileEntities.size(); x++) {
+			
+			if ((mobileEntities.get(x) instanceof TheCharacter) && (mobileEntities.get(x).getSprite().getCharImage() != tCh.getSprite().getCharImage())){
+				mobileEntities.set(x, tCh);
+			}
+			
+		}
 	}
 	
 }

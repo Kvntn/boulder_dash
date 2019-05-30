@@ -18,7 +18,7 @@ public class TheCharacter extends MobileEntity {
 	/** The Constant SPRITE. */
 	private static final Sprite sprite = new Sprite(charImage, "characterStandstill.png");	
 	/** The Constant spriteTurnLeft. */
-	private static final Sprite sprite2 = new Sprite(charImage, "characterRunningUp.png");	
+	private static final Sprite sprite2 = new Sprite(charImage, "characterRunningLeft.png");	
 	/** The Constant spriteTurnRight. */
 	private static final Sprite sprite3 = new Sprite(charImage, "characterRunningRight.png");	
 	/** The Constant spriteTurnUp. */
@@ -127,6 +127,7 @@ public class TheCharacter extends MobileEntity {
 		default:
 			break;
 		}
+		
 		Point desiredPosition=this.getPositionFromControllerOrder(direction);
 		for (MobileEntity item : this.getMap().getMobileEntities()) {
 			if (item.getPosition().equals(desiredPosition)) {

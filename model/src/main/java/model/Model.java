@@ -13,7 +13,7 @@ import entity.Map;
  */
 public final class Model extends Observable implements IModel {
 
-	/** The helloWorld. */
+	/** The map. */
 	private Map map;
 	private DAOMapExtract dao;
 
