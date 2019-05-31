@@ -31,8 +31,9 @@ public class Sprite {
 	}
 	
 	public void loadImage() throws IOException {
-		this.setImage(buffer.getSubimage(bufferPart.x, bufferPart.y, bufferPart.width, bufferPart.height));
-		//this.setImage(ImageIO.read(new File("C:\\Users\\Kventin\\git\\boulder_dash\\entity\\sprites/" + this.getImageName())).getScaledInstance(48, 48, Image.SCALE_DEFAULT));
+		//this.setImage(buffer.getSubimage(bufferPart.x, bufferPart.y, bufferPart.width, bufferPart.height));
+		this.setImage(ImageIO.read(new File(/*"C:\\Users\\Kventin\\git\\boulder_dash\\entity\\sprites/" +*/ this.getImageName())).getScaledInstance(48, 48, Image.SCALE_DEFAULT));
+
 	}
 
 	public Image getImage() {

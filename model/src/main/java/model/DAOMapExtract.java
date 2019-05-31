@@ -11,6 +11,8 @@ import entity.Map;
 import entity.Permeability;
 import entity.mobile.*;
 
+import model.Model;
+
 /**
  * The Class DAOHelloWorld.
  *
@@ -92,18 +94,17 @@ public class DAOMapExtract {
 						countD++;
 					}
 					if(ch == 'A') {
-						tempMap.add(new TheCharacter(x, y, tempMap, Permeability.BLOCKING));
-						countC++;
+						tempMap.setTheCharacter(new TheCharacter(x, y, tempMap, Permeability.PENETRABLE));
 					}
 					++count;
 					++x;
 			}	
 		}
 		System.out.println(count);
-		System.out.println("B = " + countB + "\n E = "+countE+"\n D = "+countD+"\n C = "+countC);
+		System.out.println("B = " + countB + "\nE = "+countE+"\nD = "+countD+"\nC = "+countC);
 		return tempMap;
 	}
-
+	
 	public static CallableStatement prepareCall(final String query) throws SQLException {
 		return DBConnection.getInstance().getConnection().prepareCall(query);
 	}

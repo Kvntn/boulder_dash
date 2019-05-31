@@ -6,12 +6,14 @@ import java.util.Observable;
 import entity.mobile.MobileEntity;
 import entity.mobile.TheCharacter;
 
-public class Map extends Observable{
+public class Map extends Observable {
 
 	private Entity[][] mapContent;
 	private static final int WIDTH = 32, HEIGHT = 16;
 	private static int diamondCount = 0;
 	private int level;
+	
+	private TheCharacter theCharacter;
 	
 	private ArrayList<MobileEntity> mobileEntities = new ArrayList<MobileEntity>(); 
 	
@@ -19,6 +21,7 @@ public class Map extends Observable{
 		this.mapContent = mapContent;
 		this.level = level;
 	}
+	
 	public Map() {
 		this.level = 1;
 		this.mapContent = null;
@@ -99,25 +102,11 @@ public class Map extends Observable{
 	}
 	
 	public TheCharacter getTheCharacter() {
-		TheCharacter tC = null;
-		for (int x = 0; x < mobileEntities.size(); x++) {
-
-			if ((mobileEntities.get(x) instanceof TheCharacter) && (mobileEntities.get(x).getSprite().getCharImage() != tC.getSprite().getCharImage())){
-				tC = (TheCharacter) mobileEntities.get(x);
-				System.out.println(tC.getClass());
-			}
-		}
-		return tC;
+		return theCharacter;
 	}
-	
-	public void setTheCharacter(TheCharacter tCh) {
-		
-		for (int x = 0; x < mobileEntities.size(); x++) {
-			
-			if ((mobileEntities.get(x) instanceof TheCharacter) && (mobileEntities.get(x).getSprite().getCharImage() != tCh.getSprite().getCharImage())){
-				mobileEntities.set(x, tCh);
-			}
-		}
+
+	public void setTheCharacter(TheCharacter tC) {
+		this.theCharacter = tC;
 	}
 	
 	public Permeability getPermOfEntityXY(int x, int y) {
@@ -125,6 +114,10 @@ public class Map extends Observable{
 			return mapContent[x][y].getPermeability();
 		else
 			return null;
+	}
+	
+	public Observable getObservable() {
+		return this;
 	}
 }
 

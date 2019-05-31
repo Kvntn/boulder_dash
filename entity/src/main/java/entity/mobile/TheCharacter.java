@@ -14,19 +14,25 @@ public class TheCharacter extends MobileEntity {
 	private int ownedDiamond;	
 	//il n'y a pas le SpriteStay
 	private final static char charImage = 'A';
-
+	
+    private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterStandstill.png";
+    private static String imageName2 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterRunningLeft.png";
+    private static String imageName3 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterRunningRight.png";
+    private static String imageName4 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterRunningUp.png";
+    private static String imageName5 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterDeath.png";
+    
 	/** The Constant SPRITE. */
-	private static final Sprite sprite = new Sprite(charImage, "characterStandstill.png");	
+	private static final Sprite sprite = new Sprite(charImage,imageName);	
 	/** The Constant spriteTurnLeft. */
-	private static final Sprite sprite2 = new Sprite(charImage, "characterRunningLeft.png");	
+	private static final Sprite sprite2 = new Sprite(charImage, imageName2);	
 	/** The Constant spriteTurnRight. */
-	private static final Sprite sprite3 = new Sprite(charImage, "characterRunningRight.png");	
+	private static final Sprite sprite3 = new Sprite(charImage, imageName3);	
 	/** The Constant spriteTurnUp. */
-	private static final Sprite sprite4 = new Sprite(charImage, "characterRunningUp.png");		
+	private static final Sprite sprite4 = new Sprite(charImage, imageName3);		
 	/** The Constant spriteTurnDown. */
-	private static final Sprite sprite5 = new Sprite(charImage, "characterRunningDown.png");	
+	private static final Sprite sprite5 = new Sprite(charImage, imageName4);	
 	/** The Constant spriteExplode. */
-	private static final Sprite sprite6 = new Sprite(charImage, "characterDeath.png");
+	private static final Sprite sprite6 = new Sprite(charImage, imageName5);
 	
 	
 	public TheCharacter(int x, int y, Map map, Permeability perm) throws IOException {

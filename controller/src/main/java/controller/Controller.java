@@ -1,10 +1,11 @@
 package controller;
 
 import entity.ControllerOrder;
+
+
 import contract.IController;
 import contract.IModel;
 import contract.IView;
-import entity.mobile.TheCharacter;
 
 /**
  * The Class Controller.
@@ -12,12 +13,12 @@ import entity.mobile.TheCharacter;
 public final class Controller implements IController {
 
 	/** The view. **/
+	@SuppressWarnings("unused")
 	private IView view;
 
 	/** The model. */
 	private IModel	model;
 
-	private static final int speed = 200;
 	/**
 	 * Instantiates a new controller.
 	 *
@@ -69,22 +70,27 @@ public final class Controller implements IController {
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 				case UP :
-				this.getmodel().getMyCharacter().moveUp();
-				break;
+					this.getModel().getMap().getTheCharacter().moveUp();
+					break;
 				case DOWN:
-				this.getModel().getMyCharacter().moveDown();
-				break;
+					this.getModel().getMap().getTheCharacter().moveDown();
+					break;
 				case RIGHT:
-				this.getModel().getMyCharacter().moveRight();
-				break;
+					this.getModel().getMap().getTheCharacter().moveRight();
+					break;
 				case LEFT:
-				this.getModel().getMyCharacter().moveLeft();
-				break;
+					this.getModel().getMap().getTheCharacter().moveLeft();
+					break;
 				default: 
-				this.getModel().getMyCharacter().doNothing();
-				break;
+					this.getModel().getMap().getTheCharacter().stay();
+					break;
 		}
 }
+
+	public IModel getModel() {
+		return model;
+	}
+
 
 	@Override
 	public void control() {

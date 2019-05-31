@@ -15,9 +15,10 @@ public class Boulder extends MobileEntity{
 	private static final char charImage ='B';
 	private boolean fallSpeed;
 	private static BoulderStrategy bStrat;
+	private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\boulder.png";
 	
     /** The Constant SPRITE. */
-    private static final Sprite sprite = new Sprite(charImage, "boulder.png");
+    private static final Sprite sprite = new Sprite(charImage, imageName);
 	
 	public Boulder(int x, int y, Map map, Permeability perm) throws IOException {
 		super(x, y, sprite, map, perm);

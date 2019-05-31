@@ -18,9 +18,10 @@ public class Diamond extends MobileEntity{
 	private static final char charImage ='D';
 	private boolean fallSpeed;
 	private static DiamondStrategy dStrat;
+	private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\diamond.png";
     
     /** The Constant SPRITE. */
-    private static final Sprite sprite = new Sprite(charImage, "diamond.png");	
+    private static final Sprite sprite = new Sprite(charImage, imageName);	
 	
 	public Diamond(int x, int y, Map map, Permeability perm) throws IOException {
 		super(x, y, sprite, map, perm);

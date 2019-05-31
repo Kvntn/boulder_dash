@@ -18,9 +18,10 @@ public class Ennemy extends MobileEntity{
 	private static final char charImage ='E';
 	private boolean fallSpeed;
     private ControllerOrder lastWallTouched = ControllerOrder.NONE;
+    private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\butterflystay.png";
     
     /** The Constant SPRITE. */
-    private static final Sprite sprite = new Sprite(charImage, null);	
+    private static final Sprite sprite = new Sprite(charImage, imageName);	
     
     /**Ennemy's strategy*/
     private EnnemyStrategy eStrat;
