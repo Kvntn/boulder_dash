@@ -18,7 +18,7 @@ import entity.*;
 
 public class BoulderDashView implements Runnable, KeyListener {
 
-	/** The Constant roadView. */
+	/** The Constant mapView. */
 	private static final int MapView   = 50;
 
 	/** The Constant squareSize. */
@@ -89,7 +89,7 @@ public class BoulderDashView implements Runnable, KeyListener {
 	}
 
 	/**
-	 * Prints the road and the player's vehicle in the console.
+	 * Prints the map and the player's character in the console.
 	 *
 	 * @param yStart
 	 *            the y start
@@ -172,28 +172,28 @@ public class BoulderDashView implements Runnable, KeyListener {
 	}
 
 	/**
-	 * Gets the road.
+	 * Gets the map.
 	 *
-	 * @return the road
+	 * @return the map
 	 */
 	private Map getMap() {
 		return this.Map;
 	}
 
 	/**
-	 * Gets my vehicle.
+	 * Gets my character.
 	 *
-	 * @return my vehicle
+	 * @return my character
 	 */
 	private MobileEntity getTheCharacter() {
 		return this.TheCharacter;
 	}
 
 	/**
-	 * Sets my vehicle.
+	 * Sets my character.
 	 *
-	 * @param myVehicle
-	 *            my new vehicle
+	 * @param mycharacter
+	 *            my new character
 	 */
 	private void setTheCharacter(final MobileEntity TheCharacter) {
 		this.TheCharacter = TheCharacter;
