@@ -2,6 +2,8 @@ package entity;
 
 import static org.junit.Assert.*;
 
+import java.awt.Rectangle;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,10 +25,11 @@ public class EntityTest {
   /**
    * We create a non-null size new sprite.
    * @throws Exception
+   * 			exception
    */
   @Before
   public void setUp() throws Exception {
-    sprite = new Sprite('Z', null);
+    sprite = new Sprite('Z', Sprite.mapSheet, new Rectangle(0, 0, 16, 16));
   }
 
   @After

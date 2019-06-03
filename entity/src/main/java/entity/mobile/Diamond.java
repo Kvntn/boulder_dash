@@ -1,28 +1,24 @@
 package entity.mobile;
 
-import java.awt.Point;
+import java.awt.Rectangle;
 import java.io.IOException;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
-import entity.ControllerOrder;
 import entity.Map;
 import entity.Permeability;
 import entity.Sprite;
-import entity.strategy.BoulderStrategy;
 import entity.strategy.DiamondStrategy;
 import entity.strategy.FallingObjectStrategy;
 
 public class Diamond extends MobileEntity{
 
-	private Permeability permeability = Permeability.MINEABLE;
 	private static FallingObjectStrategy strategy=new DiamondStrategy(); 
 	private static final char charImage ='D';
+	@SuppressWarnings("unused")
 	private static DiamondStrategy dStrat;
-	private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\diamond.png";
     
     /** The Constant SPRITE. */
-    private static final Sprite sprite = new Sprite(charImage, imageName);	
+	private static final Sprite sprite = new Sprite(charImage, Sprite.mapSheet, new Rectangle(64, 0, 16, 16));
 	
 	public Diamond(int x, int y, Map map, Permeability perm) throws IOException {
 		super(x, y, sprite, map, perm);

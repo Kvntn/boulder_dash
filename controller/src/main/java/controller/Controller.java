@@ -138,7 +138,8 @@ public final class Controller implements IController {
 			this.getModel().moveEntity();
 			this.clearOrder();
 			this.getView().updateBoard();
-			if(this.getModel().getMap().getDiamondCount()==0) {
+			
+			if(this.getModel().getMap().getDiamondCount()==8) {
 				this.getView().printMessage("Well Played");
 				System.exit(0);
 			}

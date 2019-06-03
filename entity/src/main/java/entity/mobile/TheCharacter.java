@@ -1,6 +1,7 @@
 package entity.mobile;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.io.IOException;
 
 import entity.ControllerOrder;
@@ -15,25 +16,26 @@ public class TheCharacter extends MobileEntity {
 	//il n'y a pas le SpriteStay
 	private final static char charImage = 'A';
 	
-    private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterStandstill.png";
-    private static String imageName2 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterRunningLeft.png";
-    private static String imageName3 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterRunningRight.png";
-    private static String imageName4 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterRunningUp.png";
-    private static String imageName5 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterDeath.png";
-    private static String imageName6 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterRunningDown.png";
-    
-	/** The Constant SPRITE. */
-	private static final Sprite sprite = new Sprite(charImage,imageName);	
+	private static final Sprite sprite = new Sprite('H', Sprite.spriteSheetCharacter, new Rectangle(16, 0, 16, 16));
+
 	/** The Constant spriteTurnLeft. */
-	private static final Sprite sprite2 = new Sprite(charImage, imageName2);	
+	private static final Sprite sprite2 = new Sprite('H', Sprite.spriteSheetCharacter,
+			new Rectangle(16, 16, 16, 16));
+
 	/** The Constant spriteTurnRight. */
-	private static final Sprite sprite3 = new Sprite(charImage, imageName3);	
+	private static final Sprite sprite3 = new Sprite('H', Sprite.spriteSheetCharacter,
+			new Rectangle(16, 48, 16, 16));
+
 	/** The Constant spriteTurnUp. */
-	private static final Sprite sprite4 = new Sprite(charImage, imageName4);		
+	private static final Sprite sprite4 = new Sprite('H', Sprite.spriteSheetCharacter, new Rectangle(32, 80, 16, 16));
+
 	/** The Constant spriteTurnDown. */
-	private static final Sprite sprite5 = new Sprite(charImage, imageName6);	
+	private static final Sprite sprite5 = new Sprite('H', Sprite.spriteSheetCharacter,
+			new Rectangle(64, 16, 16, 16));
+
 	/** The Constant spriteExplode. */
-	private static final Sprite sprite6 = new Sprite(charImage, imageName5);
+	private static final Sprite sprite6 = new Sprite('H', Sprite.spriteSheetCharacter, new Rectangle(64, 0, 16, 16));
+
 	
 	
 	public TheCharacter(int x, int y, Map map, Permeability perm) throws IOException {

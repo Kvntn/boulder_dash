@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import entity.mobile.MobileEntity;
+import showboard2.showboard.ISquare;
 
 public class Map extends Observable {
 
-	private Entity[][] mapContent;
+	private ISquare[][] mapContent;
 	private static final int WIDTH = 32, HEIGHT = 16;
 	private int diamondCount = 0;
 	private int level;
@@ -26,7 +27,7 @@ public class Map extends Observable {
 		this.mapContent = null;
 	}
 	
-	public Entity[][] getMapContent() {
+	public ISquare[][] getMapContent() {
 		return mapContent;
 	}
 	
@@ -34,7 +35,7 @@ public class Map extends Observable {
 		return mobileEntities;
 	}
 
-	public void setMapContent(Entity[][] mapContent) {
+	public void setMapContent(ISquare[][] mapContent) {
 		this.mapContent = mapContent;
 	}
 	
@@ -67,7 +68,7 @@ public class Map extends Observable {
 		this.mapContent[x][y] = entity;
 	}
 	
-	public Entity getOnMapXY(int x, int y) {
+	public ISquare getOnMapXY(int x, int y) {
 		return mapContent[x][y];
 	}
 	
@@ -75,18 +76,18 @@ public class Map extends Observable {
 		mobileEntities.add(mE);
 	}
 	
-	public final String toString() {
-        try {
-           for (int y = 0; y <= 16; y++) {
-             for (int x = 0; x <= 32; x++) {
-               System.out.println(this.getOnMapXY(x, y).getSprite().getCharImage());
-             }
-           }
-        }catch (Exception e) {
-               e.printStackTrace();
-           }
-        return "fin";
-     }
+//	public final String toString() {
+//        try {
+//           for (int y = 0; y <= 16; y++) {
+//             for (int x = 0; x <= 32; x++) {
+//               System.out.println(this.getOnMapXY(x, y).getSprite().getCharImage());
+//             }
+//           }
+//        }catch (Exception e) {
+//               e.printStackTrace();
+//           }
+//        return "fin";
+//     }
 	
 	public void setHasChanged() {
 		this.notifyObservers();

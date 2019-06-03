@@ -9,7 +9,7 @@ import showboard2.showboard.ISquare;
  *
  * @author Jean-Aymeric Diet
  */
-public abstract class Entity implements ISquare{
+public abstract class Entity implements ISquare {
 	private Sprite sprite;
 	private Permeability permeability;
 	

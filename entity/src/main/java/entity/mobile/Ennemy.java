@@ -1,6 +1,6 @@
 package entity.mobile;
 
-import java.awt.Point;
+import java.awt.Rectangle;
 import java.io.IOException;
 
 import entity.ControllerOrder;
@@ -14,13 +14,14 @@ import entity.strategy.RandomStrategy;
 import entity.Map;
 
 public class Ennemy extends MobileEntity{
-	private Permeability permeability = Permeability.PENETRABLE;
+	
+	@SuppressWarnings("unused")
+	private static Permeability permeability = Permeability.PENETRABLE;
 	private static final char charImage ='E';
     private ControllerOrder lastWallTouched = ControllerOrder.NONE;
-    private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\butterflystay.png";
     
     /** The Constant SPRITE. */
-    private static final Sprite sprite = new Sprite(charImage, imageName);	
+    private static final Sprite sprite = new Sprite(charImage, Sprite.mapSheet, new Rectangle(144, 16, 16, 16));	
     
     /**Ennemy's strategy*/
     private EnnemyStrategy eStrat;

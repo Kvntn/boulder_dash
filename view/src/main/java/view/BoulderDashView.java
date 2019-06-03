@@ -36,8 +36,9 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 	/** Les Mobiles. */
 	private MobileEntity    TheCharacter;
 	
+	/**Mobile entities list*/
 	private ArrayList<MobileEntity> mEntity;
-
+	
 	public ArrayList<MobileEntity> getEntity() {
 		return mEntity;
 	}
@@ -77,7 +78,7 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 
 	@Override
 	public final void run() {
-		boardFrame = new BoardFrame("Close view");
+		boardFrame = new BoardFrame("Мохамeд");
 		boardFrame.setDimension(new Dimension(entity.Map.getWidth(), entity.Map.getHeight()));
 		boardFrame.setDisplayFrame(this.closeView);
 		boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
@@ -95,6 +96,8 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 		}
 		
 		boardFrame.addPawn(this.getTheCharacter());
+		
+		setEntity(Map.getMobileEntities());
 		for(MobileEntity Entities: mEntity) {
 			boardFrame.addPawn(Entities);
 		}

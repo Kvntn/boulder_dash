@@ -29,22 +29,35 @@ public class Sprite {
 	private boolean imageLoaded;
 
 	/** The buffer for the character images */
-	public static BufferedImage spriteSheet = null;
+	public static BufferedImage spriteSheetCharacter = null;
 
 	/** The buffer for the map images */
-	public static BufferedImage mapTileSet = null;
+	public static BufferedImage mapSheet = null;
 
 
-	public Sprite(char character, String imageName) {
-		this.setCharImage(character);
-		this.setImageName(imageName);
+	public Sprite(char c, BufferedImage buff, Rectangle rectangle) {
+		loadBuffers();
+		this.setCharImage(c);
+		this.buffer = buff;
+		bufferPart = rectangle;
 	}
-	
+
 	public void loadImage() throws IOException {
-		spriteSheet = ImageIO.read(new File("C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\mainSpriteSheetWorld1.png"));
 		this.setImage(buffer.getSubimage(bufferPart.x, bufferPart.y, bufferPart.width, bufferPart.height));
 		//this.setImage(ImageIO.read(new File(this.getImageName())).getScaledInstance(48, 48, Image.SCALE_DEFAULT));
 
+	}
+	
+	public static void loadBuffers() {
+		try {
+			int randomNum = (int) (Math.random() * 6);
+			Sprite.spriteSheetCharacter = ImageIO.read(new File("C:\\Users\\Kventin\\git\\boulder_dash2\\entity\\Sprites\\charSheet.png"));
+			Sprite.mapSheet = ImageIO.read(new File("C:\\Users\\Kventin\\git\\boulder_dash2\\entity\\Sprites\\mainSpriteSheetWorld1.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			System.out.println("Working directory: " + System.getProperty("user.dir"));
+		}
 	}
 
 	public Image getImage() {

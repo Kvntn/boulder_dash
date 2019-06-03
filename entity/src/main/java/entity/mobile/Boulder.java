@@ -1,6 +1,7 @@
 package entity.mobile;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.io.IOException;
 
 import entity.ControllerOrder;
@@ -12,16 +13,13 @@ import entity.strategy.FallingObjectStrategy;
 
 public class Boulder extends MobileEntity{
 
-	@SuppressWarnings("unused")
-	private Permeability permeability = Permeability.BLOCKING;
 	private static FallingObjectStrategy strategy=new BoulderStrategy();
 	private static final char charImage ='B';
 	@SuppressWarnings("unused")
 	private static BoulderStrategy bStrat;
-	private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\boulder.png";
 	
     /** The Constant SPRITE. */
-    private static final Sprite sprite = new Sprite(charImage, imageName);
+	 private static final Sprite sprite  = new Sprite(charImage, Sprite.mapSheet, new Rectangle(48, 0, 16, 16));
 	
 	public Boulder(int x, int y, Map map, Permeability perm) throws IOException {
 		super(x, y, sprite, map, perm);
