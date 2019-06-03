@@ -8,7 +8,6 @@ import java.awt.Image;
  * @author Jean-Aymeric Diet
  */
 public abstract class Entity {
-	
 	private Sprite sprite;
 	private Permeability permeability;
 	
@@ -36,10 +35,7 @@ public abstract class Entity {
 	public Image getImage() {
 		return this.getSprite().getImage();
 	}
-	
-	public void removeFromBoard(Entity en) {
-		en = null;
-	}
+
 	
 	
 }

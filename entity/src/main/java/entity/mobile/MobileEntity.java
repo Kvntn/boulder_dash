@@ -153,13 +153,6 @@ public abstract class MobileEntity extends Entity{
 		return desiredPosition;
 	}
 	
-	public Point getPosition() {
-		return this.position;
-	}
-	
-	public void setPosition(Point position) {
-		this.position = position;
-	}
 
 	public boolean isFalling() {
 		return fallSpeed;
@@ -172,6 +165,16 @@ public abstract class MobileEntity extends Entity{
 	public void setLastWallTouched(ControllerOrder controllerOrder) {
 		
 	}
-
+	public Point getPosition() {
+		return this.position;
+	}
+	
+	public void setPosition(Point position) {
+		this.position = position;
+	}
+	public void removeFromBoard(Entity en) {
+		this.setPosition(new Point(1,-1));
+		this.getMap().getMobileEntities().remove(this);
+	}
 
 }
