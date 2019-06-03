@@ -1,7 +1,4 @@
 package entity;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 
 /**
  * The Enum ControllerOrder.

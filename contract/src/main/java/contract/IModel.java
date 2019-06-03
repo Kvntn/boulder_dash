@@ -13,16 +13,19 @@ import entity.mobile.MobileEntity;
 public interface IModel {
 
 	/**
-	 * Gets the hello world.
+	 * Gets the map.
 	 *
-	 * @return the helloworld entity
+	 * @return Map
+	 * 			the map entity
 	 */
 	Map getMap();
 
 	/**
 	 * Gets the observable.
 	 *
-	 * @return the observable
+	 * @return Observable
+	 * 			
+	 *
 	 */
 	Observable getObservable();
 	

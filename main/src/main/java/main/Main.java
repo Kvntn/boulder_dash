@@ -6,9 +6,12 @@ package main;
 
 import java.io.IOException;
 
+import contract.IModel;
+import contract.IView;
 import controller.Controller;
 import entity.ControllerOrder;
 import model.Model;
+import view.BoulderDashView;
 import view.View;
 
 /**
@@ -23,17 +26,16 @@ public abstract class Main {
      *
      * @param args
      *            the arguments
-     * @throws IOException 
+     * @throws IOException
+     * 			throws something
+     * @throws InterruptedException
+     * 			throws something
      */
-    public static void main(final String[] args) throws IOException {
-        final Model model = new Model(5);
-//        model.getMap().getTheCharacter();
-        
-        final View view = new View(model);
-        final Controller controller = new Controller(view, model);
-        view.setController(controller);
-
-        controller.control();
-        controller.orderPerform(ControllerOrder.NONE);
+    public static void main(final String[] args) throws IOException, InterruptedException {
+        final IModel model = new Model(5);
+        final BoulderDashView bdv = new BoulderDashView(model.getMap(), model.getTheCharacter(), model.getMap().getMobileEntities());
+        final Controller controller = new Controller(bdv, model);
+        bdv.setOrderPerformer(controller);
+        controller.play();
     }
 }

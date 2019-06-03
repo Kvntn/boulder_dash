@@ -5,7 +5,7 @@ import entity.ControllerOrder;
 /**
  * The Interface IController.
  *
- * @author Jean-Aymeric Diet
+ * @author Quentin Amram
  */
 public interface IController {
 

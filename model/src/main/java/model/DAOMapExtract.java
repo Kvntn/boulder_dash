@@ -15,7 +15,7 @@ import entity.mobile.*;
 /**
  * The Class DAOHelloWorld.
  *
- * @author Jean-Aymeric Diet
+ * @author Quentin Amram
  */
 public class DAOMapExtract {
 

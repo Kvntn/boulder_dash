@@ -11,15 +11,17 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import contract.IController;
+import contract.IView;
 import entity.mobile.*;
 
 import showboard2.showboard.BoardFrame;
 import entity.*;
 
 
-public class BoulderDashView implements Runnable, KeyListener {
+public class BoulderDashView implements Runnable, KeyListener, IView {
 	
 	/** The Constant mapView. */
+	@SuppressWarnings("unused")
 	private static final int MapView   = 50;
 
 	/** The Constant squareSize. */
@@ -53,12 +55,12 @@ public class BoulderDashView implements Runnable, KeyListener {
 	private  BoardFrame boardFrame;
 
 
-	public BoulderDashView(final Map Map, final MobileEntity TheCharacter, MobileEntity Boulder, MobileEntity Diamond, MobileEntity Ennemy) throws IOException {
+	public BoulderDashView(final Map Map, final MobileEntity TheCharacter, ArrayList<MobileEntity> mE) throws IOException {
 	
 		this.setMap(Map);
 		this.setTheCharacter(TheCharacter);
 		this.getTheCharacter().getSprite().loadImage();
-		this.setCloseView(new Rectangle(0, this.getTheCharacter().getY(), entity.Map.getWidth(), Map.getHeight()));
+		this.setCloseView(new Rectangle(0, this.getTheCharacter().getY(), entity.Map.getWidth(), entity.Map.getHeight()));
 		SwingUtilities.invokeLater(this);
 	}
 
@@ -79,6 +81,7 @@ public class BoulderDashView implements Runnable, KeyListener {
 		boardFrame.setDimension(new Dimension(entity.Map.getWidth(), entity.Map.getHeight()));
 		boardFrame.setDisplayFrame(this.closeView);
 		boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
+		boardFrame.setLocationRelativeTo(null);
 		boardFrame.setHeightLooped(true);
 		boardFrame.addKeyListener(this);
 		boardFrame.setFocusable(true);
@@ -125,15 +128,6 @@ public class BoulderDashView implements Runnable, KeyListener {
 			System.out.print("\n");
 		}
 	}
-
-	/**
-	 * Key code to user order.
-	 *
-	 * @param keyCode
-	 *            the key code
-	 * @return the user order
-	 */
-
 
 
 	/*
@@ -207,12 +201,6 @@ public class BoulderDashView implements Runnable, KeyListener {
 		return this.TheCharacter;
 	}
 
-	/**
-	 * Sets my character.
-	 *
-	 * @param mycharacter
-	 *            my new character
-	 */
 	private void setTheCharacter(final MobileEntity TheCharacter) {
 		this.TheCharacter = TheCharacter;
 	}
@@ -225,17 +213,6 @@ public class BoulderDashView implements Runnable, KeyListener {
 	private int getView() {
 		return this.view;
 	}
-
-	/**
-	 * Sets the view.
-	 *
-	 * @param view
-	 *            the new view
-	 */
-	private void setView(final int view) {
-		this.view = view;
-	}
-
 
 	/**
 	 * Sets the close view.
@@ -267,31 +244,19 @@ public class BoulderDashView implements Runnable, KeyListener {
 	public final void setOrderPerformer(final IController orderPerformer) {
 		this.orderPerformer = orderPerformer;
 	}
-	private static ControllerOrder keyCodeToUserOrder(final int keyCode) {
-        ControllerOrder userOrder;
-        switch (keyCode) {
-            case KeyEvent.VK_RIGHT:
-                userOrder = ControllerOrder.RIGHT;
-                break;
-            case KeyEvent.VK_LEFT:
-                userOrder = ControllerOrder.LEFT;
-                break;
-            case KeyEvent.VK_UP:
-            	userOrder = ControllerOrder.UP;
-            case KeyEvent.VK_DOWN:
-            	userOrder=ControllerOrder.DOWN;
-            default:
-                userOrder = ControllerOrder.NONE;
-                break;
-        }
-        return userOrder;
-    }
+
 	public void updateBoard() {
-		for(int x=0;x<Map.getWidth();x++) {
-			for(int y=0;y<Map.getHeight();y++) {
-				boardFrame.addSquare(this.Map.getOnMapXY(x, y),x,y);
+		for (int x = 0; x < entity.Map.getWidth(); x++) {
+			for (int y = 0; y < entity.Map.getHeight(); y++) {
+				boardFrame.addSquare(this.Map.getOnMapXY(x, y), x, y);
 			}
 		}
+	}
+
+
+	@Override
+	public void printMessage(String message) {
+		JOptionPane.showMessageDialog(null, message);
 	}
 	
 }

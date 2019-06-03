@@ -1,7 +1,6 @@
 package controller;
 
 import entity.ControllerOrder;
-import showboard2.showboard.BoardFrame;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
@@ -26,7 +25,6 @@ public final class Controller implements IController {
 		return view;
 	}
 	/** The view. **/
-	@SuppressWarnings("unused")
 	private IView view;
 
 	/** The model. */

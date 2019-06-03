@@ -12,9 +12,11 @@ import entity.strategy.FallingObjectStrategy;
 
 public class Boulder extends MobileEntity{
 
+	@SuppressWarnings("unused")
 	private Permeability permeability = Permeability.BLOCKING;
 	private static FallingObjectStrategy strategy=new BoulderStrategy();
 	private static final char charImage ='B';
+	@SuppressWarnings("unused")
 	private static BoulderStrategy bStrat;
 	private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\boulder.png";
 	

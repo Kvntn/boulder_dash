@@ -6,13 +6,14 @@ import java.util.Observable;
 
 import contract.IModel;
 import entity.Map;
+import entity.Permeability;
 import entity.mobile.MobileEntity;
 import entity.mobile.TheCharacter;
 
 /**
  * The Class Model.
  *
- * @author Jean-Aymeric Diet
+ * @author Quentin Amram
  */
 public final class Model extends Observable implements IModel {
 
@@ -24,10 +25,13 @@ public final class Model extends Observable implements IModel {
 	/**
 	 * Instantiates a new model.
 	 * @throws IOException 
+	 * 			IOException
+	 * @param level
+	 * 		the chosen level
 	 */
 	public Model(int level) throws IOException {
 		this.setMap(DAOMapExtract.downloadMap(level));
-		this.setTheCharacter(getMap().getTheCharacter());
+		this.setTheCharacter(new TheCharacter(2, 1, this.map, Permeability.BLOCKING));
 	
 	}
 	/**

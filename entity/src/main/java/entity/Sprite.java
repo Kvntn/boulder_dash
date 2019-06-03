@@ -10,14 +10,30 @@ import javax.imageio.ImageIO;
 
 public class Sprite {
 
+	/** The image. */
 	private Image image;
-	private String imageName;
-	
-	/**Character in the String in our DB*/
+
+	/** The console image. */
 	private char charImage;
 	
-	/** Boolean if the image is loaded*/
+	/**Image name*/
+	private String imageName;
+
+	/** The selected buffer. */
+	private BufferedImage buffer;
+
+	/** The part of buffer to keep. */
+	private Rectangle bufferPart;
+
+	/** The is image loaded. */
 	private boolean imageLoaded;
+
+	/** The buffer for the character images */
+	public static BufferedImage spriteSheet = null;
+
+	/** The buffer for the map images */
+	public static BufferedImage mapTileSet = null;
+
 
 	public Sprite(char character, String imageName) {
 		this.setCharImage(character);
@@ -25,8 +41,9 @@ public class Sprite {
 	}
 	
 	public void loadImage() throws IOException {
-		//this.setImage(buffer.getSubimage(bufferPart.x, bufferPart.y, bufferPart.width, bufferPart.height));
-		this.setImage(ImageIO.read(new File(/*"C:\\Users\\Kventin\\git\\boulder_dash\\entity\\sprites/" +*/ this.getImageName())).getScaledInstance(48, 48, Image.SCALE_DEFAULT));
+		spriteSheet = ImageIO.read(new File("C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\mainSpriteSheetWorld1.png"));
+		this.setImage(buffer.getSubimage(bufferPart.x, bufferPart.y, bufferPart.width, bufferPart.height));
+		//this.setImage(ImageIO.read(new File(this.getImageName())).getScaledInstance(48, 48, Image.SCALE_DEFAULT));
 
 	}
 

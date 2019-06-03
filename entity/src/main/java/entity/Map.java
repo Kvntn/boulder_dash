@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import entity.mobile.MobileEntity;
-import entity.mobile.TheCharacter;
 
 public class Map extends Observable {
 
