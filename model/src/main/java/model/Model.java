@@ -1,10 +1,12 @@
 package model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 
 import contract.IModel;
 import entity.Map;
+import entity.mobile.MobileEntity;
 import entity.mobile.TheCharacter;
 
 /**
@@ -16,7 +18,7 @@ public final class Model extends Observable implements IModel {
 
 	/** The map. */
 	private Map map;
-	private TheCharacter theCharacter;
+	private MobileEntity theCharacter;
 
 	
 	/**
@@ -52,12 +54,18 @@ public final class Model extends Observable implements IModel {
 		this.map = map;
 	}
 	
-	public TheCharacter getTheCharacter() {
+	public MobileEntity getTheCharacter() {
 		return theCharacter;
 	}
 	
-	public void setTheCharacter(TheCharacter theC) {
+	public void setTheCharacter(MobileEntity theC) {
 		this.theCharacter = theC;
+	}
+	public void moveEntity() {
+		ArrayList<MobileEntity>mEntity=new ArrayList<MobileEntity>(this.getMap().getMobileEntities());
+		for(MobileEntity Mentity:mEntity) {
+			Mentity.strat();
+		}
 	}
 }
 

@@ -1,13 +1,10 @@
-package view.showboard;
+package showboard2.showboard;
 
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.util.Observer;
 
 import javax.swing.JFrame;
-
-import entity.Entity;
-import entity.mobile.MobileEntity;
 
 /**
  * <h1>The Class BoardFrame.</h1>
@@ -26,9 +23,9 @@ import entity.mobile.MobileEntity;
  * @see Rectangle
  * @see IBoard
  * @see ISquare
- * @see IItem
+ * @see IPawn
  */
-public class BoardFrame extends JFrame implements IBoard { 
+public class BoardFrame extends JFrame implements IBoard {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -6563585351564617603L;
@@ -92,16 +89,17 @@ public class BoardFrame extends JFrame implements IBoard {
      * @see fr.exia.showboard.IBoard#addSquare(fr.exia.showboard.ISquare, int, int)
      */
     @Override
-    public final void addSquare(final Entity entity, final int x, final int y) {
-        this.getBoardPanel().addSquare(entity, x, y);
+    public final void addSquare(final ISquare square, final int x, final int y) {
+        this.getBoardPanel().addSquare(square, x, y);
     }
 
     /*
      * (non-Javadoc)
-     * @see fr.exia.showboard.IBoard#addItem(fr.exia.showboard.IItem)
+     * @see fr.exia.showboard.IBoard#addPawn(fr.exia.showboard.IPawn)
      */
-    public final void addItem(final MobileEntity mobileEntity) {
-        this.getBoardPanel().addItem(mobileEntity);
+    @Override
+    public final void addPawn(final IPawn pawn) {
+        this.getBoardPanel().addPawn(pawn);
     }
 
     /*
@@ -195,5 +193,4 @@ public class BoardFrame extends JFrame implements IBoard {
     public final void setHeightLooped(final Boolean heightLooped) {
         this.getBoardPanel().setHeightLooped(heightLooped);
     }
-
 }

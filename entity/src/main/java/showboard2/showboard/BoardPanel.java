@@ -1,4 +1,4 @@
-package view.showboard;
+package showboard2.showboard;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,8 +15,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
-
-import entity.mobile.MobileEntity;
 
 /**
  * <h1>The Class BoardPanel.</h1>
@@ -142,11 +140,11 @@ class BoardPanel extends JPanel implements Observer {
     /**
      * Adds the pawn.
      *
-     * @param mobileEntity
+     * @param pawn
      *            the pawn
      */
-    public final void addPawn(final IPawn mobileEntity) {
-        this.getPawns().add(mobileEntity);
+    public final void addPawn(final IPawn pawn) {
+        this.getPawns().add(pawn);
     }
 
     /**

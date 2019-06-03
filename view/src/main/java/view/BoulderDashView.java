@@ -5,18 +5,20 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import contract.IController;
 import entity.mobile.*;
-import view.showboard.BoardFrame;
+
+import showboard2.showboard.BoardFrame;
 import entity.*;
 
 
 public class BoulderDashView implements Runnable, KeyListener {
-
+	
 	/** The Constant mapView. */
 	private static final int MapView   = 50;
 
@@ -31,21 +33,32 @@ public class BoulderDashView implements Runnable, KeyListener {
 
 	/** Les Mobiles. */
 	private MobileEntity    TheCharacter;
+	
+	private ArrayList<MobileEntity> mEntity;
+
+	public ArrayList<MobileEntity> getEntity() {
+		return mEntity;
+	}
+
+
+	public void setEntity(ArrayList<MobileEntity> entity) {
+		mEntity = entity;
+	}
 
 	/** The view. */
 	private int            view;
 
 
 	private IController  orderPerformer;
+	private  BoardFrame boardFrame;
 
 
 	public BoulderDashView(final Map Map, final MobileEntity TheCharacter, MobileEntity Boulder, MobileEntity Diamond, MobileEntity Ennemy) throws IOException {
-		this.setView(MapView);
+	
 		this.setMap(Map);
 		this.setTheCharacter(TheCharacter);
 		this.getTheCharacter().getSprite().loadImage();
-		this.getMap();
-		this.setCloseView(new Rectangle(0, this.getTheCharacter().getY(), entity.Map.getWidth(), MapView));
+		this.setCloseView(new Rectangle(0, this.getTheCharacter().getY(), entity.Map.getWidth(), Map.getHeight()));
 		SwingUtilities.invokeLater(this);
 	}
 
@@ -62,7 +75,7 @@ public class BoulderDashView implements Runnable, KeyListener {
 
 	@Override
 	public final void run() {
-		final BoardFrame boardFrame = new BoardFrame("Close view");
+		boardFrame = new BoardFrame("Close view");
 		boardFrame.setDimension(new Dimension(entity.Map.getWidth(), entity.Map.getHeight()));
 		boardFrame.setDisplayFrame(this.closeView);
 		boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
@@ -73,12 +86,16 @@ public class BoulderDashView implements Runnable, KeyListener {
 
 		this.getMap();
 		for (int x = 0; x < entity.Map.getWidth(); x++) {
-			this.getMap();
 			for (int y = 0; y < entity.Map.getHeight(); y++) {
 				boardFrame.addSquare(this.Map.getOnMapXY(x, y), x, y);
 			}
 		}
+		
 		boardFrame.addPawn(this.getTheCharacter());
+		for(MobileEntity Entities: mEntity) {
+			boardFrame.addPawn(Entities);
+		}
+		
 
 		this.getMap().getObservable().addObserver(boardFrame.getObserver());
 
@@ -239,6 +256,8 @@ public class BoulderDashView implements Runnable, KeyListener {
 		return this.orderPerformer;
 	}
 
+
+
 	/**
 	 * Sets the order performer.
 	 *
@@ -248,6 +267,33 @@ public class BoulderDashView implements Runnable, KeyListener {
 	public final void setOrderPerformer(final IController orderPerformer) {
 		this.orderPerformer = orderPerformer;
 	}
+	private static ControllerOrder keyCodeToUserOrder(final int keyCode) {
+        ControllerOrder userOrder;
+        switch (keyCode) {
+            case KeyEvent.VK_RIGHT:
+                userOrder = ControllerOrder.RIGHT;
+                break;
+            case KeyEvent.VK_LEFT:
+                userOrder = ControllerOrder.LEFT;
+                break;
+            case KeyEvent.VK_UP:
+            	userOrder = ControllerOrder.UP;
+            case KeyEvent.VK_DOWN:
+            	userOrder=ControllerOrder.DOWN;
+            default:
+                userOrder = ControllerOrder.NONE;
+                break;
+        }
+        return userOrder;
+    }
+	public void updateBoard() {
+		for(int x=0;x<Map.getWidth();x++) {
+			for(int y=0;y<Map.getHeight();y++) {
+				boardFrame.addSquare(this.Map.getOnMapXY(x, y),x,y);
+			}
+		}
+	}
+	
 }
 
 

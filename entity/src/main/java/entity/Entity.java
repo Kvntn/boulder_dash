@@ -2,12 +2,14 @@ package entity;
 
 import java.awt.Image;
 
+import showboard2.showboard.ISquare;
+
 /**
  * The Class Entity.
  *
  * @author Jean-Aymeric Diet
  */
-public abstract class Entity {
+public abstract class Entity implements ISquare{
 	private Sprite sprite;
 	private Permeability permeability;
 	

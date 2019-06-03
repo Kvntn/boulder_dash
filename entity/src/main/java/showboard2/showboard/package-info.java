@@ -4,4 +4,5 @@
  *
  */
 
-package view.showboard;
+package showboard2.showboard;
+

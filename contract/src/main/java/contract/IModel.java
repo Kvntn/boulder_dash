@@ -3,6 +3,7 @@ package contract;
 import java.util.Observable;
 
 import entity.Map;
+import entity.mobile.MobileEntity;
 
 /**
  * The Interface IModel.
@@ -24,8 +25,13 @@ public interface IModel {
 	 * @return the observable
 	 */
 	Observable getObservable();
+	
+	public MobileEntity getTheCharacter();
+	
+	public void setTheCharacter(MobileEntity theC) ;
 
 	void setMap(Map map);
+	void moveEntity();
 
 	
 }

@@ -8,8 +8,9 @@ import entity.Map;
 import entity.Permeability;
 import entity.Sprite;
 import entity.motionless.MotionlessEntityFactory;
+import showboard2.showboard.IPawn;
 
-public abstract class MobileEntity extends Entity{
+public abstract class MobileEntity extends Entity implements IPawn{
 
 	private Point position;
 	private boolean alive=true;
@@ -174,6 +175,9 @@ public abstract class MobileEntity extends Entity{
 	public void removeFromBoard(Entity en) {
 		this.setPosition(new Point(1,-1));
 		this.getMap().getMobileEntities().remove(this);
+	}
+	public void strat() {
+		
 	}
 
 }

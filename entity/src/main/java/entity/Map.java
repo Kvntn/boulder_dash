@@ -13,7 +13,7 @@ public class Map extends Observable {
 	private int diamondCount = 0;
 	private int level;
 	
-	private TheCharacter theCharacter;
+	private MobileEntity theCharacter;
 	
 	private ArrayList<MobileEntity> mobileEntities = new ArrayList<MobileEntity>(); 
 	
@@ -101,11 +101,11 @@ public class Map extends Observable {
 		diamondCount--;
 	}
 	
-	public TheCharacter getTheCharacter() {
+	public MobileEntity getTheCharacter() {
 		return theCharacter;
 	}
 
-	public void setTheCharacter(TheCharacter tC) {
+	public void setTheCharacter(MobileEntity tC) {
 		this.theCharacter = tC;
 	}
 	

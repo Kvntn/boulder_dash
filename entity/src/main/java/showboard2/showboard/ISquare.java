@@ -1,4 +1,5 @@
-package view.showboard;
+package showboard2.showboard;
+
 
 import java.awt.Image;
 

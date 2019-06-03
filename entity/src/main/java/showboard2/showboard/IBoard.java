@@ -1,11 +1,9 @@
-package view.showboard;
+package showboard2.showboard;
+
 
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.util.Observer;
-
-import entity.Entity;
-import entity.mobile.MobileEntity;
 
 /**
  * <h1>The Interface IBoard.</h1>
@@ -22,18 +20,18 @@ public interface IBoard {
     /**
      * Adds the square.
      *
-     * @param entity the square
+     * @param square the square
      * @param x the x
      * @param y the y
      */
-    void addMotionlessItem(MotionlessEntity entity, int x, int y);
+    void addSquare(ISquare square, int x, int y);
 
     /**
      * Adds the pawn.
      *
-     * @param mobileEntity the pawn
+     * @param pawn the pawn
      */
-    void addItem(MobileEntity mobileEntity);
+    void addPawn(IPawn pawn);
 
     /**
      * Gets the observer.
@@ -62,5 +60,4 @@ public interface IBoard {
      * @param displayFrame the new display frame
      */
     void setDisplayFrame(final Rectangle displayFrame);
-
 }

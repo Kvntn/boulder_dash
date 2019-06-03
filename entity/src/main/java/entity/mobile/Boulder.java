@@ -8,10 +8,12 @@ import entity.Map;
 import entity.Permeability;
 import entity.Sprite;
 import entity.strategy.BoulderStrategy;
+import entity.strategy.FallingObjectStrategy;
 
 public class Boulder extends MobileEntity{
 
 	private Permeability permeability = Permeability.BLOCKING;
+	private static FallingObjectStrategy strategy=new BoulderStrategy();
 	private static final char charImage ='B';
 	private static BoulderStrategy bStrat;
 	private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\boulder.png";
@@ -47,11 +49,6 @@ public class Boulder extends MobileEntity{
 		super.stay();
 	}
 	
-	//method to review on the fact [strategy]
-	public void followMyStrategy() {
-		Boulder.bStrat.followStrategy(this,this.getMap());
-	}
-	
 	@Override
 	protected boolean itemsAllowMovementTo(ControllerOrder direction) {
 		Point desiredPosition=null;
@@ -78,5 +75,8 @@ public class Boulder extends MobileEntity{
 		else {
 			return super.itemsAllowMovementTo(direction);
 		}
+	}
+	public void strat() {
+		Boulder.strategy.followStrategy(this, this.getMap());
 	}
 }

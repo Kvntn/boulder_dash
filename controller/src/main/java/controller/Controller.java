@@ -1,8 +1,7 @@
 package controller;
 
 import entity.ControllerOrder;
-
-
+import showboard2.showboard.BoardFrame;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
@@ -11,7 +10,21 @@ import contract.IView;
  * The Class Controller.
  */
 public final class Controller implements IController {
+	
+	private ControllerOrder order=ControllerOrder.NONE;
+	public ControllerOrder getOrder() {
+		return order;
+	}
 
+
+	public void setOrder(ControllerOrder order) {
+		this.order = order;
+	}
+
+
+	public IView getView() {
+		return view;
+	}
 	/** The view. **/
 	@SuppressWarnings("unused")
 	private IView view;
@@ -97,5 +110,44 @@ public final class Controller implements IController {
 		// TODO Auto-generated method stub
 		
 	}
-
+	private void clearOrder() {
+		this.order=ControllerOrder.NONE;
+	}
+	public final void play() throws InterruptedException{
+		this.getModel().getMap().setTheCharacter(this.getModel().getTheCharacter());
+		while(this.getModel().getTheCharacter().isAlive()) {
+			Thread.sleep(200);
+			if(this.getModel().getTheCharacter().canMove(this.getOrder())) {
+		switch(this.getOrder()) {
+		case RIGHT:
+			this.getModel().getTheCharacter().moveRight();
+			break;
+		case LEFT:
+			this.getModel().getTheCharacter().moveLeft();
+			break;
+		case UP:
+			this.getModel().getTheCharacter().moveUp();
+			break;
+		case DOWN:
+			this.getModel().getTheCharacter().moveDown();
+			break;
+		case NONE:
+			default:this.getModel().getTheCharacter().stay();
+			break;
+			
+					}
+				}
+			this.getModel().moveEntity();
+			this.clearOrder();
+			this.getView().updateBoard();
+			if(this.getModel().getMap().getDiamondCount()==0) {
+				this.getView().printMessage("Well Played");
+				System.exit(0);
+			}
+			}
+		this.getView().printMessage("You Loose");
+		System.exit(0);
+	
+	}
+	
 }

@@ -11,10 +11,12 @@ import entity.Permeability;
 import entity.Sprite;
 import entity.strategy.BoulderStrategy;
 import entity.strategy.DiamondStrategy;
+import entity.strategy.FallingObjectStrategy;
 
 public class Diamond extends MobileEntity{
 
 	private Permeability permeability = Permeability.MINEABLE;
+	private static FallingObjectStrategy strategy=new DiamondStrategy(); 
 	private static final char charImage ='D';
 	private static DiamondStrategy dStrat;
 	private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\diamond.png";
@@ -46,7 +48,9 @@ public class Diamond extends MobileEntity{
 	public void stay() {
 		super.stay();
 	}
-	public void followMyStrategy() {
-		Diamond.dStrat.followStrategy(this,this.getMap());
+	
+	
+	public void strat() {
+		Diamond.strategy.followStrategy(this, this.getMap());
 	}
 }

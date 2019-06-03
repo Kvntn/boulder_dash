@@ -14,4 +14,5 @@ public interface IView {
 	 *          the message
 	 */
 	void printMessage(final String message);
+	public void updateBoard();
 }
