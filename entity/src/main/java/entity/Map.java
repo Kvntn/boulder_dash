@@ -10,7 +10,7 @@ public class Map extends Observable {
 
 	private Entity[][] mapContent;
 	private static final int WIDTH = 32, HEIGHT = 16;
-	private static int diamondCount = 0;
+	private int diamondCount = 0;
 	private int level;
 	
 	private TheCharacter theCharacter;
@@ -39,12 +39,12 @@ public class Map extends Observable {
 		this.mapContent = mapContent;
 	}
 	
-	public static int getDiamondCount() {
+	public int getDiamondCount() {
 		return diamondCount;
 	}
 	
-	public static void setDiamondCount(int diamondCount) {
-		Map.diamondCount = diamondCount;
+	public void setDiamondCount(int diamondCount) {
+		this.diamondCount = diamondCount;
 	}
 	
 	public int getLevel() {
