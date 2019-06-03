@@ -13,7 +13,6 @@ public class Boulder extends MobileEntity{
 
 	private Permeability permeability = Permeability.BLOCKING;
 	private static final char charImage ='B';
-	private boolean fallSpeed;
 	private static BoulderStrategy bStrat;
 	private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\boulder.png";
 	
@@ -42,10 +41,6 @@ public class Boulder extends MobileEntity{
 		super.moveDown();
 	}
 	
-	@Override
-	protected void die() {
-		//this entity can't die
-	}
 	
 	@Override
 	public void stay() {

@@ -18,13 +18,7 @@ public class Sprite {
 	
 	/** Boolean if the image is loaded*/
 	private boolean imageLoaded;
-	
-	/** The selected buffer. */
-	private BufferedImage buffer;
-	
-	/** The part of buffer to keep. */
-	private Rectangle bufferPart;
-	
+
 	public Sprite(char character, String imageName) {
 		this.setCharImage(character);
 		this.setImageName(imageName);

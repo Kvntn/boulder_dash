@@ -152,7 +152,6 @@ public abstract class MobileEntity extends Entity{
 		}
 		return desiredPosition;
 	}
-	
 
 	public boolean isFalling() {
 		return fallSpeed;

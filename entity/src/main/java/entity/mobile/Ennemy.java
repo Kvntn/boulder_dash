@@ -16,7 +16,6 @@ import entity.Map;
 public class Ennemy extends MobileEntity{
 	private Permeability permeability = Permeability.PENETRABLE;
 	private static final char charImage ='E';
-	private boolean fallSpeed;
     private ControllerOrder lastWallTouched = ControllerOrder.NONE;
     private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\butterflystay.png";
     

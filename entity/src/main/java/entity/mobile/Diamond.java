@@ -16,7 +16,6 @@ public class Diamond extends MobileEntity{
 
 	private Permeability permeability = Permeability.MINEABLE;
 	private static final char charImage ='D';
-	private boolean fallSpeed;
 	private static DiamondStrategy dStrat;
 	private static String imageName = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\world 1\\diamond.png";
     
@@ -42,10 +41,6 @@ public class Diamond extends MobileEntity{
 	@Override
 	public void moveDown() {
 		super.moveDown();
-	}
-	@Override
-	protected void die() {
-		//can't die
 	}
 	@Override
 	public void stay() {

@@ -20,6 +20,7 @@ public class TheCharacter extends MobileEntity {
     private static String imageName3 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterRunningRight.png";
     private static String imageName4 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterRunningUp.png";
     private static String imageName5 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterDeath.png";
+    private static String imageName6 = "C:\\Users\\Kventin\\git\\boulder_dash\\entity\\Sprites\\personnage\\characterRunningDown.png";
     
 	/** The Constant SPRITE. */
 	private static final Sprite sprite = new Sprite(charImage,imageName);	
@@ -28,9 +29,9 @@ public class TheCharacter extends MobileEntity {
 	/** The Constant spriteTurnRight. */
 	private static final Sprite sprite3 = new Sprite(charImage, imageName3);	
 	/** The Constant spriteTurnUp. */
-	private static final Sprite sprite4 = new Sprite(charImage, imageName3);		
+	private static final Sprite sprite4 = new Sprite(charImage, imageName4);		
 	/** The Constant spriteTurnDown. */
-	private static final Sprite sprite5 = new Sprite(charImage, imageName4);	
+	private static final Sprite sprite5 = new Sprite(charImage, imageName6);	
 	/** The Constant spriteExplode. */
 	private static final Sprite sprite6 = new Sprite(charImage, imageName5);
 	
@@ -182,8 +183,4 @@ return true;
 		}
 		return super.isCrushed();
 	}
-	public void followMyStrategy() {
-		//not any strategy in here
-	}
-	
 }
