@@ -11,7 +11,6 @@ import entity.Map;
 import entity.Permeability;
 import entity.mobile.*;
 
-import model.Model;
 
 /**
  * The Class DAOHelloWorld.

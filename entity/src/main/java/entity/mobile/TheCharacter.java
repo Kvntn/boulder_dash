@@ -11,7 +11,7 @@ import entity.Sprite;
 public class TheCharacter extends MobileEntity {
 
 	private static Permeability permeability = Permeability.BLOCKING;
-	private int ownedDiamond;	
+	private int ownedDiamond = 0;	
 	//il n'y a pas le SpriteStay
 	private final static char charImage = 'A';
 	
@@ -152,7 +152,7 @@ public class TheCharacter extends MobileEntity {
 				} else if (item.getPermeability() == Permeability.MINEABLE) {
 					// Player stepped on a diamond
 
-					item.removeFromBoard();
+					removeFromBoard(item);
 					this.getMap().decreaseDiamondCount();
 
 					return true;
@@ -170,6 +170,8 @@ return true;
 	public void setMap(Map map) {
 		this.getMap().setTheCharacter(this);
 	}
+	
+	
 	@Override
 	public boolean isCrushed() {
 		for(MobileEntity item : this.getMap().getMobileEntities()) {

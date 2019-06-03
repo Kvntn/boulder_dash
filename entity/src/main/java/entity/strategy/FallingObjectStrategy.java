@@ -46,4 +46,8 @@ public abstract class FallingObjectStrategy {
 			currentItem.stay();
 		}
 	}
+	
+	protected void removeFromBoard(MobileEntity currentItem) {
+		currentItem = null;
+	}
 }

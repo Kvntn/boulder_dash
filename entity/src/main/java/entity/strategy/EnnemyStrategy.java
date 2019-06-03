@@ -9,7 +9,11 @@ public class EnnemyStrategy {
 		if(currentItem.isCrushed()) {
 			Ennemy ennemy =(Ennemy)(currentItem);
 			ennemy.removeStrategy();
-			ennemy.removeFromBoard();
+			removeFromBoard(ennemy);
 		}
+	}
+	
+	private void removeFromBoard(MobileEntity currentItem) {
+		currentItem = null;
 	}
 }

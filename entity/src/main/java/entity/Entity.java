@@ -37,5 +37,9 @@ public abstract class Entity {
 		return this.getSprite().getImage();
 	}
 	
+	public void removeFromBoard(Entity en) {
+		en = null;
+	}
+	
 	
 }

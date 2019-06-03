@@ -90,7 +90,7 @@ public class Map extends Observable {
      }
 	
 	public void setHasChanged() {
-		
+		this.notifyAll();
 	}
 	
 	public void increaseDiamondCount() {

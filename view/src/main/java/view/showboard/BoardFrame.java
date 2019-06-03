@@ -26,9 +26,9 @@ import entity.mobile.MobileEntity;
  * @see Rectangle
  * @see IBoard
  * @see ISquare
- * @see IPawn
+ * @see IItem
  */
-public class BoardFrame extends JFrame implements IBoard {
+public class BoardFrame extends JFrame implements IBoard { 
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -6563585351564617603L;
@@ -98,10 +98,10 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * @see fr.exia.showboard.IBoard#addPawn(fr.exia.showboard.IPawn)
+     * @see fr.exia.showboard.IBoard#addItem(fr.exia.showboard.IItem)
      */
-    public final void addPawn(final MobileEntity mobileEntity) {
-        this.getBoardPanel().addPawn(mobileEntity);
+    public final void addItem(final MobileEntity mobileEntity) {
+        this.getBoardPanel().addItem(mobileEntity);
     }
 
     /*
@@ -195,4 +195,5 @@ public class BoardFrame extends JFrame implements IBoard {
     public final void setHeightLooped(final Boolean heightLooped) {
         this.getBoardPanel().setHeightLooped(heightLooped);
     }
+
 }

@@ -34,7 +34,7 @@ public class Boulder extends MobileEntity{
 	}
 	
 	public void moveUp() {
-		//nothing
+		//Cannot move up
 	}
 	
 	@Override

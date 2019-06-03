@@ -26,14 +26,14 @@ public interface IBoard {
      * @param x the x
      * @param y the y
      */
-    void addSquare(Entity entity, int x, int y);
+    void addMotionlessItem(MotionlessEntity entity, int x, int y);
 
     /**
      * Adds the pawn.
      *
      * @param mobileEntity the pawn
      */
-    void addPawn(MobileEntity mobileEntity);
+    void addItem(MobileEntity mobileEntity);
 
     /**
      * Gets the observer.

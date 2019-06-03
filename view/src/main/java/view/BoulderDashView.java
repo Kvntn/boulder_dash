@@ -11,7 +11,6 @@ import javax.swing.SwingUtilities;
 
 import contract.IController;
 import entity.mobile.*;
-import entity.motionless.*;
 import view.showboard.BoardFrame;
 import entity.*;
 
@@ -31,7 +30,7 @@ public class BoulderDashView implements Runnable, KeyListener {
 	private Map            Map;
 
 	/** Les Mobiles. */
-	private MobileEntity    TheCharacter, Boulder, Diamond, Ennemy;
+	private MobileEntity    TheCharacter;
 
 	/** The view. */
 	private int            view;
@@ -64,8 +63,6 @@ public class BoulderDashView implements Runnable, KeyListener {
 	@Override
 	public final void run() {
 		final BoardFrame boardFrame = new BoardFrame("Close view");
-		this.getMap();
-		this.getMap();
 		boardFrame.setDimension(new Dimension(entity.Map.getWidth(), entity.Map.getHeight()));
 		boardFrame.setDisplayFrame(this.closeView);
 		boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
@@ -160,6 +157,10 @@ public class BoulderDashView implements Runnable, KeyListener {
 			break;
 		}
 		return ControllerOrder;
+	}
+	
+	public void removeFromBoard(Entity en) {
+		en = null;
 	}
 
 	/*
