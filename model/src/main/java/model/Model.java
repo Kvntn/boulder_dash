@@ -70,10 +70,11 @@ public final class Model  implements IModel {
 		this.theCharacter = theC;
 	}
 	
-	public void moveEntity() {
-		ArrayList<MobileEntity>mEntity=new ArrayList<MobileEntity>(this.getMap().getMobileEntities());
+	@Override
+	public void moveEntity(int x, int y) {
+		ArrayList<MobileEntity>mEntity = new ArrayList<MobileEntity>(this.getMap().getMobileEntities());
 		for(MobileEntity Mentity:mEntity) {
-			Mentity.strat();
+			Mentity.strat(x, y);
 		}
 	}
 }

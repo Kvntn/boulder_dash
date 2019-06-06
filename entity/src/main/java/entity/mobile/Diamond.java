@@ -46,7 +46,7 @@ public class Diamond extends MobileEntity{
 	}
 	
 	
-	public void strat() {
-		Diamond.strategy.followStrategy(this, this.getMap());
+	public void strat(int x, int y) {
+		Diamond.strategy.followStrategy(this, this.getMap(), x, y);
 	}
 }

@@ -21,10 +21,6 @@ import entity.*;
 
 public class BoulderDashView implements Runnable, KeyListener, IView {
 	
-	/** The Constant mapView. */
-	
-	private static final int MapView   = 50;
-
 	/** The Constant squareSize. */
 	private static final int squareSize = 50;
 
@@ -40,12 +36,8 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 	/**Mobile entities list*/
 	private ArrayList<MobileEntity> mEntity = null;
 	
-	
-
-
 	private IController  orderPerformer;
 	private  BoardFrame boardFrame;
-
 
 	public BoulderDashView(final Map Map, final MobileEntity TheCharacter, ArrayList<MobileEntity> mE) throws IOException {
 	
@@ -57,23 +49,18 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 		SwingUtilities.invokeLater(this);
 	}
 
-
-	
-		public void setMap(Map map) throws IOException {
-	        this.map = map;
-	        for (int x = 0; x < Map.getWidth(); x++) {
-	            for(int y = 0; y < Map.getHeight(); y++) {
-	                this.getMap().getOnMapXY(x, y).getSprite().loadImage();
-	            }
-	        }
-	    }
-	
-
+	public void setMap(Map map) throws IOException {
+        this.map = map;
+        for (int x = 0; x < Map.getWidth(); x++) {
+            for(int y = 0; y < Map.getHeight(); y++) {
+                this.getMap().getOnMapXY(x, y).getSprite().loadImage();
+            }
+        }
+    }
 
 	public final void displayMessage(final String message) {
 		JOptionPane.showMessageDialog(null, message);
 	}
-
 
 	@Override
 	public final void run() {
@@ -104,9 +91,6 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 		boardFrame.setVisible(true);
 	}
 
-	
-
-
 	/*
 	 * (non-Javadoc)
 	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
@@ -122,7 +106,11 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 	 */
 	@Override
 	public  void keyPressed(final KeyEvent keyEvent) {
-		this.getOrderPerformer().orderPerform(View.keyCodeToControllerOrder(keyEvent.getKeyCode()));
+		try {
+			this.getOrderPerformer().orderPerform(BoulderDashView.keyCodeToControllerOrder(keyEvent.getKeyCode()));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	protected static ControllerOrder keyCodeToControllerOrder(int keyCode) {
@@ -142,12 +130,8 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 			
 		default:
 			return ControllerOrder.NONE;
-			
 		}
-		
 	}
-	
-	
 
 	/*
 	 * (non-Javadoc)
@@ -166,9 +150,6 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 	private Map getMap() {
 		return map;
 	}
-	
-
-	
 
 
 	/**
@@ -184,12 +165,6 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 		this.TheCharacter = TheCharacter;
 	}
 
-	/**
-	 * Gets the view.
-	 *
-	 * @return the view
-	 */
-	
 
 	/**
 	 * Sets the close view.
@@ -220,12 +195,6 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 		this.orderPerformer = orderPerformer;
 	}
 
-	
-
-	
-
-
-
 	@Override
 	public void printMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);
@@ -239,21 +208,12 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 		mEntity = entity;
 	}
 
-
-
-	@Override
 	public void updateBoard() {
-		
 		for (int x = 0; x < Map.getWidth(); x++) {
 			for (int y = 0; y< Map.getHeight(); y++) {
-				
 				boardFrame.addSquare(this.map.getOnMapXY(x, y), x, y);
-				
-				
 			}
 		}
-		
-		
 	}
 	
 }

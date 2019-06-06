@@ -1,7 +1,6 @@
 package controller;
 
 import entity.ControllerOrder;
-import entity.Map;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
@@ -10,17 +9,10 @@ import contract.IView;
  * The Class Controller.
  */
 public final class Controller implements IController {
-	
-	private ControllerOrder order=ControllerOrder.NONE;
-	public ControllerOrder getOrder() {
-		return order;
-	}
 
+	private ControllerOrder order = ControllerOrder.NONE;
 
-	public void setOrder(ControllerOrder order) {
-		this.order = order;
-	}
-
+	private int x, y;
 
 	public IView getView() {
 		return view;
@@ -30,7 +22,7 @@ public final class Controller implements IController {
 
 	/** The model. */
 	private IModel	model;
-	
+
 	private int timer = 200;
 
 	/**
@@ -47,13 +39,13 @@ public final class Controller implements IController {
 		this.setModel(model);
 	}
 
-	
+
 	/**
-     * Sets the view.
-     *
-     * @param pview
-     *            the new view
-     */
+	 * Sets the view.
+	 *
+	 * @param pview
+	 *            the new view
+	 */
 	private void setView(final IView pview) {
 		this.view = pview;
 	}
@@ -66,41 +58,109 @@ public final class Controller implements IController {
 	 */
 	private void setModel(final IModel model) {
 		this.model = model;
-		
+
 	}
 
 	/**
-     * Order perform.
-     *
-     * @param controllerOrder
-     *            the controller order
-     */
+	 * Order perform.
+	 *
+	 * @param controllerOrder
+	 *            the controller order
+	 * @throws InterruptedException 
+	 */
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	@Override
-	public void orderPerform(final ControllerOrder controllerOrder) {
-		switch (controllerOrder) {
-				case UP :
-					this.getModel().getMap().getTheCharacter().moveUp();
-					break;
-				case DOWN:
-					this.getModel().getMap().getTheCharacter().moveDown();
-					break;
+	public void orderPerform(final ControllerOrder controllerOrder) throws InterruptedException {
+
+		this.setOrder(controllerOrder);
+		
+		Thread.sleep(timer);
+		if(this.getModel().getTheCharacter().canMove(this.getOrder())) {
+			switch(this.getOrder()) {
+			case RIGHT:
+				this.getModel().getTheCharacter().moveRight();
+				break;
+			case LEFT:
+				this.getModel().getTheCharacter().moveLeft();
+				break;
+			case UP:
+				this.getModel().getTheCharacter().moveUp();
+				break;
+			case DOWN:
+				this.getModel().getTheCharacter().moveDown();
+				break;
+			default:
+				this.getModel().getTheCharacter().stay();
+				break;
+			}
+			
+			this.getView().updateBoard();
+
+		}
+	}
+
+
+
+	public final void play() throws InterruptedException{
+
+		this.getModel().getMap().setTheCharacter(this.getModel().getTheCharacter());
+
+		while(this.getModel().getTheCharacter().isAlive()) {
+
+
+			Thread.sleep(timer);
+			if(this.getModel().getTheCharacter().canMove(this.getOrder())) {
+				switch(this.getOrder()) {
 				case RIGHT:
-					this.getModel().getMap().getTheCharacter().moveRight();
+					this.getModel().getTheCharacter().moveRight();
 					break;
 				case LEFT:
-					this.getModel().getMap().getTheCharacter().moveLeft();
+					this.getModel().getTheCharacter().moveLeft();
 					break;
-				default: 
-					this.getModel().getMap().getTheCharacter().stay();
+				case UP:
+					this.getModel().getTheCharacter().moveUp();
 					break;
-		}
-}
+				case DOWN:
+					this.getModel().getTheCharacter().moveDown();
+					break;
+				default:
+					this.getModel().getTheCharacter().stay();
+					break;
+				}
+			}
 
+			x = this.getModel().getMap().getTheCharacter().getX();
+			y = this.getModel().getMap().getTheCharacter().getY();
+
+			this.getModel().moveEntity(x, y);
+			this.clearOrder();
+
+//			this.getView().updateBoard();
+
+			if(this.getModel().getMap().getDiamondCount()==0) {
+				this.getView().printMessage("Well Played");
+				System.exit(0);
+			}
+
+
+		}
+
+		this.getView().printMessage("You Loose");
+		System.exit(0);
+
+	}
+	public ControllerOrder getOrder() {
+		return order;
+	}
+
+
+	public void setOrder(ControllerOrder order) {
+		this.order = order;
+	}
 	public IModel getModel() {
 		return model;
 	}
@@ -108,52 +168,11 @@ public final class Controller implements IController {
 
 	@Override
 	public void control() {
-		// TODO Auto-generated method stub
-		
+
 	}
+
 	private void clearOrder() {
 		this.order=ControllerOrder.NONE;
 	}
-	
-	public final void play() throws InterruptedException{
-		this.getModel().getMap().setTheCharacter(this.getModel().getTheCharacter());
-		while(this.getModel().getTheCharacter().isAlive()) {
-			Thread.sleep(timer);
-			if(this.getModel().getTheCharacter().canMove(this.getOrder())) {
-		switch(this.getOrder()) {
-		case RIGHT:
-			this.getModel().getTheCharacter().moveRight();
-			break;
-		case LEFT:
-			this.getModel().getTheCharacter().moveLeft();
-			break;
-		case UP:
-			this.getModel().getTheCharacter().moveUp();
-			break;
-		case DOWN:
-			this.getModel().getTheCharacter().moveDown();
-			break;
-		case NONE:
-			default:this.getModel().getTheCharacter().stay();
-			break;
-				}
-			}
-			
-			this.getModel().moveEntity();
-			this.clearOrder();
-			
-			
-			this.getView().updateBoard();
-			
-			if(this.getModel().getMap().getDiamondCount()==0) {
-				this.getView().printMessage("Well Played");
-				System.exit(0);
-			}
-		}
-		
-		this.getView().printMessage("You Loose");
-		System.exit(0);
-	
-	}
-	
+
 }

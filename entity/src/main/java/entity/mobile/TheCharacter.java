@@ -75,7 +75,7 @@ public class TheCharacter extends MobileEntity {
 		super.stay();
 	}
 	@Override
-	protected void die() {
+	public void die() {
 		this.setSprite(sprite6);
 		super.die();
 	}

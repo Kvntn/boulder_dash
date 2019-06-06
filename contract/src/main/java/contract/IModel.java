@@ -27,7 +27,8 @@ public interface IModel {
 	public void setTheCharacter(MobileEntity theC) ;
 
 	void setMap(Map map);
-	void moveEntity();
+	
+	void moveEntity(int x, int y);
 
 	
 }

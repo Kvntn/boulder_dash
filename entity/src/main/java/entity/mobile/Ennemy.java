@@ -63,7 +63,7 @@ public class Ennemy extends MobileEntity{
 		super.moveDown();
 	}
 	@Override
-	protected void die() {
+	public void die() {
 		super.die();
 	}
 	@Override

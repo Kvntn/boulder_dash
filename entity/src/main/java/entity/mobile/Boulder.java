@@ -76,7 +76,7 @@ public class Boulder extends MobileEntity{
 			return super.itemsAllowMovementTo(direction);
 		}
 	}
-	public void strat() {
-		Boulder.strategy.followStrategy(this, this.getMap());
+	public void strat(int x, int y) {
+		Boulder.strategy.followStrategy(this, this.getMap(), x, y);
 	}
 }

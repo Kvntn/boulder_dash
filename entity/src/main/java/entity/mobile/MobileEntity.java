@@ -13,13 +13,14 @@ import showboard2.showboard.IPawn;
 public abstract class MobileEntity extends Entity implements IPawn{
 
 	private Point position;
-	private boolean alive=true;
+	private boolean alive = true;
 	private Map map;
-	private boolean fallSpeed=false;
+	private boolean fallSpeed = false;
 	
 	public MobileEntity(Sprite sprite, Map map, Permeability permeability) {
 		super(sprite, permeability);
 		this.map=map;
+		this.alive = true;
 		this.position = new Point();
 	}
 	public MobileEntity(int x, int y, Sprite sprite, Map map, Permeability perm) {
@@ -84,8 +85,8 @@ public abstract class MobileEntity extends Entity implements IPawn{
 	public boolean isAlive() {
 		return this.alive;
 	}
-	protected void die() {
-		this.alive=false;
+	public void die() {
+		this.alive = false;
 		this.setHasMoved();
 	}
 	/*public boolean isCrushed() {
@@ -108,7 +109,9 @@ public abstract class MobileEntity extends Entity implements IPawn{
 	protected boolean mapAllowsMovementTo(ControllerOrder direction) {
 		switch(direction) {
 		case UP:
+			System.out.println(this.getMap().getOnMapXY(this.getX(), this.getY()-1).getPermeability());
 			return this.getMap().getOnMapXY(this.getX(), this.getY()-1).getPermeability()==Permeability.PENETRABLE;
+			
 		case DOWN:
 			return this.getMap().getOnMapXY(this.getX(), this.getY()+1).getPermeability()==Permeability.PENETRABLE;
 		case RIGHT:
@@ -148,6 +151,8 @@ public abstract class MobileEntity extends Entity implements IPawn{
 		case LEFT:
 			desiredPosition = new Point(this.getX()-1,this.getY());
 			break;
+		default:
+			break;
 		
 		
 		}
@@ -156,6 +161,10 @@ public abstract class MobileEntity extends Entity implements IPawn{
 
 	public boolean isFalling() {
 		return fallSpeed;
+	}
+	
+	public void setFallSpeed(boolean fallSpeed) {
+		this.fallSpeed = fallSpeed;
 	}
 	
 	public ControllerOrder getLastWallTouched() {
@@ -176,7 +185,7 @@ public abstract class MobileEntity extends Entity implements IPawn{
 		this.setPosition(new Point(1,-1));
 		this.getMap().getMobileEntities().remove(this);
 	}
-	public void strat() {
+	public void strat(int x, int y) {
 		
 	}
 

@@ -6,11 +6,15 @@ import entity.*;
 
 public abstract class FallingObjectStrategy {
 
-	public void followStrategy(MobileEntity currentItem, Map map) {
+	public void followStrategy(MobileEntity currentItem, Map map, int x, int y) {
 		// if current pawn can go down
 		if (currentItem.canMove(ControllerOrder.DOWN)) {
 			currentItem.moveDown();
-		} 
+			currentItem.setFallSpeed(true);
+		}else if (currentItem.isFalling() == true && currentItem.getY() == y-1 && currentItem.getX() == x)  {
+			map.getTheCharacter().die();
+		}
+		
 		else {
 
 			// if not, check if he can fall on the sides
