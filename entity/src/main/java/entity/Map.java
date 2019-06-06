@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -8,7 +9,7 @@ import showboard2.showboard.ISquare;
 
 public class Map extends Observable {
 
-	private ISquare[][] mapContent;
+	private Entity[][] mapContent;
 	private static final int WIDTH = 32, HEIGHT = 16;
 	private int diamondCount = 0;
 	private int level;
@@ -20,14 +21,15 @@ public class Map extends Observable {
 	public Map(int level, Entity[][] mapContent) {
 		this.mapContent = mapContent;
 		this.level = level;
+		this.mobileEntities = new ArrayList<MobileEntity>();
 	}
 	
-	public Map() {
+	/*public Map() {
 		this.level = 1;
 		this.mapContent = null;
-	}
+	}*/
 	
-	public ISquare[][] getMapContent() {
+	public Entity[][] getMapContent() {
 		return mapContent;
 	}
 	
@@ -35,7 +37,7 @@ public class Map extends Observable {
 		return mobileEntities;
 	}
 
-	public void setMapContent(ISquare[][] mapContent) {
+	public void setMapContent(Entity[][] mapContent) {
 		this.mapContent = mapContent;
 	}
 	
@@ -53,7 +55,7 @@ public class Map extends Observable {
 	
 	public void setLevel(int level) {
 		this.level = level;
-		this.setMapContent(mapContent);
+		//this.setMapContent(mapContent);
 	}
 	
 	public static int getWidth() {
@@ -68,8 +70,11 @@ public class Map extends Observable {
 		this.mapContent[x][y] = entity;
 	}
 	
-	public ISquare getOnMapXY(int x, int y) {
-		return mapContent[x][y];
+	public Entity getOnMapXY(int x, int y) {
+		if(x >= 0 && x < Map.getWidth() && y >= 0 && y < Map.getHeight())
+            return this.mapContent[x][y];
+        else
+            return this.mapContent[0][0];
 	}
 	
 	public void add(MobileEntity mE) {
@@ -90,6 +95,7 @@ public class Map extends Observable {
 //     }
 	
 	public void setHasChanged() {
+		this.setChanged();
 		this.notifyObservers();
 	}
 	
@@ -110,12 +116,18 @@ public class Map extends Observable {
 	}
 	
 	public Permeability getPermOfEntityXY(int x, int y) {
-		if (mapContent[x][y].getPermeability() != null) 
-			return mapContent[x][y].getPermeability();
-		else
-			return null;
+		Point point = new Point(x,y);
+		for (MobileEntity mEntities : this.getMobileEntities()) {
+			if (mEntities.getPosition().equals(point)) {
+				return mEntities.getPermeability();
+			}
+			
+		}
+		if (this.getTheCharacter().getPosition().equals(point))
+		return this.getTheCharacter().getPermeability();
+		
+		return this.getOnMapXY(x, y).getPermeability();
 	}
-	
 	public Observable getObservable() {
 		return this;
 	}

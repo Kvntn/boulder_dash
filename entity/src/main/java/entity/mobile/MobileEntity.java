@@ -54,14 +54,17 @@ public abstract class MobileEntity extends Entity implements IPawn{
 	}
 	public void setX(int x) {
 		this.getPosition().x=x;
-		if(this.isCrushed()) {
+		/*if(this.isCrushed()) {
 			this.die();
-		}
+		}*/
 	}
 	public void digDirt() {
+		
 		this.getMap().setOnMapXY(MotionlessEntityFactory.createDugWall(), this.getX(),this.getY());
 		try {
+			
 			this.getMap().getOnMapXY(getX(),getY()).getSprite().loadImage();
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -71,9 +74,9 @@ public abstract class MobileEntity extends Entity implements IPawn{
 	}
 	public void setY(int y) {
 		this.getPosition().y=y;
-		if(this.isCrushed()) {
+		/*if(this.isCrushed()) {
 			this.die();
-		}
+		}*/
 	}
 	public Map getMap() {
 		return this.map;
@@ -85,7 +88,7 @@ public abstract class MobileEntity extends Entity implements IPawn{
 		this.alive=false;
 		this.setHasMoved();
 	}
-	public boolean isCrushed() {
+	/*public boolean isCrushed() {
 		for(MobileEntity item : this.getMap().getMobileEntities()) {
 			if(item.getSprite().getCharImage()=='B'||item.getSprite().getCharImage()=='D') {
 				if(item.getPosition().x==this.getPosition().x && item.getPosition().y==this.getPosition().y-1 && item.isFalling()) {
@@ -94,7 +97,7 @@ public abstract class MobileEntity extends Entity implements IPawn{
 			}
 		}
 		return this.getMap().getOnMapXY(this.getX(), this.getY()).getPermeability()==Permeability.BLOCKING;
-	}
+	}*/
 	
 	
 	public boolean canMove(ControllerOrder direction) {
@@ -121,7 +124,7 @@ public abstract class MobileEntity extends Entity implements IPawn{
 		Point desiredPosition = this.getPositionFromControllerOrder(direction);
 		for(MobileEntity item : this.getMap().getMobileEntities()) {
 			if(item.getPosition().equals(desiredPosition)) {
-				if(item.getPermeability()!=Permeability.PENETRABLE) {
+				if(item.getPermeability() !=Permeability.PENETRABLE) {
 					return false;
 				}else {
 					return true;
@@ -129,7 +132,7 @@ public abstract class MobileEntity extends Entity implements IPawn{
 			}
 		}
 		return true;
-	}
+	} 
 	protected Point getPositionFromControllerOrder(ControllerOrder direction) {
 		Point desiredPosition=null;
 		switch(direction) {
@@ -145,11 +148,8 @@ public abstract class MobileEntity extends Entity implements IPawn{
 		case LEFT:
 			desiredPosition = new Point(this.getX()-1,this.getY());
 			break;
-		case NONE:
-			
-		default:
-				desiredPosition = new Point(this.getX(),this.getY());
-				break;
+		
+		
 		}
 		return desiredPosition;
 	}

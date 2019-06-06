@@ -21,8 +21,8 @@ public class Boulder extends MobileEntity{
     /** The Constant SPRITE. */
 	 private static final Sprite sprite  = new Sprite(charImage, Sprite.mapSheet, new Rectangle(48, 0, 16, 16));
 	
-	public Boulder(int x, int y, Map map, Permeability perm) throws IOException {
-		super(x, y, sprite, map, perm);
+	public Boulder(int x, int y, Map map) throws IOException {
+		super(x, y, sprite, map, Permeability.BLOCKING);
 		sprite.loadImage();
 	}
 	

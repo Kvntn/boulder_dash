@@ -11,7 +11,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class EntityTest {
-  private Sprite sprite;
+  
+	private Sprite sprite;
   private Permeability permeability = Permeability.PENETRABLE;
 
   @BeforeClass

@@ -12,7 +12,7 @@ import controller.Controller;
 import entity.ControllerOrder;
 import model.Model;
 import view.BoulderDashView;
-import view.View;
+
 
 /**
  * The Class Main.
@@ -32,7 +32,7 @@ public abstract class Main {
      * 			throws something
      */
     public static void main(final String[] args) throws IOException, InterruptedException {
-        final IModel model = new Model(5);
+        final IModel model = new Model(3);
         final BoulderDashView bdv = new BoulderDashView(model.getMap(), model.getTheCharacter(), model.getMap().getMobileEntities());
         final Controller controller = new Controller(bdv, model);
         bdv.setOrderPerformer(controller);

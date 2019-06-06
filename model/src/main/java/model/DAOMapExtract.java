@@ -62,12 +62,6 @@ public class DAOMapExtract {
 	
 	private static Map resultToMap(final ResultSet result, int level) throws SQLException, IOException{
 
-		int count = 0;
-		int countB = 0;
-		int countD = 0;
-		int countE = 0;
-		int countC = 0;
-		
 		Map tempMap = new Map(level, new Entity[Map.getWidth()][Map.getHeight()]);
 
 		while (result.next()) {
@@ -81,26 +75,19 @@ public class DAOMapExtract {
 					tempMap.setOnMapXY(MotionlessEntityFactory.getFromDBSymbol(ch), x, y);
 
 					if(ch == 'B') {
-						tempMap.add(new Boulder(x, y, tempMap,Permeability.BLOCKING));
-						countB++;
+						tempMap.add(new Boulder(x, y, tempMap));
 					}
 					if(ch == 'E') {
-						tempMap.add(new Ennemy(x, y, tempMap, Permeability.BLOCKING));
-						countE++;
+						tempMap.add(new Ennemy(x, y, tempMap));
 					}
 					if(ch == 'D') {
-						tempMap.add(new Diamond(x, y, tempMap, Permeability.PENETRABLE));
-						countD++;
+						tempMap.add(new Diamond(x, y, tempMap));
+						tempMap.increaseDiamondCount();
 					}
-					if(ch == 'A') {
-						tempMap.setTheCharacter(new TheCharacter(x, y, tempMap, Permeability.PENETRABLE));
-					}
-					++count;
+					
 					++x;
 			}	
 		}
-		System.out.println(count);
-		System.out.println("B = " + countB + "\nE = "+countE+"\nD = "+countD+"\nC = "+countC);
 		return tempMap;
 	}
 	

@@ -15,41 +15,32 @@ import contract.IView;
 import entity.mobile.*;
 
 import showboard2.showboard.BoardFrame;
+
 import entity.*;
 
 
 public class BoulderDashView implements Runnable, KeyListener, IView {
 	
 	/** The Constant mapView. */
-	@SuppressWarnings("unused")
+	
 	private static final int MapView   = 50;
 
 	/** The Constant squareSize. */
 	private static final int squareSize = 50;
 
 	/** The Constant closeView. */
-	private Rectangle      closeView;
+	private Rectangle      closeView = null;
 
 	/** The Map. */
-	private Map            Map;
+	private Map            map = null;
 
 	/** Les Mobiles. */
-	private MobileEntity    TheCharacter;
+	private MobileEntity    TheCharacter = null;
 	
 	/**Mobile entities list*/
-	private ArrayList<MobileEntity> mEntity;
+	private ArrayList<MobileEntity> mEntity = null;
 	
-	public ArrayList<MobileEntity> getEntity() {
-		return mEntity;
-	}
-
-
-	public void setEntity(ArrayList<MobileEntity> entity) {
-		mEntity = entity;
-	}
-
-	/** The view. */
-	private int            view;
+	
 
 
 	private IController  orderPerformer;
@@ -61,14 +52,22 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 		this.setMap(Map);
 		this.setTheCharacter(TheCharacter);
 		this.getTheCharacter().getSprite().loadImage();
-		this.setCloseView(new Rectangle(0, this.getTheCharacter().getY(), entity.Map.getWidth(), entity.Map.getHeight()));
+		this.setEntity(mE);
+		this.setCloseView(new Rectangle(0, 0, entity.Map.getWidth(), entity.Map.getHeight()));
 		SwingUtilities.invokeLater(this);
 	}
 
 
-	public void setMap(Map map) {
-		Map = map;
-	}
+	
+		public void setMap(Map map) throws IOException {
+	        this.map = map;
+	        for (int x = 0; x < Map.getWidth(); x++) {
+	            for(int y = 0; y < Map.getHeight(); y++) {
+	                this.getMap().getOnMapXY(x, y).getSprite().loadImage();
+	            }
+	        }
+	    }
+	
 
 
 	public final void displayMessage(final String message) {
@@ -88,49 +87,24 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 		boardFrame.setFocusable(true);
 		boardFrame.setFocusTraversalKeysEnabled(false);
 
-		this.getMap();
-		for (int x = 0; x < entity.Map.getWidth(); x++) {
-			for (int y = 0; y < entity.Map.getHeight(); y++) {
-				boardFrame.addSquare(this.Map.getOnMapXY(x, y), x, y);
+	for (int x = 0; x < Map.getWidth(); x++) {
+			for (int y = 0; y < Map.getHeight(); y++) {
+				boardFrame.addSquare(this.getMap().getOnMapXY(x, y), x, y);
 			}
 		}
 		
 		boardFrame.addPawn(this.getTheCharacter());
 		
-		setEntity(Map.getMobileEntities());
 		for(MobileEntity Entities: mEntity) {
 			boardFrame.addPawn(Entities);
 		}
 		
-
 		this.getMap().getObservable().addObserver(boardFrame.getObserver());
 
 		boardFrame.setVisible(true);
 	}
 
-	/**
-	 * Prints the map and the player's character in the console.
-	 *
-	 * @param yStart
-	 *            the y start
-	 */
-	public final void show(final int yStart) {
-		this.getMap();
-		int y = yStart % entity.Map.getHeight();
-		for (int view = 0; view < this.getView(); view++) {
-			this.getMap();
-			for (int x = 0; x < entity.Map.getWidth(); x++) {
-				if ((x == this.getTheCharacter().getX()) && (y == yStart)) {
-					System.out.print(this.getTheCharacter().getSprite().getCharImage());
-				} else {
-					System.out.print(this.getMap().getOnMapXY(x, y).getSprite().getCharImage());
-				}
-			}
-			this.getMap();
-			y = (y + 1) % entity.Map.getHeight();
-			System.out.print("\n");
-		}
-	}
+	
 
 
 	/*
@@ -147,35 +121,33 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	@Override
-	public final void keyPressed(final KeyEvent keyEvent) {
-		this.getOrderPerformer().orderPerform(keyCodeToControllerOrder(keyEvent.getKeyCode()));
+	public  void keyPressed(final KeyEvent keyEvent) {
+		this.getOrderPerformer().orderPerform(View.keyCodeToControllerOrder(keyEvent.getKeyCode()));
 	}
 
-	private ControllerOrder keyCodeToControllerOrder(int keyCode) {
-		ControllerOrder ControllerOrder;
+	protected static ControllerOrder keyCodeToControllerOrder(int keyCode) {
+		
 		switch (keyCode) {
 		case KeyEvent.VK_RIGHT:
-			ControllerOrder = entity.ControllerOrder.RIGHT;
-			break;
+			return ControllerOrder.RIGHT;
+			
 		case KeyEvent.VK_LEFT:
-			ControllerOrder = entity.ControllerOrder.LEFT;
-			break;
+			return ControllerOrder.LEFT;
+			
 		case KeyEvent.VK_DOWN:
-			ControllerOrder = entity.ControllerOrder.DOWN;
-			break;
+			return ControllerOrder.DOWN;
+			
 		case KeyEvent.VK_UP:
-			ControllerOrder = entity.ControllerOrder.UP;
-			break;
+			return ControllerOrder.UP;
+			
 		default:
-			ControllerOrder = entity.ControllerOrder.NONE;
-			break;
+			return ControllerOrder.NONE;
+			
 		}
-		return ControllerOrder;
+		
 	}
 	
-	public void removeFromBoard(Entity en) {
-		en = null;
-	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -192,8 +164,12 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 	 * @return the map
 	 */
 	private Map getMap() {
-		return this.Map;
+		return map;
 	}
+	
+
+	
+
 
 	/**
 	 * Gets my character.
@@ -213,9 +189,7 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 	 *
 	 * @return the view
 	 */
-	private int getView() {
-		return this.view;
-	}
+	
 
 	/**
 	 * Sets the close view.
@@ -236,8 +210,6 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 		return this.orderPerformer;
 	}
 
-
-
 	/**
 	 * Sets the order performer.
 	 *
@@ -248,18 +220,40 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 		this.orderPerformer = orderPerformer;
 	}
 
-	public void updateBoard() {
-		for (int x = 0; x < entity.Map.getWidth(); x++) {
-			for (int y = 0; y < entity.Map.getHeight(); y++) {
-				boardFrame.addSquare(this.Map.getOnMapXY(x, y), x, y);
-			}
-		}
-	}
+	
+
+	
+
 
 
 	@Override
 	public void printMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);
+	}
+
+	public ArrayList<MobileEntity> getEntity() {
+		return mEntity;
+	}
+
+	public void setEntity(ArrayList<MobileEntity> entity) {
+		mEntity = entity;
+	}
+
+
+
+	@Override
+	public void updateBoard() {
+		
+		for (int x = 0; x < Map.getWidth(); x++) {
+			for (int y = 0; y< Map.getHeight(); y++) {
+				
+				boardFrame.addSquare(this.map.getOnMapXY(x, y), x, y);
+				
+				
+			}
+		}
+		
+		
 	}
 	
 }

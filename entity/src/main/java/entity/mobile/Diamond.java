@@ -18,10 +18,10 @@ public class Diamond extends MobileEntity{
 	private static DiamondStrategy dStrat;
     
     /** The Constant SPRITE. */
-	private static final Sprite sprite = new Sprite(charImage, Sprite.mapSheet, new Rectangle(64, 0, 16, 16));
+	private static final Sprite sprite = new Sprite(charImage, Sprite.mapSheet, new Rectangle(64, 16, 16, 16));
 	
-	public Diamond(int x, int y, Map map, Permeability perm) throws IOException {
-		super(x, y, sprite, map, perm);
+	public Diamond(int x, int y, Map map ) throws IOException {
+		super(x, y, sprite, map, Permeability.MINEABLE);
 		sprite.loadImage();
 	}
 	@Override

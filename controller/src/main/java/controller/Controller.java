@@ -1,6 +1,7 @@
 package controller;
 
 import entity.ControllerOrder;
+import entity.Map;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
@@ -29,6 +30,8 @@ public final class Controller implements IController {
 
 	/** The model. */
 	private IModel	model;
+	
+	private int timer = 200;
 
 	/**
 	 * Instantiates a new controller.
@@ -111,10 +114,11 @@ public final class Controller implements IController {
 	private void clearOrder() {
 		this.order=ControllerOrder.NONE;
 	}
+	
 	public final void play() throws InterruptedException{
 		this.getModel().getMap().setTheCharacter(this.getModel().getTheCharacter());
 		while(this.getModel().getTheCharacter().isAlive()) {
-			Thread.sleep(200);
+			Thread.sleep(timer);
 			if(this.getModel().getTheCharacter().canMove(this.getOrder())) {
 		switch(this.getOrder()) {
 		case RIGHT:
@@ -132,18 +136,21 @@ public final class Controller implements IController {
 		case NONE:
 			default:this.getModel().getTheCharacter().stay();
 			break;
-			
-					}
 				}
+			}
+			
 			this.getModel().moveEntity();
 			this.clearOrder();
+			
+			
 			this.getView().updateBoard();
 			
-			if(this.getModel().getMap().getDiamondCount()==8) {
+			if(this.getModel().getMap().getDiamondCount()==0) {
 				this.getView().printMessage("Well Played");
 				System.exit(0);
 			}
-			}
+		}
+		
 		this.getView().printMessage("You Loose");
 		System.exit(0);
 	

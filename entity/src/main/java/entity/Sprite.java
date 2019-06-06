@@ -36,7 +36,7 @@ public class Sprite {
 
 
 	public Sprite(char c, BufferedImage buff, Rectangle rectangle) {
-		loadBuffers();
+		
 		this.setCharImage(c);
 		this.buffer = buff;
 		bufferPart = rectangle;
@@ -44,13 +44,10 @@ public class Sprite {
 
 	public void loadImage() throws IOException {
 		this.setImage(buffer.getSubimage(bufferPart.x, bufferPart.y, bufferPart.width, bufferPart.height));
-		//this.setImage(ImageIO.read(new File(this.getImageName())).getScaledInstance(48, 48, Image.SCALE_DEFAULT));
-
 	}
 	
 	public static void loadBuffers() {
 		try {
-			int randomNum = (int) (Math.random() * 6);
 			Sprite.spriteSheetCharacter = ImageIO.read(new File("C:\\Users\\Kventin\\git\\boulder_dash2\\entity\\Sprites\\charSheet.png"));
 			Sprite.mapSheet = ImageIO.read(new File("C:\\Users\\Kventin\\git\\boulder_dash2\\entity\\Sprites\\mainSpriteSheetWorld1.png"));
 		} catch (IOException e) {

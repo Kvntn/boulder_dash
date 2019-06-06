@@ -8,7 +8,7 @@ import entity.Sprite;
 public class Exit extends MotionlessEntity {
 
 	private static char charImage = 'S';
-	private static Sprite sprite = new Sprite(charImage, Sprite.mapSheet, new Rectangle(192, 0, 16 ,16));
+	private static Sprite sprite = new Sprite(charImage, Sprite.mapSheet, new Rectangle(128, 0, 16 ,16));
 	private boolean open = false;
 	
 	Exit() {

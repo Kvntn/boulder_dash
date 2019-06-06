@@ -6,11 +6,11 @@ import entity.mobile.MobileEntity;
 
 public class EnnemyStrategy {
 	public void followStrategy(MobileEntity currentItem,Map map) {
-		if(currentItem.isCrushed()) {
+		/*if(currentItem.isCrushed()) {
 			Ennemy ennemy =(Ennemy)(currentItem);
 			ennemy.removeStrategy();
 			removeFromBoard(ennemy);
-		}
+		}*/
 	}
 	
 	private void removeFromBoard(MobileEntity currentItem) {

@@ -30,8 +30,8 @@ public class Ennemy extends MobileEntity{
     private static FollowWallClockWiseStrategy fCloackStrat;
     private static NoStrategy noStrat;
 	
-	public Ennemy(int x, int y, Map map, Permeability perm) throws IOException {
-		super(x, y, sprite,  map, perm);
+	public Ennemy(int x, int y, Map map ) throws IOException {
+		super(x, y, sprite,  map, Permeability.BLOCKING);
 		sprite.loadImage();
 		switch((int)(Math.random()*(3))){
 		case 1:

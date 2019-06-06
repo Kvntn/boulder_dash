@@ -20,14 +20,7 @@ public interface IModel {
 	 */
 	Map getMap();
 
-	/**
-	 * Gets the observable.
-	 *
-	 * @return Observable
-	 * 			
-	 *
-	 */
-	Observable getObservable();
+	
 	
 	public MobileEntity getTheCharacter();
 	

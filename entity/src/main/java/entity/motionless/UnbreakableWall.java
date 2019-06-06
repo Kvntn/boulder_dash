@@ -11,7 +11,7 @@ public class UnbreakableWall extends MotionlessEntity {
 	private static Sprite sprite = new Sprite(charImage, Sprite.mapSheet, new Rectangle(0, 0, 16, 16));
 	
 	protected UnbreakableWall() {
-		super(sprite, Permeability.PENETRABLE);
+		super(sprite, Permeability.BLOCKING);
 	}
 
 }

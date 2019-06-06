@@ -13,32 +13,28 @@ public class TheCharacter extends MobileEntity {
 
 	private static Permeability permeability = Permeability.BLOCKING;
 	private int ownedDiamond = 0;	
-	//il n'y a pas le SpriteStay
 	private final static char charImage = 'A';
 	
-	private static final Sprite sprite = new Sprite('H', Sprite.spriteSheetCharacter, new Rectangle(16, 0, 16, 16));
+	private static final Sprite sprite = new Sprite(charImage, Sprite.spriteSheetCharacter, new Rectangle(0, 0, 16, 16));
 
 	/** The Constant spriteTurnLeft. */
-	private static final Sprite sprite2 = new Sprite('H', Sprite.spriteSheetCharacter,
-			new Rectangle(16, 16, 16, 16));
+	private static final Sprite sprite2 = new Sprite(charImage, Sprite.spriteSheetCharacter, new Rectangle(0, 16, 16, 16));
 
 	/** The Constant spriteTurnRight. */
-	private static final Sprite sprite3 = new Sprite('H', Sprite.spriteSheetCharacter,
-			new Rectangle(16, 48, 16, 16));
+	private static final Sprite sprite3 = new Sprite(charImage, Sprite.spriteSheetCharacter, new Rectangle(48, 32, 16, 16));
 
 	/** The Constant spriteTurnUp. */
-	private static final Sprite sprite4 = new Sprite('H', Sprite.spriteSheetCharacter, new Rectangle(32, 80, 16, 16));
+	private static final Sprite sprite4 = new Sprite(charImage, Sprite.spriteSheetCharacter, new Rectangle(32, 80, 16, 16));
 
 	/** The Constant spriteTurnDown. */
-	private static final Sprite sprite5 = new Sprite('H', Sprite.spriteSheetCharacter,
-			new Rectangle(64, 16, 16, 16));
+	private static final Sprite sprite5 = new Sprite(charImage, Sprite.spriteSheetCharacter, new Rectangle(32, 64, 16, 16));
 
 	/** The Constant spriteExplode. */
-	private static final Sprite sprite6 = new Sprite('H', Sprite.spriteSheetCharacter, new Rectangle(64, 0, 16, 16));
+	private static final Sprite sprite6 = new Sprite(charImage, Sprite.spriteSheetCharacter, new Rectangle(64, 0, 16, 16));
 
 	
 	
-	public TheCharacter(int x, int y, Map map, Permeability perm) throws IOException {
+	public TheCharacter(int x, int y, Map map) throws IOException {
 		super(x, y,sprite, map, Permeability.BLOCKING);
 		sprite.loadImage();
 		sprite2.loadImage();
@@ -50,28 +46,28 @@ public class TheCharacter extends MobileEntity {
 	
 	@Override
 	public void moveUp() {
-		super.digDirt();
 		this.setSprite(sprite2);
 		super.moveUp();
+		super.digDirt();
 		
 	}
 	@Override
 	public void moveDown() {
-		super.digDirt();
 		this.setSprite(sprite5);
 		super.moveDown();
+		super.digDirt();
 	}
 	@Override
 	public void moveLeft() {
-		super.digDirt();
 		this.setSprite(sprite2);
 		super.moveLeft();
+		super.digDirt();
 	}
 	@Override
 	public void moveRight() {
-		super.digDirt();
 		this.setSprite(sprite3);
 		super.moveRight();
+		super.digDirt();
 	}
 	@Override
 	public void stay() {
@@ -107,8 +103,7 @@ public class TheCharacter extends MobileEntity {
 		boolean pushingAvailable=false;
 		switch(direction) {
 		case RIGHT:
-			pushingAvailable = this.getMap().getOnMapXY(getX() + 2, getY())
-					.getPermeability() == Permeability.PENETRABLE;
+			pushingAvailable = this.getMap().getOnMapXY(getX() + 2, getY()).getPermeability() == Permeability.PENETRABLE;
 			if (pushingAvailable) {
 				for (MobileEntity pawn : this.getMap().getMobileEntities()) {
 					if (pawn.getPosition().x == getX() + 2 && pawn.getPosition().y == getY()
@@ -154,8 +149,9 @@ public class TheCharacter extends MobileEntity {
 
 				} else if (item.getPermeability() == Permeability.MINEABLE) {
 					// Player stepped on a diamond
-
-					removeFromBoard(item);
+					item.setPosition(new Point(-1, -1));
+					this.getMap().getMobileEntities().remove(item);
+					//removeFromBoard(item);
 					this.getMap().decreaseDiamondCount();
 
 					return true;
@@ -175,7 +171,7 @@ return true;
 	}
 	
 	
-	@Override
+	/*@Override
 	public boolean isCrushed() {
 		for(MobileEntity item : this.getMap().getMobileEntities()) {
 			if(item.getSprite().getCharImage()=='E') {
@@ -184,5 +180,5 @@ return true;
 			}
 		}
 		return super.isCrushed();
-	}
+	}*/
 }

@@ -1,5 +1,7 @@
 package contract;
 
+import showboard2.showboard.BoardFrame;
+
 /**
  * The Interface IView.
  *
@@ -15,4 +17,5 @@ public interface IView {
 	 */
 	void printMessage(final String message);
 	public void updateBoard();
+	
 }
