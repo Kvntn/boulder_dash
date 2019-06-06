@@ -195,6 +195,7 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 		this.orderPerformer = orderPerformer;
 	}
 
+
 	@Override
 	public void printMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);
@@ -214,8 +215,8 @@ public class BoulderDashView implements Runnable, KeyListener, IView {
 				boardFrame.addSquare(this.map.getOnMapXY(x, y), x, y);
 			}
 		}
-	}
-	
+
+		}
 }
 
 

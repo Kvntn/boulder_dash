@@ -23,7 +23,7 @@ public final class Controller implements IController {
 	/** The model. */
 	private IModel	model;
 
-	private int timer = 200;
+	private int timer = 250;
 
 	/**
 	 * Instantiates a new controller.

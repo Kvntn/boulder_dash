@@ -6,7 +6,7 @@ public class MotionlessEntityFactory {
 	private static UnbreakableWall unbreakableWall = new UnbreakableWall();
 	private static DugWall dugWall = new DugWall();
 	private static Spawnpoint spawnPoint = new Spawnpoint();
-	private static Exit exit = new Exit();
+	private static BreakableWall exit = new BreakableWall();
 	
 	public static MotionlessEntity[] motionlessEntity = {breakableWall, unbreakableWall, dugWall, exit, spawnPoint};
 	
@@ -27,7 +27,7 @@ public class MotionlessEntityFactory {
 	}
 	
 	public static MotionlessEntity createExit() {
-		return exit;
+		return breakableWall;
 	}
 	
 	public static MotionlessEntity getFromDBSymbol(char symbol) {
