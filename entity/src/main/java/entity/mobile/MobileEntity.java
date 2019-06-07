@@ -13,7 +13,7 @@ import showboard2.showboard.IPawn;
 public abstract class MobileEntity extends Entity implements IPawn{
 
 	private Point position;
-	private boolean alive = true;
+	public static boolean alive = true;
 	private Map map;
 	private boolean fallSpeed = false;
 	

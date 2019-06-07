@@ -11,7 +11,7 @@ public class Map extends Observable {
 
 	private Entity[][] mapContent;
 	private static final int WIDTH = 32, HEIGHT = 16;
-	private int diamondCount = 0;
+	public static int diamondCount = 0;
 	private int level;
 	
 	private MobileEntity theCharacter;

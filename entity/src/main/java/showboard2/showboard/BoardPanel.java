@@ -2,6 +2,7 @@ package showboard2.showboard;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -51,6 +52,7 @@ import javax.swing.JPanel;
  * @see Observable
  */
 class BoardPanel extends JPanel implements Observer {
+	
 
     /** The Constant serialVersionUID. */
     private static final long   serialVersionUID = -3618605287900763008L;
@@ -78,6 +80,11 @@ class BoardPanel extends JPanel implements Observer {
 
     /** The height looped. */
     private Boolean             heightLooped     = false;
+    public long startTime = System.currentTimeMillis(), totalTime = 60, timeLeft;
+
+    private String timer, diamondsLeft;
+
+    private int positionInfosX = 10, positionInfosY = 100;
 
     /**
      * Instantiates a new board panel.
@@ -103,7 +110,14 @@ class BoardPanel extends JPanel implements Observer {
      */
     @Override
     public final void paintComponent(final Graphics graphics) {
+    	  long elapsedTime = System.currentTimeMillis() - startTime;
+          long elapsedSeconds = elapsedTime / 1000;
 
+
+          diamondsLeft = " " + entity.Map.diamondCount;
+          timeLeft = totalTime - elapsedSeconds;
+          timer = " " + timeLeft;
+    	
         final Map<String, ArrayList<IPawn>> mapPawn = this.createMapPawn();
 
         for (int x = this.getCornerMinX(); x <= this.getCornerMaxX(); x++) {
@@ -112,6 +126,40 @@ class BoardPanel extends JPanel implements Observer {
                 this.drawPawnsXY(graphics, mapPawn, x, y);
             }
         }
+        
+        graphics.setColor(Color.black);
+        graphics.drawOval(positionInfosX - 1, positionInfosY - 1, 42, 42);
+        graphics.drawOval(positionInfosX + 29, positionInfosY - 1, 42, 42);
+        graphics.drawRect(positionInfosX + 14, positionInfosY, 39, 40);
+        graphics.setColor(Color.lightGray);
+        graphics.fillOval(positionInfosX, positionInfosY, 40, 40);
+        graphics.fillOval(positionInfosX + 30, positionInfosY, 40, 40);
+        graphics.fillRect(positionInfosX + 15, positionInfosY + 1, 40, 39);
+
+        
+
+        graphics.setColor(Color.black);
+        graphics.drawOval(positionInfosX - 1, positionInfosY - 51, 42, 42);
+        graphics.drawOval(positionInfosX + 29, positionInfosY - 51, 42, 42);
+        graphics.drawRect(positionInfosX + 14, positionInfosY - 50, 39, 40);
+        graphics.setColor(Color.lightGray);
+        graphics.fillOval(positionInfosX, positionInfosY - 50, 40, 40);
+        graphics.fillOval(positionInfosX + 30, positionInfosY - 50, 40, 40);
+        graphics.fillRect(positionInfosX + 15, positionInfosY - 49, 40, 39);
+        
+        
+
+
+        graphics.setColor(Color.black);
+        graphics.setFont(new Font("Arial", Font.PLAIN, 30));
+        graphics.drawString(timer, positionInfosX, positionInfosY - 20);
+        graphics.drawString(diamondsLeft, positionInfosX, positionInfosY + 31);
+
+        if(timeLeft == 0)
+        {
+            entity.mobile.MobileEntity.alive = false;
+        }
+        
     }
 
     /*
